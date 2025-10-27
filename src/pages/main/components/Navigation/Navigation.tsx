@@ -1,38 +1,23 @@
 import { Stack, styled, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
 export const Navigation = () => {
+  const { t } = useTranslation();
+
   return (
     <MainContainer>
-      <NavLink
-        to="grades"
-        style={({ isActive }) => ({
-          textDecoration: "none",
-          fontWeight: isActive ? 700 : 400,
-        })}
-      >
-        <Typography color="white">Oceny</Typography>
-      </NavLink>
+      <CustomLink to="grades">
+        <Typography color="white">{t("navigation.grades")}</Typography>
+      </CustomLink>
       <Typography color="white">|</Typography>
-      <NavLink
-        to="timetable"
-        style={({ isActive }) => ({
-          textDecoration: "none",
-          fontWeight: isActive ? 700 : 400,
-        })}
-      >
-        <Typography color="white">Plan zajęć</Typography>
-      </NavLink>
+      <CustomLink to="schedule">
+        <Typography color="white">{t("navigation.schedule")}</Typography>
+      </CustomLink>
       <Typography color="white">|</Typography>
-      <NavLink
-        to="contact"
-        style={({ isActive }) => ({
-          textDecoration: "none",
-          fontWeight: isActive ? 700 : 400,
-        })}
-      >
-        <Typography color="white">Kontakt</Typography>
-      </NavLink>
+      <CustomLink to="contact">
+        <Typography color="white">{t("navigation.contact")}</Typography>
+      </CustomLink>
     </MainContainer>
   );
 };
@@ -44,4 +29,8 @@ const MainContainer = styled(Stack)({
   alignItems: "center",
   gap: "10px",
   padding: "10px",
+});
+
+const CustomLink = styled(NavLink)({
+  textDecoration: "none",
 });

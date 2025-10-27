@@ -3,5 +3,10 @@
     "changePassword": "Zmień hasło",
     "logOut": "Wyloguj",
     "settings": "Ustawienia"
+  },
+  "navigation": {
+    "grades": "Oceny",
+    "schedule": "Plan zajęć",
+    "contact": "Kontakt"
   }
 }

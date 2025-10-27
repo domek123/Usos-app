@@ -4,7 +4,7 @@ import {
   GradesPage,
   Login,
   MainPage,
-  TimetablePage,
+  SchedulePage,
 } from "./pages";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<MainPage />}>
         <Route index path="grades" element={<GradesPage />} />
-        <Route index path="timetable" element={<TimetablePage />} />
+        <Route index path="schedule" element={<SchedulePage />} />
         <Route index path="contact" element={<ContactPage />} />
       </Route>
     </Routes>
