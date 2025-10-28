@@ -16,7 +16,6 @@ export const MainPage = () => {
 
 const MainContainer = styled(Stack)({
   width: "100vw",
-  height: "100vh",
   flexDirection: "row",
   justifyContent: "center",
 });
@@ -24,4 +23,5 @@ const MainContainer = styled(Stack)({
 const MainPageContainer = styled(Stack)({
   width: "100%",
   maxWidth: "1000px",
+  boxShadow: "0px 0px 24px -5px rgba(66, 68, 90, 1)",
 });
