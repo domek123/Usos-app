@@ -1,7 +1,7 @@
-import main_pl from "./main/pl.json"
+import main_pl from "./common/pl.json";
 
 export const resources = {
-    pl:{
-        main:main_pl
-    }
-}
+  pl: {
+    common: main_pl,
+  },
+};

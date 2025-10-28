@@ -1,8 +1,10 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #e4e5e5ff;
 }
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }

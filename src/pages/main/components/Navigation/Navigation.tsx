@@ -8,15 +8,15 @@ export const Navigation = () => {
   return (
     <MainContainer>
       <CustomLink to="grades">
-        <Typography color="white">{t("navigation.grades")}</Typography>
+        <WhiteTypography>{t("navigation.grades")}</WhiteTypography>
       </CustomLink>
-      <Typography color="white">|</Typography>
+      <WhiteTypography>|</WhiteTypography>
       <CustomLink to="schedule">
-        <Typography color="white">{t("navigation.schedule")}</Typography>
+        <WhiteTypography>{t("navigation.schedule")}</WhiteTypography>
       </CustomLink>
-      <Typography color="white">|</Typography>
+      <WhiteTypography>|</WhiteTypography>
       <CustomLink to="contact">
-        <Typography color="white">{t("navigation.contact")}</Typography>
+        <WhiteTypography>{t("navigation.contact")}</WhiteTypography>
       </CustomLink>
     </MainContainer>
   );
@@ -29,8 +29,13 @@ const MainContainer = styled(Stack)({
   alignItems: "center",
   gap: "10px",
   padding: "10px",
+  borderBottom: "2px solid #F08D4F",
 });
 
 const CustomLink = styled(NavLink)({
   textDecoration: "none",
+});
+
+const WhiteTypography = styled(Typography)({
+  color: "white",
 });
