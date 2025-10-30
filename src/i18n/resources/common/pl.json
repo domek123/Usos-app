@@ -1,0 +1,33 @@
+{
+  "header": {
+    "changePassword": "Zmień hasło",
+    "logOut": "Wyloguj",
+    "settings": "Ustawienia"
+  },
+  "navigation": {
+    "grades": "Oceny",
+    "schedule": "Plan zajęć",
+    "contact": "Kontakt"
+  },
+  "grades": {
+    "title": "Moje oceny",
+    "noGrades": "Brak ocen do wyświetlenia",
+    "alert": {
+      "title": "Tabela z ocenami",
+      "message": "W tabeli są przedstawione przedmioty do których zostałeś przypisany w trakcie trwania semestrów.",
+      "secondMessage": "W nawiasach podane są 'stare' oceny, które poprawiłeś, zaliczając przedmiot w kolejnym terminie."
+    },
+    "table": {
+      "subject": "Nazwa Przedmiotu",
+      "ects": "ECTS",
+      "grade": "Ocena",
+      "finalGrade": "Ocena Końcowa",
+      "details": "szczegóły"
+    },
+    "gradeType": {
+      "LAB": "Laboratorium",
+      "EXAM": "Egzamin",
+      "PROJECT": "Ćwiczenia"
+    }
+  }
+}
