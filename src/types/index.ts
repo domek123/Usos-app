@@ -1,5 +1,1 @@
-export * from "./Person"
-export * from "./enums"
-export * from "./Semester"
-export * from "./Subject"
-export * from "./Grades"
+export * from "./getStudentDataForSesmeters";
