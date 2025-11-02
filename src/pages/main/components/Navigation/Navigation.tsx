@@ -1,23 +1,22 @@
 import { Stack, styled, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
+import { useGetLinks } from "../../hooks";
 
 export const Navigation = () => {
-  const { t } = useTranslation();
+  const { links } = useGetLinks();
 
   return (
     <MainContainer>
-      <CustomLink to="grades">
-        <WhiteTypography>{t("navigation.grades")}</WhiteTypography>
-      </CustomLink>
-      <WhiteTypography>|</WhiteTypography>
-      <CustomLink to="schedule">
-        <WhiteTypography>{t("navigation.schedule")}</WhiteTypography>
-      </CustomLink>
-      <WhiteTypography>|</WhiteTypography>
-      <CustomLink to="contact">
-        <WhiteTypography>{t("navigation.contact")}</WhiteTypography>
-      </CustomLink>
+      {links.map((link, index) => (
+        <Stack key={link.to} direction={"row"} alignItems={"center"} gap={1}>
+          <CustomLink to={link.to}>
+            {({ isActive }) => (
+              <NavText isActive={isActive}>{link.text}</NavText>
+            )}
+          </CustomLink>
+          {index < links.length - 1 && <Typography color="white">|</Typography>}
+        </Stack>
+      ))}
     </MainContainer>
   );
 };
@@ -36,6 +35,10 @@ const CustomLink = styled(NavLink)({
   textDecoration: "none",
 });
 
-const WhiteTypography = styled(Typography)({
-  color: "white",
-});
+const NavText = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== "isActive",
+})<{ isActive?: boolean }>(({ isActive, theme }) => ({
+  color: theme.palette.common.white,
+  fontWeight: isActive ? 600 : 400,
+  transition: "color 0.2s ease-in-out",
+}));
