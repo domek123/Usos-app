@@ -1,41 +1,36 @@
 import { Stack, styled } from "@mui/material";
 import type { CustomModalProps } from "./ModalContainer.types";
 
-export const ModalContainer = (props: CustomModalProps) => {
-  if (props.isOpen) {
-    return (
-      <ContainerBox>
-        <ShadowBox />
-        <ContentBox>{props.children}</ContentBox>
-      </ContainerBox>
-    );
-  }
+export const ModalContainer = ({ isOpen, children }: CustomModalProps) => {
+  if (!isOpen) return null;
+
+  return (
+    <Container>
+      <Shadow />
+      <Content>{children}</Content>
+    </Container>
+  );
 };
 
-const ContainerBox = styled(Stack)({
+const Container = styled(Stack)({
   position: "fixed",
   zIndex: 10,
-  top: "0",
-  left: "0",
-  width: "100%",
-  height: "100%",
+  inset: 0,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  transition: "all 0.5s ease-in-out",
+  transition: "all 0.3s ease-in-out",
 });
 
-const ShadowBox = styled(Stack)({
+const Shadow = styled(Stack)({
   position: "absolute",
   background: "black",
   opacity: 0.4,
-  width: "100%",
-  height: "100%",
+  inset: 0,
 });
 
-const ContentBox = styled(Stack)({
+const Content = styled(Stack)({
   position: "sticky",
-  width: "100%",
   maxWidth: "90vw",
   display: "flex",
   justifyContent: "center",

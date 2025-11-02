@@ -13,7 +13,7 @@ export const LoginForm = () => {
           sx={{ backgroundColor: "#14864A", width: "100%" }}
           textSx={{ color: "white" }}
           text={"Zaloguj się"}
-          icon={<LoginIcon style={{ color: "white" }} />}
+          startIcon={<LoginIcon style={{ color: "white" }} />}
         />
         <ButtonSection />
       </FormContainer>

@@ -26,7 +26,7 @@ export const HeaderMenu = () => {
     <>
       <CustomButton
         onClick={handleClick}
-        icon={<MenuIcon style={{ color: "white" }} />}
+        startIcon={<MenuIcon style={{ color: "white" }} />}
         textSx={{ color: "white" }}
       />
       <Menu

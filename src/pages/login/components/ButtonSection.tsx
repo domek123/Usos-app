@@ -7,14 +7,14 @@ export const ButtonSection = () => {
             sx={{width:"49%",backgroundColor:"#5A6268"}}
             text={"Zresetuj hasło"}
             textSx={{color: "white"}}
-            icon={<InfoIcon fontSize="small" style={{color:"white"}}/>}
+            startIcon={<InfoIcon fontSize="small" style={{color:"white"}}/>}
             href="https://cri.agh.edu.pl/pomoc-it/instrukcje/zmiana-i-resetowanie-hasla-do-sso"
             />
         <CustomButton
             sx={{width:"49%",backgroundColor:"#5A6268"}}
             textSx={{color: "white"}}
             text={"Pierwsze logowanie"}
-            icon={<InfoIcon fontSize="small" style={{color:"white"}}/>}
+            startIcon={<InfoIcon fontSize="small" style={{color:"white"}}/>}
             href="https://cri.agh.edu.pl/pomoc-it/instrukcje/zakladanie-konta-pocztowego"
         />
     </Container>
