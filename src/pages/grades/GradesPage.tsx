@@ -14,13 +14,13 @@ export const GradesPage = () => {
         Informatyka, pierwszego stopnia, stacjonarne
       </Typography>
       <Stack>
-        {data.map((item) => {
+        {data.semesters.map((item) => {
           console.log(item);
           return (
             <CustomDropdown
               key={item.id}
               name={item.name}
-              subjects={item.subjects}
+              subjects={item.subject}
             />
           );
         })}

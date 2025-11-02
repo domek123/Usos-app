@@ -1,6 +1,6 @@
 export interface Teacher {
   title: string;
-  id: string;
+  personId: string;
   firstName: string;
   lastName: string;
   email: string;

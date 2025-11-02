@@ -4,8 +4,7 @@ export interface Subject {
   id: string;
   ects: number;
   name: string;
-  updateDate: string;
-  finalGrade: number;
+  finalGrade?: number;
   grades: Grade[];
   teacher: Teacher;
 }

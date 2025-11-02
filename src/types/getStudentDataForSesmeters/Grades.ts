@@ -1,8 +1,5 @@
-import type { SubjectType } from "@/types";
-
 export interface Grade {
-  id: string;
-  type: SubjectType;
+  type: string;
   currentGrade?: number;
   gradeHistory: number[];
 }
