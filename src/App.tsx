@@ -1,22 +1,27 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import {
-  ContactPage,
-  GradesPage,
-  Login,
-  MainPage,
-  SchedulePage,
-} from "./pages";
+import { ContactPage, Login, MainPage } from "./pages";
+import { ProtectedRouteToken } from "./routes/ProtectedRoute";
+import { AdminRoutes } from "./routes";
+import { StudentRoutes } from "./routes/StudentRoutes";
 
 function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-      <Route path="/" element={<MainPage />}>
-        <Route index element={<Navigate to="grades" replace />} />
-        <Route path="grades" element={<GradesPage />} />
-        <Route path="schedule" element={<SchedulePage />} />
-        <Route path="contact" element={<ContactPage />} />
+      <Route
+        path="/"
+        element={
+          <ProtectedRouteToken>
+            <MainPage />
+          </ProtectedRouteToken>
+        }
+      >
+        {AdminRoutes}
+        {StudentRoutes}
+        <Route key="contact" path="contact" element={<ContactPage />} />,
       </Route>
+
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }

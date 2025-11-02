@@ -9,7 +9,6 @@ export const useGetLinks = () => {
   ];
 
   const adminLinks = [
-    { to: "semesters", text: t("navigation.semesters") },
     { to: "subjects", text: t("navigation.subjects") },
     { to: "teachers", text: t("navigation.teachers") },
     { to: "students", text: t("navigation.students") },

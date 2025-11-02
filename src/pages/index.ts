@@ -3,3 +3,4 @@ export * from "./main";
 export * from "./grades";
 export * from "./schedule";
 export * from "./contact";
+export * from "./subjects";
