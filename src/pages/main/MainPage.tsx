@@ -23,5 +23,7 @@ const MainContainer = styled(Stack)({
 const MainPageContainer = styled(Stack)(({ theme }) => ({
   width: "100%",
   maxWidth: "1000px",
+  height: "100%",
+  minHeight: "100vh",
   boxShadow: `0px 0px 24px -5px ${theme.palette.grey[800]}`,
 }));

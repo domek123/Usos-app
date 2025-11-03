@@ -32,5 +32,15 @@
       "EXAM": "Egzamin",
       "PROJECT": "Ćwiczenia"
     }
+  },
+  "subjects": {
+    "semesters": " Semestry",
+    "noSubjects": "Brak przedmiotów do wyświetlenia",
+    "title": "Przedmioty",
+    "table": {
+      "name": "Nazwa Przedmiotu",
+      "ects": "ECTS",
+      "teacher": "Nauczyciel"
+    }
   }
 }

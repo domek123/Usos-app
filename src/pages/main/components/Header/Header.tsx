@@ -25,7 +25,7 @@ const MainContainer = styled(Stack)(({ theme }) => ({
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "space-between",
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: theme.palette.secondary.main,
   color: "white",
   padding: "10px",
   paddingRight: 0,
