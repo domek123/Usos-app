@@ -28,16 +28,16 @@ export const DetailsModal = ({ name, teacher }: DetailsModalProps) => {
   );
 };
 
-const ContentContainer = styled(Stack)({
-  backgroundColor: "white",
+const ContentContainer = styled(Stack)(({ theme }) => ({
+  backgroundColor: theme.palette.common.white,
   width: "600px",
   padding: "20px",
   borderRadius: "5px",
   gap: "5px",
-});
+}));
 
-const Divider = styled(Stack)({
+const Divider = styled(Stack)(({ theme }) => ({
   width: "100%",
   height: "1px",
-  backgroundColor: "gray",
-});
+  backgroundColor: theme.palette.grey["300"],
+}));

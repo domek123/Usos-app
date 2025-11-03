@@ -20,8 +20,8 @@ const MainContainer = styled(Stack)({
   justifyContent: "center",
 });
 
-const MainPageContainer = styled(Stack)({
+const MainPageContainer = styled(Stack)(({ theme }) => ({
   width: "100%",
   maxWidth: "1000px",
-  boxShadow: "0px 0px 24px -5px rgba(66, 68, 90, 1)",
-});
+  boxShadow: `0px 0px 24px -5px ${theme.palette.grey[800]}`,
+}));

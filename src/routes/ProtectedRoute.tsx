@@ -11,7 +11,7 @@ export const ProtectedRoute = ({
   allowedRoles,
   children,
 }: ProtectedRouteProps) => {
-  const role = PermissionType.ADMIN;
+  const role = PermissionType.STUDENT;
 
   if (!role || !allowedRoles.includes(role)) {
     return <Navigate to="/" replace />;

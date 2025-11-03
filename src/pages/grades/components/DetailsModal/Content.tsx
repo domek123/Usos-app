@@ -25,6 +25,4 @@ const MainContainer = styled(Stack)({
 const ContentContainer = styled(Stack)({
   width: "80%",
   gap: "5px",
-  // backgroundColor: "red",
-  // alignItems: "flex-start",
 });

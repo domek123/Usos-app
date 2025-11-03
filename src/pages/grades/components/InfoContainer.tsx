@@ -1,5 +1,4 @@
-import styled from "@emotion/styled";
-import { Stack, Typography } from "@mui/material";
+import { Stack, styled, Typography } from "@mui/material";
 import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
 import { useTranslation } from "react-i18next";
 
@@ -31,15 +30,15 @@ const MainContainer = styled(Stack)({
   borderRadius: "5px",
 });
 
-const HeaderContainer = styled(Stack)({
-  backgroundColor: "#5E50EF",
+const HeaderContainer = styled(Stack)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
   width: "100%",
   flexDirection: "row",
   gap: "5px",
   padding: "5px",
   borderRadius: "5px 5px 0 0 ",
   color: "white",
-});
+}));
 
 const ContentStack = styled(Stack)({
   padding: "5px 15px",

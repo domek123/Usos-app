@@ -21,15 +21,15 @@ export const Navigation = () => {
   );
 };
 
-const MainContainer = styled(Stack)({
+const MainContainer = styled(Stack)(({ theme }) => ({
   height: "40px",
-  backgroundColor: "#5E50EF",
+  backgroundColor: theme.palette.primary.main,
   flexDirection: "row",
   alignItems: "center",
   gap: "10px",
   padding: "10px",
-  borderBottom: "2px solid #F08D4F",
-});
+  borderBottom: `2px solid ${theme.palette.secondary.main}`,
+}));
 
 const CustomLink = styled(NavLink)({
   textDecoration: "none",
