@@ -13,10 +13,10 @@ export const ProtectedRoute = ({
 }: ProtectedRouteProps) => {
   const role = PermissionType.STUDENT;
 
-  if (!role || !allowedRoles.includes(role)) {
-    return <Navigate to="/" replace />;
-  }
-  if (children) return <>{children}</>;
+  // if (!role || !allowedRoles.includes(role)) {
+  //   return <Navigate to="/" replace />;
+  // }
+  // if (children) return <>{children}</>;
   return <Outlet />;
 };
 
