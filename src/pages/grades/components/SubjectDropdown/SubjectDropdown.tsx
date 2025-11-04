@@ -24,4 +24,5 @@ const HeaderContainer = styled(Stack)({
   backgroundColor: "#5E50EF",
   padding: "10px",
   color: "white",
+  marginTop: "1px",
 });

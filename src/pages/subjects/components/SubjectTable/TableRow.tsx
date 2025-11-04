@@ -1,6 +1,6 @@
 import { TableRow, Typography } from "@mui/material";
 import type { SubjectTableRowProps } from "./types";
-import { StyledTableCell } from "./styles";
+import { StyledTableCell } from "@/styles";
 
 export const SubjectTableRow = ({ subject }: SubjectTableRowProps) => {
   return (

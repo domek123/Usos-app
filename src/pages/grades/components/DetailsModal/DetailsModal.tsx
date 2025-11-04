@@ -5,7 +5,6 @@ import { ModalHeader } from "./Header";
 import type { DetailsModalProps } from "./types";
 import { ModalContent } from "./Content";
 import { useModalContext } from "@/context";
-import { useEffect } from "react";
 
 export const DetailsModal = ({ name, teacher }: DetailsModalProps) => {
   const { t } = useTranslation();
@@ -19,16 +18,15 @@ export const DetailsModal = ({ name, teacher }: DetailsModalProps) => {
     </ContentContainer>
   );
 
-  useEffect(() => {
-    setChildren(content);
-  }, []);
-
   return (
     <>
       <CustomButton
         text={t("grades.table.details")}
         textSx={{ color: "black", textDecoration: "underline" }}
-        onClick={openModal}
+        onClick={() => {
+          openModal();
+          setChildren(content);
+        }}
       />
     </>
   );

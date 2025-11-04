@@ -1,7 +1,6 @@
 import { Stack, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { InfoContainer } from "./components/InfoContainer";
-import { CustomDropdown } from "./components";
+import { CustomDropdown, Info } from "./components";
 import data from "@/data/mockedData";
 
 export const GradesPage = () => {
@@ -9,7 +8,7 @@ export const GradesPage = () => {
   return (
     <MainContainer>
       <Typography variant="h3">{t("grades.title")}</Typography>
-      <InfoContainer />
+      <Info />
       <Typography variant="h6">
         Informatyka, pierwszego stopnia, stacjonarne
       </Typography>

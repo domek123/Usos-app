@@ -1,26 +1,15 @@
 import { Stack, styled, Typography } from "@mui/material";
 import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
-import { useTranslation } from "react-i18next";
+import type { InfoContainerProps } from "./IntoContainer.types";
 
-export const InfoContainer = () => {
-  const { t } = useTranslation();
-
+export const InfoContainer = ({ children, title }: InfoContainerProps) => {
   return (
     <MainContainer>
       <HeaderContainer>
         <InfoOutlineIcon />
-        <Typography>{t("grades.alert.title")}</Typography>
+        <Typography>{title}</Typography>
       </HeaderContainer>
-      <ContentStack>
-        <ul>
-          <li>
-            <Typography>{t("grades.alert.message")}</Typography>
-          </li>
-          <li>
-            <Typography>{t("grades.alert.secondMessage")}</Typography>
-          </li>
-        </ul>
-      </ContentStack>
+      <ContentStack>{children}</ContentStack>
     </MainContainer>
   );
 };

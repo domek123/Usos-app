@@ -1,8 +1,8 @@
 import { Button, TableHead, TableRow, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { StyledTableCell } from "./styles";
 import AddIcon from "@mui/icons-material/Add";
 import { useModalContext } from "@/context";
+import { StyledTableCell } from "@/styles";
 
 export const SubjectTableHeader = () => {
   const { t } = useTranslation();
