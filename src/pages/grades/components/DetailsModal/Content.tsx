@@ -3,26 +3,20 @@ import type { ModalContentProps } from "./types";
 
 export const ModalContent = ({ teacher }: ModalContentProps) => {
   return (
-    <MainContainer>
-      <ContentContainer>
-        <Typography fontWeight={600}>
-          {teacher.title} {teacher.firstName} {teacher.lastName}
-        </Typography>
-        <Typography>Dane kontaktowe:</Typography>
-        <Typography>tel: {teacher.phone}</Typography>
-        <Typography>mail: {teacher.email}</Typography>
-      </ContentContainer>
-    </MainContainer>
+    <ContentContainer>
+      <Typography fontWeight={600}>
+        {teacher.title} {teacher.firstName} {teacher.lastName}
+      </Typography>
+      <Typography>Dane kontaktowe:</Typography>
+      <Typography>tel: {teacher.phone}</Typography>
+      <Typography>mail: {teacher.email}</Typography>
+    </ContentContainer>
   );
 };
 
-const MainContainer = styled(Stack)({
+const ContentContainer = styled(Stack)({
+  paddingTop: "20px",
+  gap: "5px",
   justifyContent: "center",
   alignItems: "center",
-  paddingTop: "20px",
-});
-
-const ContentContainer = styled(Stack)({
-  width: "80%",
-  gap: "5px",
 });

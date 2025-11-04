@@ -1,8 +1,11 @@
 import { Button, Stack, styled, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import type { ModalHeaderProps } from "./types";
+import { useModalContext } from "@/context";
 
-export const ModalHeader = ({ name, closeModal }: ModalHeaderProps) => {
+export const ModalHeader = ({ name }: ModalHeaderProps) => {
+  const { closeModal } = useModalContext();
+
   return (
     <MainContainer>
       <Typography variant="h6">{name}</Typography>

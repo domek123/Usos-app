@@ -25,7 +25,6 @@ const MainContainer = styled(Stack)({
   alignItems: "center",
   height: "100%",
   transition: "all 0.3s ease",
-  overflow: "hidden",
   padding: "10px",
 });
 

@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 
 export const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [children, setChildren] = useState<ReactNode>();
 
   const closeModal = () => {
     setIsOpen(false);
+    setChildren(undefined);
   };
 
   const openModal = () => {
@@ -15,5 +17,7 @@ export const useModal = () => {
     isOpen,
     closeModal,
     openModal,
+    children,
+    setChildren,
   };
 };

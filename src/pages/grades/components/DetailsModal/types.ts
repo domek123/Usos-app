@@ -6,7 +6,6 @@ export type DetailsModalProps = {
 };
 
 export type ModalHeaderProps = {
-  closeModal: () => void;
   name: string;
 };
 

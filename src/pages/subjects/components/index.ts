@@ -1,2 +1,3 @@
 export * from "./Sidebar/Sidebar";
-export * from "./MainContent";
+export * from "./MainContent/MainContent";
+export * from "./SubjectTable/SubjectTable";

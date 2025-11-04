@@ -6,13 +6,16 @@ import { BrowserRouter } from "react-router-dom";
 import "@/i18n";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./theme/index";
+import { ModalContextProvider } from "./context/index.ts";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ModalContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ModalContextProvider>
     </ThemeProvider>
   </StrictMode>
 );

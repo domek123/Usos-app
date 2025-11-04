@@ -1,14 +1,27 @@
-import { CustomButton, ModalContainer } from "@/components";
-import { useModal } from "@/hooks";
+import { CustomButton } from "@/components";
 import { Stack, styled } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { ModalHeader } from "./Header";
 import type { DetailsModalProps } from "./types";
 import { ModalContent } from "./Content";
+import { useModalContext } from "@/context";
+import { useEffect } from "react";
 
 export const DetailsModal = ({ name, teacher }: DetailsModalProps) => {
   const { t } = useTranslation();
-  const { openModal, isOpen, closeModal } = useModal();
+  const { openModal, setChildren } = useModalContext();
+
+  const content = (
+    <ContentContainer>
+      <ModalHeader name={name} />
+      <Divider />
+      <ModalContent teacher={teacher} />
+    </ContentContainer>
+  );
+
+  useEffect(() => {
+    setChildren(content);
+  }, []);
 
   return (
     <>
@@ -17,13 +30,6 @@ export const DetailsModal = ({ name, teacher }: DetailsModalProps) => {
         textSx={{ color: "black", textDecoration: "underline" }}
         onClick={openModal}
       />
-      <ModalContainer isOpen={isOpen}>
-        <ContentContainer>
-          <ModalHeader closeModal={closeModal} name={name} />
-          <Divider />
-          <ModalContent teacher={teacher} />
-        </ContentContainer>
-      </ModalContainer>
     </>
   );
 };

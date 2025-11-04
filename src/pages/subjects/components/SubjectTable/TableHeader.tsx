@@ -1,10 +1,12 @@
-import { TableHead, TableRow, Typography, Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import { Button, TableHead, TableRow, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { StyledTableCell } from "./styles";
+import AddIcon from "@mui/icons-material/Add";
+import { useModalContext } from "@/context";
 
 export const SubjectTableHeader = () => {
   const { t } = useTranslation();
+  const { openModal } = useModalContext();
 
   return (
     <TableHead sx={{ backgroundColor: "lightgray" }}>
@@ -19,7 +21,7 @@ export const SubjectTableHeader = () => {
           <Typography>{t("subjects.table.teacher")}</Typography>
         </StyledTableCell>
         <StyledTableCell sx={{ padding: "0px" }}>
-          <Button>
+          <Button onClick={openModal}>
             <AddIcon />
           </Button>
         </StyledTableCell>
