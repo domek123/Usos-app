@@ -1,1 +1,1 @@
-export * from "./getStudentDataForSesmeters";
+export * from "./getStudentDataForSemesters";
