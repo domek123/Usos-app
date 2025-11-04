@@ -42,5 +42,35 @@
       "ects": "ECTS",
       "teacher": "Nauczyciel"
     }
+  },
+  "teachers": {
+    "title": "Nauczyciele",
+    "noTeachers": "Brak nauczycieli do wyświetlenia",
+    "infoTitle": "Informacje o nauczycielach",
+    "infoMessage": "Poniżej znajduje się lista nauczycieli prowadzących przedmioty na wydziale, wraz z listą przedmiotów nauczanych przez nich.",
+    "table": {
+      "title": "Tytuł naukowy",
+      "name": "Imię i Nazwisko",
+      "email": "Email",
+      "phone": "Telefon"
+    },
+    "addEditModal": {
+      "addTitle": "Dodaj Nauczyciela",
+      "editTitle": "Edytuj Nauczyciela",
+      "firstName": "Imię",
+      "lastName": "Nazwisko",
+      "title": "Tytuł naukowy",
+      "email": "Email",
+      "phone": "Telefon",
+      "addButton": "Zapisz",
+      "editButton": "Edytuj",
+      "cancelButton": "Anuluj"
+    },
+    "deleteModal": {
+      "title": "Usuń Nauczyciela",
+      "message": "Czy na pewno chcesz usunąć tego nauczyciela? Ta akcja jest nieodwracalna.",
+      "deleteButton": "Usuń",
+      "cancelButton": "Anuluj"
+    }
   }
 }
