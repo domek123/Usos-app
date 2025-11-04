@@ -4,6 +4,7 @@ import {
   ListItemIcon,
   Menu,
   MenuItem,
+  styled,
   Typography,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
@@ -24,7 +25,7 @@ export const TeacherMenu = ({ teacher }: TeacherTableRowProps) => {
         <MenuIcon fontSize="small" />
       </Button>
       <Menu anchorEl={anchorEl} open={isMenuOpen} onClose={handleMenuClose}>
-        <MenuItem
+        <CustomMenuItem
           onClick={() => {
             handleMenuClose();
             setChildren(<AddEditTeacherModal teacher={teacher} />);
@@ -36,14 +37,19 @@ export const TeacherMenu = ({ teacher }: TeacherTableRowProps) => {
           </ListItemIcon>
 
           <Typography>{t("teachers.addEditModal.editButton")}</Typography>
-        </MenuItem>
-        <MenuItem onClick={handleMenuClose}>
+        </CustomMenuItem>
+        <CustomMenuItem onClick={handleMenuClose}>
           <ListItemIcon>
             <DeleteIcon />
           </ListItemIcon>
           <Typography>{t("teachers.deleteModal.deleteButton")}</Typography>
-        </MenuItem>
+        </CustomMenuItem>
       </Menu>
     </>
   );
 };
+
+const CustomMenuItem = styled(MenuItem)({
+  height: "30px",
+  padding: "10px",
+});
