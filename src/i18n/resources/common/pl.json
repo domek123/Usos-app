@@ -47,7 +47,7 @@
     "title": "Nauczyciele",
     "noTeachers": "Brak nauczycieli do wyświetlenia",
     "infoTitle": "Informacje o nauczycielach",
-    "infoMessage": "Poniżej znajduje się lista nauczycieli prowadzących przedmioty na wydziale, wraz z listą przedmiotów nauczanych przez nich.",
+    "infoMessage": "Poniżej znajduje się lista nauczycieli prowadzących przedmioty na wydziale.",
     "table": {
       "title": "Tytuł naukowy",
       "name": "Imię i Nazwisko",

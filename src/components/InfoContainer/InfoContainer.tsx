@@ -17,6 +17,7 @@ export const InfoContainer = ({ children, title }: InfoContainerProps) => {
 const MainContainer = styled(Stack)({
   boxShadow: "0px 0px 24px -7px rgba(90, 90, 90, 1)",
   borderRadius: "5px",
+  width: "100%",
 });
 
 const HeaderContainer = styled(Stack)(({ theme }) => ({
