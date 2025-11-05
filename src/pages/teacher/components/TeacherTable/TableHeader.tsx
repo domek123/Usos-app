@@ -4,10 +4,10 @@ import { useTranslation } from "react-i18next";
 
 import AddIcon from "@mui/icons-material/Add";
 import { useModalContext } from "@/context";
-import { AddEditTeacherModal } from "../../modals/AddEditTeacherModal/AddEditTeacherModal";
+import { AddEditTeacherModal } from "../../modals";
 export const TeacherTableHeader = () => {
   const { t } = useTranslation();
-  const { openModal } = useModalContext();
+  const { openModal, setModalWidth } = useModalContext();
 
   const { setChildren } = useModalContext();
 
@@ -31,6 +31,7 @@ export const TeacherTableHeader = () => {
             onClick={() => {
               openModal();
               setChildren(<AddEditTeacherModal />);
+              setModalWidth("400px");
             }}
           >
             <AddIcon />

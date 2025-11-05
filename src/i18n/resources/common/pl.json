@@ -68,7 +68,7 @@
     },
     "deleteModal": {
       "title": "Usuń Nauczyciela",
-      "message": "Czy na pewno chcesz usunąć tego nauczyciela? Ta akcja jest nieodwracalna.",
+      "message": "Czy na pewno chcesz usunąć prowadzącego {{teacher}}? Ta akcja jest nieodwracalna.",
       "deleteButton": "Usuń",
       "cancelButton": "Anuluj"
     }

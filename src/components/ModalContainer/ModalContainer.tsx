@@ -1,13 +1,14 @@
 import { Stack, styled } from "@mui/material";
-import type { CustomModalProps } from "./ModalContainer.types";
+import { useModalContext } from "@/context";
 
-export const ModalContainer = ({ isOpen, children }: CustomModalProps) => {
+export const ModalContainer = () => {
+  const { children, modalWidth, isOpen } = useModalContext();
+
   if (!isOpen) return null;
-
   return (
     <Container>
       <Shadow />
-      <Content>{children}</Content>
+      <Content sx={{ width: modalWidth }}>{children}</Content>
     </Container>
   );
 };
@@ -36,4 +37,8 @@ const Content = styled(Stack)({
   justifyContent: "center",
   alignItems: "center",
   maxHeight: "90vh",
+  padding: "10px 20px",
+  borderRadius: "10px",
+  backgroundColor: "white",
+  gap: "30px",
 });

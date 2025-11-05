@@ -10,14 +10,14 @@ import {
 import { useTranslation } from "react-i18next";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useModalContext } from "@/context";
-import { AddEditTeacherModal } from "../../modals/AddEditTeacherModal/AddEditTeacherModal";
 import type { TeacherTableRowProps } from "./types";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { AddEditTeacherModal, DeleteTeacherModal } from "../../modals";
 export const TeacherMenu = ({ teacher }: TeacherTableRowProps) => {
   const { t } = useTranslation();
   const { anchorEl, handleMenuClose, handleMenuOpen, isMenuOpen } = useMenu();
-  const { setChildren, openModal } = useModalContext();
+  const { setChildren, setModalWidth, openModal } = useModalContext();
 
   return (
     <>
@@ -30,6 +30,7 @@ export const TeacherMenu = ({ teacher }: TeacherTableRowProps) => {
             handleMenuClose();
             setChildren(<AddEditTeacherModal teacher={teacher} />);
             openModal();
+            setModalWidth("400px");
           }}
         >
           <ListItemIcon>
@@ -38,7 +39,20 @@ export const TeacherMenu = ({ teacher }: TeacherTableRowProps) => {
 
           <Typography>{t("teachers.addEditModal.editButton")}</Typography>
         </CustomMenuItem>
-        <CustomMenuItem onClick={handleMenuClose}>
+        <CustomMenuItem
+          onClick={() => {
+            handleMenuClose();
+            setChildren(
+              <DeleteTeacherModal
+                firstName={teacher.firstName}
+                lastName={teacher.lastName}
+                id={teacher.personId}
+              />
+            );
+            setModalWidth("400px");
+            openModal();
+          }}
+        >
           <ListItemIcon>
             <DeleteIcon />
           </ListItemIcon>
