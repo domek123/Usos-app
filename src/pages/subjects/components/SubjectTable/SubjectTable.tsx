@@ -7,7 +7,6 @@ import { useFetchSubjects } from "@/hooks/fetch/useFetchSubjects";
 
 export const SubjectTable = () => {
   const { selectedSemester } = useSemesterContext();
-  console.log(selectedSemester);
   const { subjects } = useFetchSubjects(selectedSemester.id);
 
   return (

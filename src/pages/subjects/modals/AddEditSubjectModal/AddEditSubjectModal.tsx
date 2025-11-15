@@ -7,7 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { subjectSchema } from "./AddEditSubjectModalValidation";
 import { useAddEditSubject } from "../../hooks";
 
-export const AddEditSubjectModal = ({ subject }: AddEditSubjectModalProps) => {
+export const AddEditSubjectModal = ({
+  subject,
+  semesterId,
+}: AddEditSubjectModalProps) => {
   const { t } = useTranslation();
   const { register, handleSubmit, setValue } = useForm({
     defaultValues: subject ?? {
@@ -18,7 +21,7 @@ export const AddEditSubjectModal = ({ subject }: AddEditSubjectModalProps) => {
     resolver: zodResolver(subjectSchema),
   });
 
-  const { onSubmit } = useAddEditSubject(subject?.semesterId, subject?.id);
+  const { onSubmit } = useAddEditSubject(semesterId, subject?.id);
 
   return (
     <>

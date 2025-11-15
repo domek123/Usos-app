@@ -9,10 +9,11 @@ export const useAddEditSubject = (semesterId?: string, subjectId?: string) => {
 
   const { mutate } = useMutation({
     mutationFn: async (subject: SubjectDto) => {
-      if (subjectId && semesterId) {
+      if (!semesterId) return null;
+      if (subjectId) {
         return await api.put(`/subject/${subjectId}`, subject);
       } else {
-        return await api.post("/subject", subject);
+        return await api.post("/subject", { ...subject, semesterId });
       }
     },
     onSuccess: () => {
@@ -27,10 +28,8 @@ export const useAddEditSubject = (semesterId?: string, subjectId?: string) => {
   const onSubmit = (
     data: Pick<Subject, "name" | "ects"> & { teacherId: string }
   ) => {
-    mutate({
-      ...data,
-      semesterId: semesterId!,
-    });
+    console.log(data, subjectId, semesterId);
+    mutate(data);
   };
 
   return { onSubmit };

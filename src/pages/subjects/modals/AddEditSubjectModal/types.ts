@@ -1,6 +1,6 @@
 export type AddEditSubjectModalProps = {
+  semesterId: string;
   subject?: {
-    semesterId: string;
     id: string;
     teacherId: string;
     name: string;

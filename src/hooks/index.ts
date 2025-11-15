@@ -1,4 +1,4 @@
 export * from "./useModal";
 export * from "./useMenu";
-export * from "./useDeletePerson";
+export * from "./delete";
 export * from "./fetch";
