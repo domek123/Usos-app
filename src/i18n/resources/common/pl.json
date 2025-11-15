@@ -1,4 +1,15 @@
 {
+  "common": {
+    "loading": "Ładowanie...",
+    "noData": "Brak danych do wyświetlenia",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "add": "Dodaj",
+    "search": "Szukaj...",
+    "confirm": "Potwierdź"
+  },
   "header": {
     "changePassword": "Zmień hasło",
     "logOut": "Wyloguj",

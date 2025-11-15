@@ -14,7 +14,7 @@ export const ModalFooter = ({ text, action }: ModalFooterProps) => {
       <CustomButton
         variant="contained"
         sx={{ backgroundColor: theme.palette.secondary.main }}
-        text={t(`teachers.deleteModal.cancelButton`)}
+        text={t(`common.cancel`)}
         type="button"
         onClick={closeModal}
       />

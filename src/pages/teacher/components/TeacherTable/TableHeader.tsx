@@ -7,7 +7,7 @@ import { useModalContext } from "@/context";
 import { AddEditTeacherModal } from "../../modals";
 export const TeacherTableHeader = () => {
   const { t } = useTranslation();
-  const { openModal, setModalWidth } = useModalContext();
+  const { openModal } = useModalContext();
 
   const { setChildren } = useModalContext();
 
@@ -31,7 +31,6 @@ export const TeacherTableHeader = () => {
             onClick={() => {
               openModal();
               setChildren(<AddEditTeacherModal />);
-              setModalWidth("400px");
             }}
           >
             <AddIcon />

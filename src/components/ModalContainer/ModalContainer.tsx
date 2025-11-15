@@ -8,7 +8,7 @@ export const ModalContainer = () => {
   return (
     <Container>
       <Shadow />
-      <Content sx={{ width: modalWidth }}>{children}</Content>
+      <Content sx={{ width: modalWidth ?? "400px" }}>{children}</Content>
     </Container>
   );
 };

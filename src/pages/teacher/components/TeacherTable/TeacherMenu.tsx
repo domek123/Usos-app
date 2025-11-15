@@ -17,7 +17,7 @@ import { AddEditTeacherModal, DeleteTeacherModal } from "../../modals";
 export const TeacherMenu = ({ teacher }: TeacherTableRowProps) => {
   const { t } = useTranslation();
   const { anchorEl, handleMenuClose, handleMenuOpen, isMenuOpen } = useMenu();
-  const { setChildren, setModalWidth, openModal } = useModalContext();
+  const { setChildren, openModal } = useModalContext();
 
   return (
     <>
@@ -30,14 +30,13 @@ export const TeacherMenu = ({ teacher }: TeacherTableRowProps) => {
             handleMenuClose();
             setChildren(<AddEditTeacherModal teacher={teacher} />);
             openModal();
-            setModalWidth("400px");
           }}
         >
           <ListItemIcon>
             <EditIcon />
           </ListItemIcon>
 
-          <Typography>{t("teachers.addEditModal.editButton")}</Typography>
+          <Typography>{t("common.edit")}</Typography>
         </CustomMenuItem>
         <CustomMenuItem
           onClick={() => {
@@ -49,14 +48,13 @@ export const TeacherMenu = ({ teacher }: TeacherTableRowProps) => {
                 id={teacher.personId}
               />
             );
-            setModalWidth("400px");
             openModal();
           }}
         >
           <ListItemIcon>
             <DeleteIcon />
           </ListItemIcon>
-          <Typography>{t("teachers.deleteModal.deleteButton")}</Typography>
+          <Typography>{t("common.delete")}</Typography>
         </CustomMenuItem>
       </Menu>
     </>

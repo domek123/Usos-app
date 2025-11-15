@@ -3,9 +3,7 @@ import { useModalContext } from "@/context";
 import type { Teacher } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-export const useAddEditModal = (
-  personId: string = "6908cab8-fc00-4c54-b8f8-c62d7a6ffacd"
-) => {
+export const useAddEditModal = (personId?: string) => {
   const queryClient = useQueryClient();
   const { closeModal } = useModalContext();
 

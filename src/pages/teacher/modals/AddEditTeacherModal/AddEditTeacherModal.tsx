@@ -47,25 +47,23 @@ export const AddEditTeacherModal = ({ teacher }: AddEditTeacherModalProps) => {
 
         <TextField
           size="small"
-          label={t("teachers.addEditModal.title")}
+          label={t("teachers.table.title")}
           {...register("title")}
           fullWidth
         />
         <TextField
           size="small"
-          label={t("teachers.addEditModal.email")}
+          label={t("teachers.table.email")}
           {...register("email")}
           fullWidth
         />
         <TextField
           size="small"
-          label={t("teachers.addEditModal.phone")}
+          label={t("teachers.table.phone")}
           {...register("phone")}
           fullWidth
         />
-        <ModalFooter
-          text={t(`teachers.addEditModal.${teacher ? "edit" : "add"}Button`)}
-        />
+        <ModalFooter text={t(`common.${teacher ? "edit" : "add"}`)} />
       </CustomForm>
     </>
   );
