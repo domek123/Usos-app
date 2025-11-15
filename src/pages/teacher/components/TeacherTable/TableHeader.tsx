@@ -14,16 +14,16 @@ export const TeacherTableHeader = () => {
   return (
     <TableHead sx={{ backgroundColor: "lightgray" }}>
       <TableRow>
-        <StyledTableCell width={"25%"}>
+        <StyledTableCell width="25%">
           <Typography>{t("teachers.table.title")}</Typography>
         </StyledTableCell>
-        <StyledTableCell width={"25%"}>
+        <StyledTableCell width="25%">
           <Typography>{t("teachers.table.name")}</Typography>
         </StyledTableCell>
-        <StyledTableCell width={"25%"}>
+        <StyledTableCell width="25%">
           <Typography>{t("teachers.table.email")}</Typography>
         </StyledTableCell>
-        <StyledTableCell width={"20%"}>
+        <StyledTableCell width="20%">
           <Typography>{t("teachers.table.phone")}</Typography>
         </StyledTableCell>
         <StyledTableCell padding="none">

@@ -1,6 +1,7 @@
 import { TableRow, Typography } from "@mui/material";
 import type { SubjectTableRowProps } from "./types";
 import { StyledTableCell } from "@/styles";
+import { SubjectMenu } from "./SubjectMenu";
 
 export const SubjectTableRow = ({ subject }: SubjectTableRowProps) => {
   return (
@@ -17,7 +18,9 @@ export const SubjectTableRow = ({ subject }: SubjectTableRowProps) => {
           {subject.teacher.lastName}
         </Typography>
       </StyledTableCell>
-      <StyledTableCell></StyledTableCell>
+      <StyledTableCell padding="none">
+        <SubjectMenu subject={subject} />
+      </StyledTableCell>
     </TableRow>
   );
 };

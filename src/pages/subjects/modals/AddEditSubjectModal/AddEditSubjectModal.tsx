@@ -4,24 +4,21 @@ import type { AddEditSubjectModalProps } from "./types";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSubjectsNetwork } from "../hooks";
 import { subjectSchema } from "./AddEditSubjectModalValidation";
+import { useAddEditSubject } from "../../hooks";
 
-export const AddEditSubjectModal = ({
-  semesterId,
-  subject,
-}: AddEditSubjectModalProps) => {
+export const AddEditSubjectModal = ({ subject }: AddEditSubjectModalProps) => {
   const { t } = useTranslation();
-
   const { register, handleSubmit, setValue } = useForm({
-    defaultValues: {
+    defaultValues: subject ?? {
       ects: 0,
       name: "",
       teacherId: "",
     },
     resolver: zodResolver(subjectSchema),
   });
-  const { onSubmit } = useSubjectsNetwork(semesterId);
+
+  const { onSubmit } = useAddEditSubject(subject?.semesterId, subject?.id);
 
   return (
     <>
@@ -44,7 +41,10 @@ export const AddEditSubjectModal = ({
             fullWidth
           />
         </Stack>
-        <TeacherSelect setValue={(val) => setValue("teacherId", val)} />
+        <TeacherSelect
+          setValue={(val) => setValue("teacherId", val)}
+          defaultValue={subject?.teacherId}
+        />
         <ModalFooter text={t(`common.${subject ? "edit" : "add"}`)} />
       </CustomForm>
     </>

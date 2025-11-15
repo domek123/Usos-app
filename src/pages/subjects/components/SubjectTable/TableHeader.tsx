@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import AddIcon from "@mui/icons-material/Add";
 import { useModalContext } from "@/context";
 import { StyledTableCell } from "@/styles";
-import { AddEditSubjectModal } from "../../modals/AddEditSubjectModal";
 import { useSemesterContext } from "../../context";
+import { AddEditSubjectModal } from "../../modals";
 
 export const SubjectTableHeader = () => {
   const { t } = useTranslation();
@@ -23,7 +23,7 @@ export const SubjectTableHeader = () => {
         <StyledTableCell width="45%">
           <Typography>{t("subjects.table.teacher")}</Typography>
         </StyledTableCell>
-        <StyledTableCell sx={{ padding: "0px" }}>
+        <StyledTableCell padding="none">
           <Button
             onClick={() => {
               setChildren(

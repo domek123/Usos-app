@@ -14,7 +14,7 @@ export const TeacherSelect = ({
   setValue,
 }: TeacherSelectProps) => {
   const { t } = useTranslation();
-  const { data } = useFetchTeachers();
+  const { teachers } = useFetchTeachers();
 
   return (
     <FormControl size="small">
@@ -27,7 +27,7 @@ export const TeacherSelect = ({
           setValue(e.target.value as string);
         }}
       >
-        {(data ?? []).map((teacher) => (
+        {teachers.map((teacher) => (
           <MenuItem key={teacher.teacherId} value={teacher.teacherId}>
             <Typography>
               {teacher.title} {teacher.firstName} {teacher.lastName}

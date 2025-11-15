@@ -13,7 +13,6 @@ export const useSemester = () => {
 
   useEffect(() => {
     if (semesters.length > 0) {
-      console.log("semester", semesters);
       setSelectedSemester(semesters[0]);
     }
   }, [semesters]);
