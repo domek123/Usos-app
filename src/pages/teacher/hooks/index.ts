@@ -1,2 +1,2 @@
-export * from "./useFetchTeachers";
 export * from "./useTeachers";
+export * from "./useAddEditTeacherModal";
