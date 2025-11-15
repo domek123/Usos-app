@@ -1,5 +1,4 @@
 import { Stack, styled, Typography } from "@mui/material";
-import { TeacherContextProvider } from "./context";
 import { useTranslation } from "react-i18next";
 import { Info, TeacherTable } from "./components";
 
@@ -7,13 +6,11 @@ export const TeacherPage = () => {
   const { t } = useTranslation();
 
   return (
-    <TeacherContextProvider>
-      <MainContainer>
-        <Typography variant="h3">{t("teachers.title")}</Typography>
-        <Info />
-        <TeacherTable />
-      </MainContainer>
-    </TeacherContextProvider>
+    <MainContainer>
+      <Typography variant="h3">{t("teachers.title")}</Typography>
+      <Info />
+      <TeacherTable />
+    </MainContainer>
   );
 };
 

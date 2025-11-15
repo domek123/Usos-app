@@ -1,11 +1,11 @@
 import { Table, TableBody, TableContainer } from "@mui/material";
 import { TeacherTableHeader } from "./TableHeader";
 import { theme } from "@/theme";
-import { useTeacherContext } from "../../context";
 import { TeacherTableRow } from "./TableRow";
+import { useFetchTeachers } from "@/hooks";
 
 export const TeacherTable = () => {
-  const { teachers } = useTeacherContext();
+  const { teachers } = useFetchTeachers();
   return (
     <TableContainer>
       <Table

@@ -1,13 +1,14 @@
 import { Table, TableBody, TableContainer } from "@mui/material";
 import { theme } from "@/theme";
 import { SubjectTableHeader } from "./TableHeader";
-import { useSubjectsNetwork } from "../../hooks";
 import { SubjectTableRow } from "./TableRow";
 import { useSemesterContext } from "../../context";
+import { useFetchSubjects } from "@/hooks/fetch/useFetchSubjects";
 
 export const SubjectTable = () => {
   const { selectedSemester } = useSemesterContext();
-  const { subjects } = useSubjectsNetwork(selectedSemester.id);
+  console.log(selectedSemester);
+  const { subjects } = useFetchSubjects(selectedSemester.id);
 
   return (
     <TableContainer>
@@ -18,7 +19,7 @@ export const SubjectTable = () => {
         <SubjectTableHeader />
         <TableBody>
           {subjects.map((subject) => (
-            <SubjectTableRow subject={subject} />
+            <SubjectTableRow subject={subject} key={subject.id} />
           ))}
         </TableBody>
       </Table>

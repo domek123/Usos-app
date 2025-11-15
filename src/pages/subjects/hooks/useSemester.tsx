@@ -1,6 +1,6 @@
 import { type Semester } from "@/types";
 import { useEffect, useState } from "react";
-import { useSemesterNetwork } from "./useSemesterNetwork";
+import { useFetchSemesters } from "@/hooks";
 
 export const useSemester = () => {
   const [selectedSemester, setSelectedSemester] = useState<Semester>({
@@ -9,16 +9,17 @@ export const useSemester = () => {
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const { data, isLoading } = useSemesterNetwork();
+  const { semesters, isLoading } = useFetchSemesters();
 
   useEffect(() => {
-    if (data) {
-      setSelectedSemester(data[0]);
+    if (semesters.length > 0) {
+      console.log("semester", semesters);
+      setSelectedSemester(semesters[0]);
     }
-  }, [data]);
+  }, [semesters]);
 
   return {
-    semesters: data || [],
+    semesters,
     selectedSemester,
     setSelectedSemester,
     isSidebarOpen,
