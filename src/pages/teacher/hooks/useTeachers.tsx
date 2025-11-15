@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useFetchTeachers } from "./useFetchTeachers";
 import type { Teacher } from "@/types";
+import { useFetchTeachers } from "@/hooks";
 
 export const useTeacher = () => {
   const { data, isLoading } = useFetchTeachers();

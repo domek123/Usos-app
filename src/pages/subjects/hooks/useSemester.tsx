@@ -1,38 +1,28 @@
-import { api } from "@/api/api";
 import { type Semester } from "@/types";
 import { useEffect, useState } from "react";
+import { useSemesterNetwork } from "./useSemesterNetwork";
 
 export const useSemester = () => {
-  const [semesters, setSemesters] = useState<Semester[]>([]);
   const [selectedSemester, setSelectedSemester] = useState<Semester>({
     id: "",
     name: "",
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const { data, isLoading } = useSemesterNetwork();
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await api.get<Semester[]>("/semester");
-        console.log(data);
-        setSemesters(data);
-
-        if (data.length > 0) {
-          setSelectedSemester(data[0]);
-        }
-      } catch (err) {
-        console.error("Błąd pobierania semestrów:", err);
-      }
-    };
-
-    fetchData();
-  }, []);
+    if (data) {
+      setSelectedSemester(data[0]);
+    }
+  }, [data]);
 
   return {
-    semesters,
+    semesters: data || [],
     selectedSemester,
     setSelectedSemester,
     isSidebarOpen,
     setIsSidebarOpen,
+    isLoading,
   };
 };

@@ -8,7 +8,7 @@ export const useAddEditModal = (personId?: string) => {
   const { closeModal } = useModalContext();
 
   const { mutate } = useMutation({
-    mutationFn: async (teacher: Omit<Teacher, "personId">) => {
+    mutationFn: async (teacher: Omit<Teacher, "personId" | "teacherId">) => {
       if (personId) {
         return await api.put(`/teachers/${personId}`, teacher);
       } else {

@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Stack, styled, TextField } from "@mui/material";
 import type { AddEditTeacherModalProps } from "./types";
-import { useAddEditModal } from "../../hooks/useAddEditTeacherModal";
+import { useAddEditModal } from "../../hooks";
 import { useForm } from "react-hook-form";
 import { ModalFooter, ModalHeader } from "@/components";
 import { teacherSchema } from "./AddEditTeacherModalValidation";

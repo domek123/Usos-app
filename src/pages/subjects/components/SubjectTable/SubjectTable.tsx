@@ -7,9 +7,8 @@ import { useSemesterContext } from "../../context";
 
 export const SubjectTable = () => {
   const { selectedSemester } = useSemesterContext();
-  console.log(selectedSemester);
-
   const { subjects } = useSubjectsNetwork(selectedSemester.id);
+
   return (
     <TableContainer>
       <Table

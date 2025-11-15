@@ -3,10 +3,13 @@ import { useTranslation } from "react-i18next";
 import AddIcon from "@mui/icons-material/Add";
 import { useModalContext } from "@/context";
 import { StyledTableCell } from "@/styles";
+import { AddEditSubjectModal } from "../../modals/AddEditSubjectModal";
+import { useSemesterContext } from "../../context";
 
 export const SubjectTableHeader = () => {
   const { t } = useTranslation();
-  const { openModal } = useModalContext();
+  const { openModal, setChildren } = useModalContext();
+  const { selectedSemester } = useSemesterContext();
 
   return (
     <TableHead sx={{ backgroundColor: "lightgray" }}>
@@ -21,7 +24,14 @@ export const SubjectTableHeader = () => {
           <Typography>{t("subjects.table.teacher")}</Typography>
         </StyledTableCell>
         <StyledTableCell sx={{ padding: "0px" }}>
-          <Button onClick={openModal}>
+          <Button
+            onClick={() => {
+              setChildren(
+                <AddEditSubjectModal semesterId={selectedSemester.id} />
+              );
+              openModal();
+            }}
+          >
             <AddIcon />
           </Button>
         </StyledTableCell>

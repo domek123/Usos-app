@@ -52,6 +52,10 @@
       "name": "Nazwa Przedmiotu",
       "ects": "ECTS",
       "teacher": "Nauczyciel"
+    },
+    "addEditModal": {
+      "addTitle": "Dodaj Przedmiot",
+      "editTitle": "Edytuj Przedmiot"
     }
   },
   "teachers": {
@@ -69,19 +73,11 @@
       "addTitle": "Dodaj Nauczyciela",
       "editTitle": "Edytuj Nauczyciela",
       "firstName": "Imię",
-      "lastName": "Nazwisko",
-      "title": "Tytuł naukowy",
-      "email": "Email",
-      "phone": "Telefon",
-      "addButton": "Zapisz",
-      "editButton": "Edytuj",
-      "cancelButton": "Anuluj"
+      "lastName": "Nazwisko"
     },
     "deleteModal": {
       "title": "Usuń Nauczyciela",
-      "message": "Czy na pewno chcesz usunąć prowadzącego {{teacher}}? Ta akcja jest nieodwracalna.",
-      "deleteButton": "Usuń",
-      "cancelButton": "Anuluj"
+      "message": "Czy na pewno chcesz usunąć prowadzącego {{teacher}}? Ta akcja jest nieodwracalna."
     }
   }
 }
