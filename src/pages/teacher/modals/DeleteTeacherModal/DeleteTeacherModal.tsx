@@ -24,7 +24,7 @@ export const DeleteTeacherModal = ({
         />
       </Typography>
       <ModalFooter
-        text={t("teachers.deleteModal.deleteButton")}
+        text={t("common.delete")}
         action={() => deleteUser(id, PermissionType.TEACHER)}
       />
     </>

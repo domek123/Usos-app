@@ -1,6 +1,6 @@
 import { api } from "@/api/api";
 import { useModalContext } from "@/context";
-import type { SubjectDto, Subject } from "@/types";
+import type { SubjectDto } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useAddEditSubject = (semesterId?: string, subjectId?: string) => {
@@ -25,12 +25,5 @@ export const useAddEditSubject = (semesterId?: string, subjectId?: string) => {
     },
   });
 
-  const onSubmit = (
-    data: Pick<Subject, "name" | "ects"> & { teacherId: string }
-  ) => {
-    console.log(data, subjectId, semesterId);
-    mutate(data);
-  };
-
-  return { onSubmit };
+  return { addEditSubject: (subject: SubjectDto) => mutate(subject) };
 };

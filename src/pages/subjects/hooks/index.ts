@@ -1,2 +1,2 @@
 export * from "./useSemester";
-export * from "./useAddEditSubject";
+export * from "./useAddEditSubjectModal";

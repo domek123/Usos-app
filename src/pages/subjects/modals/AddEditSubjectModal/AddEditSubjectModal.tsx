@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { subjectSchema } from "./AddEditSubjectModalValidation";
-import { useAddEditSubject } from "../../hooks";
+import { useAddEditSubjectModal } from "../../hooks";
 
 export const AddEditSubjectModal = ({
   subject,
@@ -21,7 +21,7 @@ export const AddEditSubjectModal = ({
     resolver: zodResolver(subjectSchema),
   });
 
-  const { onSubmit } = useAddEditSubject(semesterId, subject?.id);
+  const { onSubmit } = useAddEditSubjectModal(semesterId, subject?.id);
 
   return (
     <>
