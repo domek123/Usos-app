@@ -1,5 +1,6 @@
 {
   "common": {
+    "name": "Nazwa",
     "loading": "Ładowanie...",
     "noData": "Brak danych do wyświetlenia",
     "save": "Zapisz",

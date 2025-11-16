@@ -2,16 +2,16 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useModalContext } from "@/context";
 import { api } from "@/api/api";
 
-export const useDeleteSemester = (id: string) => {
+export const useDeleteSemester = () => {
   const queryClient = useQueryClient();
   const { closeModal } = useModalContext();
 
   const { mutate } = useMutation({
-    mutationFn: async () => {
+    mutationFn: async (id: string) => {
       await api.delete(`/semester/${id}`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["semesters"] });
+      queryClient.invalidateQueries({ queryKey: ["semester"] });
       closeModal();
     },
     onError: (error) => {
@@ -19,5 +19,5 @@ export const useDeleteSemester = (id: string) => {
     },
   });
 
-  return { deleteSemester: () => mutate() };
+  return { deleteSemester: (id: string) => mutate(id) };
 };
