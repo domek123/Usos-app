@@ -11,14 +11,28 @@ export const useSemester = () => {
     name: "",
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  //add semester
   const [isAddSemesterVisible, setIsAddSemesterVisible] = useState(false);
   const [semesterName, setSemesterName] = useState("");
 
+  //edit semester
+  const [editSemesterName, setEditSemesterName] = useState("");
+  const [isEdit, setIsEdit] = useState(false);
+
   useEffect(() => {
-    if (semesters.length > 0) {
-      setSelectedSemester(semesters[0]);
-    }
+    if (semesters.length === 0) return;
+
+    const currentSemester = semesters.find(
+      (semester) => semester.id === selectedSemester.id
+    );
+
+    setSelectedSemester(currentSemester || semesters[0]);
   }, [semesters]);
+
+  useEffect(() => {
+    setIsEdit(false);
+  }, [selectedSemester]);
 
   const handleAddSemester = () => {
     addSemester(semesterName);
@@ -38,5 +52,9 @@ export const useSemester = () => {
     semesterName,
     setSemesterName,
     handleAddSemester,
+    editSemesterName,
+    setEditSemesterName,
+    isEdit,
+    setIsEdit,
   };
 };

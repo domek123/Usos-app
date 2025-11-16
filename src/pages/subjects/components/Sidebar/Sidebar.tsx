@@ -62,7 +62,7 @@ export const Sidebar = () => {
               setIsSidebarOpen(false);
             }}
             sx={
-              selectedSemester?.id == semester.id
+              selectedSemester.id == semester.id
                 ? {
                     backgroundColor: "primary.main",
                     color: "white",
