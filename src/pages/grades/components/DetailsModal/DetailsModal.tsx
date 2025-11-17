@@ -11,11 +11,11 @@ export const DetailsModal = ({ name, teacher }: DetailsModalProps) => {
   const { openModal, setChildren } = useModalContext();
 
   const content = (
-    <ContentContainer>
+    <Stack width={"100%"}>
       <ModalHeader name={name} />
       <Divider />
       <ModalContent teacher={teacher} />
-    </ContentContainer>
+    </Stack>
   );
 
   return (
@@ -31,14 +31,6 @@ export const DetailsModal = ({ name, teacher }: DetailsModalProps) => {
     </>
   );
 };
-
-const ContentContainer = styled(Stack)(({ theme }) => ({
-  backgroundColor: theme.palette.common.white,
-  width: "600px",
-  padding: "20px",
-  borderRadius: "5px",
-  gap: "5px",
-}));
 
 const Divider = styled(Stack)(({ theme }) => ({
   width: "100%",
