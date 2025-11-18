@@ -13,10 +13,12 @@ export const SubjectTableRow = ({ subject }: SubjectTableRowProps) => {
         <Typography>{subject.ects}</Typography>
       </StyledTableCell>
       <StyledTableCell>
-        <Typography>
-          {subject.teacher.title} {subject.teacher.firstName}{" "}
-          {subject.teacher.lastName}
-        </Typography>
+        {subject.teacher && (
+          <Typography>
+            {subject.teacher.title} {subject.teacher.firstName}{" "}
+            {subject.teacher.lastName}
+          </Typography>
+        )}
       </StyledTableCell>
       <StyledTableCell padding="none">
         <SubjectMenu subject={subject} />

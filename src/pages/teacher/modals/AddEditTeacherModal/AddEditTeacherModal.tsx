@@ -43,7 +43,14 @@ export const AddEditTeacherModal = ({ teacher }: { teacher?: Teacher }) => {
             fullWidth
           />
         </Stack>
-
+        {teacher && (
+          <TextField
+            size="small"
+            label={t("common.email")}
+            {...register("email")}
+            fullWidth
+          />
+        )}
         <TextField
           size="small"
           label={t("teachers.table.title")}

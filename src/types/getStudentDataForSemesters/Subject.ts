@@ -6,5 +6,5 @@ export interface Subject {
   name: string;
   finalGrade?: number;
   grades: Grade[];
-  teacher: Teacher;
+  teacher?: Teacher;
 }

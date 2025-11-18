@@ -12,7 +12,7 @@ export const StudentTableRow = ({ student }: { student: Student }) => {
   return (
     <TableRow onClick={() => console.log("open")}>
       <StyledTableCell width="20%">
-        <Typography>{student.studentId[1]}</Typography>
+        <Typography>{student.studentId}</Typography>
       </StyledTableCell>
       <StyledTableCell width="35%">
         <Typography>

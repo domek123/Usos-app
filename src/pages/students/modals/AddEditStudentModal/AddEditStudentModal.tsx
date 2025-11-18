@@ -38,6 +38,14 @@ export const AddEditStudentModal = ({ student }: { student?: Student }) => {
           {...register("lastName")}
           fullWidth
         />
+        {student && (
+          <TextField
+            size="small"
+            label={t("common.email")}
+            {...register("email")}
+            fullWidth
+          />
+        )}
         <ModalFooter text={t(`common.${student ? "edit" : "add"}`)} />
       </CustomForm>
     </>

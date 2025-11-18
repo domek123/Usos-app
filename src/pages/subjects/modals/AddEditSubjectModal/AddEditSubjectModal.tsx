@@ -16,7 +16,7 @@ export const AddEditSubjectModal = ({
     defaultValues: subject ?? {
       ects: 0,
       name: "",
-      teacherId: "",
+      teacherId: undefined,
     },
     resolver: zodResolver(subjectSchema),
   });

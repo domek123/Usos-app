@@ -21,7 +21,7 @@ export const SubjectMenu = ({ subject }: SubjectTableRowProps) => {
               id,
               name,
               ects,
-              teacherId: teacher.teacherId,
+              teacherId: teacher?.teacherId,
             }}
           />
         );
