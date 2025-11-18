@@ -1,2 +1,2 @@
 export * from "./AddEditTeacherModal/AddEditTeacherModal";
-export * from "./DeleteTeacherModal/DeleteTeacherModal";
+export * from "./DeleteTeacherModal";

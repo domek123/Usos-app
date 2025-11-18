@@ -16,7 +16,7 @@ export const TeacherMenu = ({ teacher }: TeacherTableRowProps) => {
           <DeleteTeacherModal
             firstName={teacher.firstName}
             lastName={teacher.lastName}
-            id={teacher.personId}
+            personId={teacher.personId}
           />
         );
         openModal();

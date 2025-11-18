@@ -1,13 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { Stack, styled, TextField } from "@mui/material";
-import type { AddEditTeacherModalProps } from "./types";
 import { useForm } from "react-hook-form";
 import { ModalFooter, ModalHeader } from "@/components";
 import { teacherSchema } from "./AddEditTeacherModalValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAddEditTeacher } from "@/hooks";
+import type { Teacher } from "@/types";
 
-export const AddEditTeacherModal = ({ teacher }: AddEditTeacherModalProps) => {
+export const AddEditTeacherModal = ({ teacher }: { teacher?: Teacher }) => {
   const { t } = useTranslation();
 
   const { register, handleSubmit } = useForm({

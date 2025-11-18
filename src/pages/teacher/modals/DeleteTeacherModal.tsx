@@ -1,14 +1,13 @@
 import { Typography } from "@mui/material";
-import type { DeleteTeacherModalProps } from "./types";
 import { Trans, useTranslation } from "react-i18next";
 import { ModalFooter, ModalHeader } from "@/components";
 import { useDeletePerson } from "@/hooks";
-import { PermissionType } from "@/types";
+import { PermissionType, type Teacher } from "@/types";
 export const DeleteTeacherModal = ({
   firstName,
   lastName,
-  id,
-}: DeleteTeacherModalProps) => {
+  personId,
+}: Pick<Teacher, "firstName" | "lastName" | "personId">) => {
   const { t } = useTranslation();
   const { deleteUser } = useDeletePerson();
 
@@ -25,7 +24,7 @@ export const DeleteTeacherModal = ({
       </Typography>
       <ModalFooter
         text={t("common.delete")}
-        action={() => deleteUser(id, PermissionType.TEACHER)}
+        action={() => deleteUser(personId, PermissionType.TEACHER)}
       />
     </>
   );

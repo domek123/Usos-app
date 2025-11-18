@@ -9,6 +9,7 @@ export const useDeletePerson = () => {
 
   const { mutate } = useMutation({
     mutationFn: async ({ id }: { id: string; table: string }) => {
+      console.log(id);
       await api.delete(`/person/${id}`);
     },
     onSuccess: (_data, variables) => {

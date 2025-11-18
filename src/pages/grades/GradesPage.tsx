@@ -14,7 +14,6 @@ export const GradesPage = () => {
       </Typography>
       <Stack>
         {data.semesters.map((item) => {
-          console.log(item);
           return (
             <CustomDropdown
               key={item.id}

@@ -6,7 +6,7 @@ export const useFetchSemesters = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["semester"],
     queryFn: async (): Promise<Semester[]> => {
-      const data = await api.get<Semester[]>("./semester");
+      const data = await api.get<Semester[]>("/semester");
       return data;
     },
   });

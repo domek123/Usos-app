@@ -8,7 +8,7 @@
     "delete": "Usuń",
     "edit": "Edytuj",
     "add": "Dodaj",
-    "search": "Szukaj...",
+    "search": "Szukaj",
     "confirm": "Potwierdź"
   },
   "header": {
@@ -79,6 +79,27 @@
     "deleteModal": {
       "title": "Usuń Nauczyciela",
       "message": "Czy na pewno chcesz usunąć prowadzącego {{teacher}}? Ta akcja jest nieodwracalna."
+    }
+  },
+  "students": {
+    "title": "Studenci",
+    "noStudents": "Brak studentów do wyświetlenia",
+    "infoTitle": "Informacje o studentach",
+    "infoMessage": "Poniżej znajduje się lista studentów zapisanych na przedmioty na wydziale. Po kliknięciu w studenta można zobaczyć szczegóły jego zapisów i ocen.",
+    "table": {
+      "indexNumber": "Numer Indeksu",
+      "name": "Imię i Nazwisko",
+      "email": "Email"
+    },
+    "addEditModal": {
+      "addTitle": "Dodaj Studenta",
+      "editTitle": "Edytuj Studenta",
+      "firstName": "Imię",
+      "lastName": "Nazwisko"
+    },
+    "deleteModal": {
+      "title": "Usuń Studenta",
+      "message": "Czy na pewno chcesz usunąć studenta {{student}}? Ta akcja jest nieodwracalna."
     }
   }
 }
