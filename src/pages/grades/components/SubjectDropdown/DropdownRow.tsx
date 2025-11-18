@@ -2,7 +2,7 @@ import { TableRow, Typography } from "@mui/material";
 import type { DropdownRowProps } from "./types";
 import { CustomCell } from "./styles";
 import { GradeFormatter } from "./GradeFormatter";
-import { DetailsModal } from "../DetailsModal/DetailsModal";
+import { DetailsModal } from "../../modals";
 
 export const DropdownRow = ({ subject }: DropdownRowProps) => {
   return (

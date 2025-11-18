@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { subjectSchema } from "./AddEditSubjectModalValidation";
-import { useAddEditSubjectModal } from "../../hooks";
+import { useAddEditSubject } from "@/hooks";
 
 export const AddEditSubjectModal = ({
   subject,
@@ -21,7 +21,7 @@ export const AddEditSubjectModal = ({
     resolver: zodResolver(subjectSchema),
   });
 
-  const { onSubmit } = useAddEditSubjectModal(semesterId, subject?.id);
+  const { addEditSubject } = useAddEditSubject(semesterId, subject?.id);
 
   return (
     <>
@@ -29,7 +29,10 @@ export const AddEditSubjectModal = ({
         title={t(`subjects.addEditModal.${subject ? "edit" : "add"}Title`)}
       />
 
-      <CustomForm onSubmit={handleSubmit(onSubmit)} sx={{ width: "100%" }}>
+      <CustomForm
+        onSubmit={handleSubmit(addEditSubject)}
+        sx={{ width: "100%" }}
+      >
         <TextField
           size="small"
           label={t("subjects.table.name")}

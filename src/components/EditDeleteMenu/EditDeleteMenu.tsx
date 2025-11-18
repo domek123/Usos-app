@@ -27,7 +27,8 @@ export const EditDeleteMenu = ({
       </Button>
       <Menu anchorEl={anchorEl} open={isMenuOpen} onClose={handleMenuClose}>
         <CustomMenuItem
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             openEditModal();
             handleMenuClose();
           }}
@@ -39,7 +40,8 @@ export const EditDeleteMenu = ({
           <Typography>{t("common.edit")}</Typography>
         </CustomMenuItem>
         <CustomMenuItem
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             openDeleteModal();
             handleMenuClose();
           }}

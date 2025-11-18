@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { Stack, styled, TextField } from "@mui/material";
 import type { AddEditTeacherModalProps } from "./types";
-import { useAddEditModal } from "../../hooks";
 import { useForm } from "react-hook-form";
 import { ModalFooter, ModalHeader } from "@/components";
 import { teacherSchema } from "./AddEditTeacherModalValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAddEditTeacher } from "@/hooks";
 
 export const AddEditTeacherModal = ({ teacher }: AddEditTeacherModalProps) => {
   const { t } = useTranslation();
@@ -15,13 +15,12 @@ export const AddEditTeacherModal = ({ teacher }: AddEditTeacherModalProps) => {
       firstName: "",
       lastName: "",
       title: "",
-      email: "",
       phone: "",
     },
     resolver: zodResolver(teacherSchema),
   });
 
-  const { onSubmit } = useAddEditModal(teacher?.personId);
+  const { addEditTeacher } = useAddEditTeacher(teacher?.personId);
 
   return (
     <>
@@ -29,7 +28,7 @@ export const AddEditTeacherModal = ({ teacher }: AddEditTeacherModalProps) => {
         title={t(`teachers.addEditModal.${teacher ? "edit" : "add"}Title`)}
       />
 
-      <CustomForm onSubmit={handleSubmit(onSubmit)}>
+      <CustomForm onSubmit={handleSubmit(addEditTeacher)}>
         <Stack flexDirection={"row"} gap="5px">
           <TextField
             size="small"
@@ -49,12 +48,6 @@ export const AddEditTeacherModal = ({ teacher }: AddEditTeacherModalProps) => {
           size="small"
           label={t("teachers.table.title")}
           {...register("title")}
-          fullWidth
-        />
-        <TextField
-          size="small"
-          label={t("teachers.table.email")}
-          {...register("email")}
           fullWidth
         />
         <TextField
