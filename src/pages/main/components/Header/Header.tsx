@@ -1,13 +1,23 @@
 import { Stack, styled, Typography } from "@mui/material";
 import { useHeader } from "@pages/main/hooks";
 import { HeaderMenu } from "./Menu";
+import { useNavigate } from "react-router-dom";
+import { useFacultyStore } from "@/stores";
 
 export const Header = () => {
   const { user } = useHeader();
+  const navigate = useNavigate();
+  const faculty = useFacultyStore((s) => s.faculty);
+
   return (
     <MainContainer>
-      <Typography variant="h6" component="h1">
-        AGH
+      <Typography
+        variant="h6"
+        component="h1"
+        onClick={() => navigate("/")}
+        sx={{ cursor: "pointer" }}
+      >
+        AGH {faculty?.name}
       </Typography>
       <Stack flexDirection="row" gap="5px" alignItems="center">
         <Typography>

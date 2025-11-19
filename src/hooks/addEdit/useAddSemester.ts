@@ -1,12 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/api/api";
+import { useFacultyStore } from "@/stores";
 
 export const useAddSemester = () => {
   const queryClient = useQueryClient();
+  const faculty = useFacultyStore((s) => s.faculty);
 
   const { mutate } = useMutation({
     mutationFn: async (name: string) => {
-      return api.post(`/semester/`, { name });
+      return api.post(`/semester/`, { name, facultyId: faculty!.id });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["semester"] });

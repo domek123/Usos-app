@@ -6,3 +6,4 @@ export * from "./contact";
 export * from "./subjects";
 export * from "./teacher";
 export * from "./students";
+export * from "./dashboard";

@@ -2,18 +2,15 @@ import { Stack, styled } from "@mui/material";
 import { Header, Navigation } from "./components";
 import { Outlet } from "react-router-dom";
 import { ModalContainer } from "@/components";
-import { useModalContext } from "@/context";
 
 export const MainPage = () => {
-  const { isOpen, children } = useModalContext();
-
   return (
     <MainContainer>
       <MainPageContainer>
         <Header />
         <Navigation />
         <Outlet />
-        <ModalContainer isOpen={isOpen}>{children}</ModalContainer>
+        <ModalContainer />
       </MainPageContainer>
     </MainContainer>
   );

@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { ContactPage, Login, MainPage } from "./pages";
+import { ContactPage, Dashboard, Login, MainPage } from "./pages";
 import { ProtectedRouteToken } from "./routes/ProtectedRoute";
 import { AdminRoutes } from "./routes";
 import { StudentRoutes } from "./routes/StudentRoutes";
@@ -16,6 +16,7 @@ function App() {
           </ProtectedRouteToken>
         }
       >
+        <Route index element={<Dashboard />} />
         {AdminRoutes}
         {StudentRoutes}
         <Route key="contact" path="contact" element={<ContactPage />} />,

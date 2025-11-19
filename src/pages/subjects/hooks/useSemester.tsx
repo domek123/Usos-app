@@ -35,6 +35,7 @@ export const useSemester = () => {
   }, [selectedSemester]);
 
   const handleAddSemester = () => {
+    if (semesterName.length < 3) return null;
     addSemester(semesterName);
     setSemesterName("");
     setIsAddSemesterVisible(false);
