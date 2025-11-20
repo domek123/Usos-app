@@ -1,13 +1,20 @@
 import { api } from "@/api/api";
+import { useFacultyStore } from "@/stores";
 import type { Student } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 
 export const useFetchStudents = () => {
-  const { data, isLoading } = useQuery({
-    queryKey: ["students"],
+  const faculty = useFacultyStore((s) => s.faculty);
+
+  const queryKey = ["students", faculty?.id ?? "all"];
+
+  const { data, isLoading } = useQuery<Student[]>({
+    queryKey,
     queryFn: async (): Promise<Student[]> => {
-      const data = await api.get<Student[]>("/student");
-      return data;
+      if (faculty?.id) {
+        return await api.get(`/student/${faculty.id}`);
+      }
+      return await api.get("/student/");
     },
   });
 

@@ -10,6 +10,8 @@ import { theme } from "@/theme";
 import { useEditSemester } from "@/hooks";
 
 export const MainContent = () => {
+  const { t } = useTranslation();
+
   const {
     selectedSemester,
     isSidebarOpen,
@@ -18,51 +20,60 @@ export const MainContent = () => {
     isEdit,
     setIsEdit,
   } = useSemesterContext();
+
   const { editSemester } = useEditSemester(selectedSemester.id);
-  const { t } = useTranslation();
 
   return (
     <MainContainer
       sx={{ transform: isSidebarOpen ? "translate(0)" : "translate(-10%)" }}
     >
-      <RowBetweenStack sx={{ justifyContent: "center", gap: "10px" }}>
-        {isEdit ? (
-          <>
-            <TextField
-              size="small"
-              value={editSemesterName}
-              onChange={(e) => setEditSemesterName(e.target.value)}
-            />
-            <CheckIcon
-              sx={{ cursor: "pointer", color: theme.palette.primary.main }}
-              onClick={() => {
-                editSemester(editSemesterName);
-                setIsEdit(false);
-              }}
-            />
-            <CloseIcon
-              sx={{ cursor: "pointer", color: theme.palette.secondary.main }}
-              onClick={() => setIsEdit(false)}
-            />
-          </>
-        ) : (
-          <>
-            <Typography variant="h3">{selectedSemester.name}</Typography>
-            <EditIcon
-              fontSize="large"
-              onClick={() => {
-                setIsEdit(true);
-                setEditSemesterName(selectedSemester.name);
-              }}
-              sx={{ cursor: "pointer" }}
-            />
-          </>
-        )}
-      </RowBetweenStack>
-      <SubjectInfoContainer>
-        <Typography variant="h6">{t("subjects.title")}</Typography>
-        <SubjectTable />
-      </SubjectInfoContainer>
+      {selectedSemester.id === "" ? (
+        <Typography variant="h4">{t("subjects.noSemester")}</Typography>
+      ) : (
+        <>
+          <RowBetweenStack sx={{ justifyContent: "center", gap: "10px" }}>
+            {isEdit ? (
+              <>
+                <TextField
+                  size="small"
+                  value={editSemesterName}
+                  onChange={(e) => setEditSemesterName(e.target.value)}
+                />
+                <CheckIcon
+                  sx={{ cursor: "pointer", color: theme.palette.primary.main }}
+                  onClick={() => {
+                    editSemester(editSemesterName);
+                    setIsEdit(false);
+                  }}
+                />
+                <CloseIcon
+                  sx={{
+                    cursor: "pointer",
+                    color: theme.palette.secondary.main,
+                  }}
+                  onClick={() => setIsEdit(false)}
+                />
+              </>
+            ) : (
+              <>
+                <Typography variant="h3">{selectedSemester.name}</Typography>
+                <EditIcon
+                  fontSize="large"
+                  onClick={() => {
+                    setIsEdit(true);
+                    setEditSemesterName(selectedSemester.name);
+                  }}
+                  sx={{ cursor: "pointer" }}
+                />
+              </>
+            )}
+          </RowBetweenStack>
+          <SubjectInfoContainer>
+            <Typography variant="h6">{t("subjects.title")}</Typography>
+            <SubjectTable />
+          </SubjectInfoContainer>
+        </>
+      )}
     </MainContainer>
   );
 };

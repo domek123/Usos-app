@@ -2,16 +2,20 @@ import { EditDeleteMenu } from "@/components";
 import { useModalContext } from "@/context";
 import { StyledTableCell } from "@/styles";
 import type { Student } from "@/types";
-import { TableRow, Typography } from "@mui/material";
+import { TableRow, Tooltip, Typography } from "@mui/material";
 import { DeleteStudentModal } from "../../modals";
 import { AddEditStudentModal } from "../../modals/AddEditStudentModal/AddEditStudentModal";
+import { useFacultyStore } from "@/stores";
+import { useDeleteStudentFromFaculty } from "@/hooks";
 
 export const StudentTableRow = ({ student }: { student: Student }) => {
   const { setChildren, openModal } = useModalContext();
+  const { deleteStudentFromFaculty } = useDeleteStudentFromFaculty();
+  const globalFaculty = useFacultyStore((s) => s.faculty);
 
   return (
     <TableRow onClick={() => console.log("open")}>
-      <StyledTableCell width="20%">
+      <StyledTableCell width="10%" align="center">
         <Typography>{student.studentId}</Typography>
       </StyledTableCell>
       <StyledTableCell width="35%">
@@ -19,20 +23,31 @@ export const StudentTableRow = ({ student }: { student: Student }) => {
           {student.firstName} {student.lastName}
         </Typography>
       </StyledTableCell>
-      <StyledTableCell width="40%">
+      <StyledTableCell width="45%">
         <Typography>{student.email}</Typography>
       </StyledTableCell>
+      {!globalFaculty && (
+        <StyledTableCell width="5%" align="center">
+          <Tooltip title={student.faculties.map((f) => f.name).join(", ")}>
+            <Typography>{student.faculties.length}</Typography>
+          </Tooltip>
+        </StyledTableCell>
+      )}
       <StyledTableCell padding="none">
         <EditDeleteMenu
           openDeleteModal={() => {
-            setChildren(
-              <DeleteStudentModal
-                personId={student.personId}
-                firstName={student.firstName}
-                lastName={student.lastName}
-              />
-            );
-            openModal();
+            if (!globalFaculty) {
+              setChildren(
+                <DeleteStudentModal
+                  personId={student.personId}
+                  firstName={student.firstName}
+                  lastName={student.lastName}
+                />
+              );
+              openModal();
+            } else {
+              deleteStudentFromFaculty(student.studentId);
+            }
           }}
           openEditModal={() => {
             setChildren(<AddEditStudentModal student={student} />);

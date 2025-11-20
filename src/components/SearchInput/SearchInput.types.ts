@@ -1,4 +1,5 @@
+import type { TextFieldProps } from "@mui/material";
+
 export type SearchInputProps = {
-  value: string;
-  onChange: (value: string) => void;
-};
+  onTextChange: (value: string) => void;
+} & TextFieldProps;

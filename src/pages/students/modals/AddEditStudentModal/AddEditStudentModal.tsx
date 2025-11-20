@@ -1,31 +1,55 @@
 import { useTranslation } from "react-i18next";
 import { styled, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { ModalFooter, ModalHeader } from "@/components";
+import { FacultySelect, ModalFooter, ModalHeader } from "@/components";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAddEditStudent } from "@/hooks";
 import type { Student } from "@/types";
-import { studentSchema } from "./AddEditStudentModalValidation";
+import {
+  studentBaseSchema,
+  studentWithEmailSchema,
+} from "./AddEditStudentModalValidation";
+import { useFacultyStore } from "@/stores";
+import { useState } from "react";
+import type z from "zod";
+
+type FormValues = z.infer<typeof studentBaseSchema> & {
+  email?: string;
+  facultyIds?: string[];
+};
 
 export const AddEditStudentModal = ({ student }: { student?: Student }) => {
   const { t } = useTranslation();
+  const faculty = useFacultyStore((s) => s.faculty);
 
-  const { register, handleSubmit } = useForm({
+  const validation = student ? studentWithEmailSchema : studentBaseSchema;
+
+  const { register, handleSubmit } = useForm<FormValues>({
     defaultValues: student ?? {
       firstName: "",
       lastName: "",
     },
-    resolver: zodResolver(studentSchema),
+    resolver: zodResolver(validation),
   });
 
   const { addEditStudent } = useAddEditStudent(student?.personId);
+
+  const [faculties, setFaculties] = useState<string[]>(
+    student?.faculties.map((faculty) => faculty.id) || []
+  );
 
   return (
     <>
       <ModalHeader
         title={t(`students.addEditModal.${student ? "edit" : "add"}Title`)}
       />
-      <CustomForm onSubmit={handleSubmit(addEditStudent)}>
+      <CustomForm
+        onSubmit={handleSubmit((data) => {
+          addEditStudent(
+            faculty === null ? { ...data, facultyIds: faculties } : data
+          );
+        })}
+      >
         <TextField
           size="small"
           label={t("students.addEditModal.firstName")}
@@ -44,6 +68,12 @@ export const AddEditStudentModal = ({ student }: { student?: Student }) => {
             label={t("common.email")}
             {...register("email")}
             fullWidth
+          />
+        )}
+        {!faculty && (
+          <FacultySelect
+            value={faculties}
+            setFaculties={(val) => setFaculties(val)}
           />
         )}
         <ModalFooter text={t(`common.${student ? "edit" : "add"}`)} />

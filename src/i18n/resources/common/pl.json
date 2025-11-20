@@ -10,7 +10,8 @@
     "add": "Dodaj",
     "search": "Szukaj",
     "confirm": "Potwierdź",
-    "email": "Email"
+    "email": "Email",
+    "reset": "Resetuj"
   },
   "header": {
     "changePassword": "Zmień hasło",
@@ -48,6 +49,7 @@
   },
   "subjects": {
     "semesters": " Semestry",
+    "noSemester": "Nie wybrałeś żadnego semestru",
     "noSubjects": "Brak przedmiotów do wyświetlenia",
     "title": "Przedmioty",
     "table": {
@@ -87,16 +89,19 @@
     "noStudents": "Brak studentów do wyświetlenia",
     "infoTitle": "Informacje o studentach",
     "infoMessage": "Poniżej znajduje się lista studentów zapisanych na przedmioty na wydziale. Po kliknięciu w studenta można zobaczyć szczegóły jego zapisów i ocen.",
+    "facultyInfoMessage": "Lista studentów przypisanych do kierunków oferowanych na uczelni.",
     "table": {
-      "indexNumber": "Numer Indeksu",
+      "indexNumber": "Indeks",
       "name": "Imię i Nazwisko",
-      "email": "Email"
+      "email": "Email",
+      "faculties": "Kierunki"
     },
     "addEditModal": {
       "addTitle": "Dodaj Studenta",
       "editTitle": "Edytuj Studenta",
       "firstName": "Imię",
-      "lastName": "Nazwisko"
+      "lastName": "Nazwisko",
+      "faculties": "Kierunki"
     },
     "deleteModal": {
       "title": "Usuń Studenta",

@@ -8,7 +8,7 @@ export const DeleteStudentModal = ({
   firstName,
   lastName,
   personId,
-}: Omit<Student, "email" | "studentId">) => {
+}: Omit<Student, "email" | "studentId" | "faculties">) => {
   const { t } = useTranslation();
   const { deleteUser } = useDeletePerson();
 

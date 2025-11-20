@@ -6,3 +6,4 @@ export * from "./TeacherSelect/TeacherSelect.tsx";
 export * from "./EditDeleteMenu/EditDeleteMenu.tsx";
 export * from "./DefaultTableContainer/DefaultTableContainer.tsx";
 export * from "./SearchInput/SearchInput.tsx";
+export * from "./FacultySelect/FacultySelect.tsx";

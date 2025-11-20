@@ -4,10 +4,12 @@ import { useTranslation } from "react-i18next";
 import AddIcon from "@mui/icons-material/Add";
 import { AddEditStudentModal } from "../../modals/AddEditStudentModal/AddEditStudentModal";
 import { useModalContext } from "@/context";
+import { useFacultyStore } from "@/stores";
 
 export const StudentTableHeader = () => {
   const { t } = useTranslation();
   const { setChildren, openModal } = useModalContext();
+  const globalFaculty = useFacultyStore((s) => s.faculty);
 
   return (
     <TableHead sx={{ backgroundColor: "lightgray" }}>
@@ -21,6 +23,11 @@ export const StudentTableHeader = () => {
         <StyledTableCell>
           <Typography>{t("students.table.email")}</Typography>
         </StyledTableCell>
+        {!globalFaculty && (
+          <StyledTableCell>
+            <Typography>{t("students.table.faculties")}</Typography>
+          </StyledTableCell>
+        )}
         <StyledTableCell width={"5%"} padding="none">
           <Button
             onClick={() => {

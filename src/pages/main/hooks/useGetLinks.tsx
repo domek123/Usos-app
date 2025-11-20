@@ -20,6 +20,7 @@ export const useGetLinks = () => {
   const adminGlobalLinks = [
     { to: "/", text: "Dashboard" },
     { to: "teachers", text: t("navigation.teachers") },
+    { to: "students", text: t("navigation.students") },
     { to: "contact", text: t("navigation.contact") },
   ];
   return { links: faculty !== null ? adminLinks : adminGlobalLinks };

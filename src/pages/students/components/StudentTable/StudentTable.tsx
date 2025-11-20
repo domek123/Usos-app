@@ -1,15 +1,16 @@
 import { StudentTableHeader } from "./TableHeader";
-import { DefaultTableContainer, SearchInput } from "@/components";
+import { DefaultTableContainer } from "@/components";
 import { TableBody } from "@mui/material";
 import { StudentTableRow } from "./TableRow";
-import { useStudents } from "../../hooks";
+import { StudentFilters } from "../StudentFilters";
+import { useStudentsContext } from "../../context";
 
 export const StudentTable = () => {
-  const { students, setSearch, search } = useStudents();
+  const { students } = useStudentsContext();
 
   return (
     <>
-      <SearchInput value={search} onChange={(val) => setSearch(val)} />
+      <StudentFilters />
       <DefaultTableContainer>
         <StudentTableHeader />
         <TableBody>
