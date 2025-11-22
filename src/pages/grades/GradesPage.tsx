@@ -1,7 +1,8 @@
 import { Stack, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { CustomDropdown, Info } from "./components";
+import { DropdownTable, Info } from "./components";
 import data from "@/data/mockedData";
+import { CustomDropdown } from "@/components";
 
 export const GradesPage = () => {
   const { t } = useTranslation();
@@ -18,7 +19,7 @@ export const GradesPage = () => {
             <CustomDropdown
               key={item.id}
               name={item.name}
-              subjects={item.subject}
+              children={<DropdownTable subjects={item.subject} />}
             />
           );
         })}

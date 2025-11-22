@@ -1,21 +1,30 @@
 import { Stack, styled, Typography } from "@mui/material";
+import { useState } from "react";
+import type { CustomDropdownProps } from "./CustomDropdown.types";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import { useState } from "react";
-import { DropdownTable } from "./DropdownTable";
-import type { DropdownProps } from "./types";
 
-export const CustomDropdown = ({ name, subjects }: DropdownProps) => {
+export const CustomDropdown = ({
+  name,
+  children,
+  headerChildren,
+}: CustomDropdownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   return (
-    <>
+    <Stack>
       <HeaderContainer onClick={() => setIsOpen((prev) => !prev)}>
-        <Typography>{name}</Typography>
-        {!isOpen ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+        {headerChildren ? (
+          headerChildren
+        ) : (
+          <>
+            <Typography>{name}</Typography>
+            {!isOpen ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+          </>
+        )}
       </HeaderContainer>
-      {isOpen && <DropdownTable subjects={subjects} />}
-    </>
+      {isOpen && children}
+    </Stack>
   );
 };
 

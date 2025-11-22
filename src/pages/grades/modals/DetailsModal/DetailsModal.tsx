@@ -14,7 +14,7 @@ export const DetailsModal = ({ name, teacher }: DetailsModalProps) => {
     <Stack width={"100%"}>
       <ModalHeader name={name} />
       <Divider />
-      <ModalContent teacher={teacher} />
+      {teacher && <ModalContent teacher={teacher} />}
     </Stack>
   );
 
