@@ -1,2 +1,2 @@
-export * from "./getStudentDataForSemesters";
+export * from "./responses";
 export * from "./dto";

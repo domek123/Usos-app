@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { CustomDropdownProps } from "./CustomDropdown.types";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import { RowBetweenStack } from "@/styles";
 
 export const CustomDropdown = ({
   name,
@@ -14,14 +15,11 @@ export const CustomDropdown = ({
   return (
     <Stack>
       <HeaderContainer onClick={() => setIsOpen((prev) => !prev)}>
-        {headerChildren ? (
-          headerChildren
-        ) : (
-          <>
-            <Typography>{name}</Typography>
-            {!isOpen ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
-          </>
-        )}
+        <RowBetweenStack>
+          <Typography>{name}</Typography>
+          {!isOpen ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+        </RowBetweenStack>
+        {headerChildren}
       </HeaderContainer>
       {isOpen && children}
     </Stack>
@@ -34,4 +32,6 @@ const HeaderContainer = styled(Stack)({
   padding: "10px",
   color: "white",
   marginTop: "1px",
+  alignItems: "center",
+  justifyContent: "space-between",
 });

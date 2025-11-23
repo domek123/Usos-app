@@ -5,3 +5,4 @@ export * from "./Subject";
 export * from "./Grades";
 export * from "./Student";
 export * from "./Faculty";
+export * from "./Person";
