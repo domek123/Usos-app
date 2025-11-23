@@ -7,7 +7,7 @@ export const useFetchSemesters = () => {
   const faculty = useFacultyStore((s) => s.faculty);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["semester"],
+    queryKey: ["semester", faculty!.id],
     queryFn: async (): Promise<Semester[]> => {
       if (!faculty) return [];
 

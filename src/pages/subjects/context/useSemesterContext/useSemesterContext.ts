@@ -1,17 +1,19 @@
 import { createContext, useContext } from "react";
 import type { useSemester } from "../../hooks";
 
-export type SubjectContextType = ReturnType<typeof useSemester>;
+export type SemesterContextType = ReturnType<typeof useSemester>;
 
-export const SubjectContext = createContext<SubjectContextType | undefined>(
+export const SemesterContext = createContext<SemesterContextType | undefined>(
   undefined
 );
 
 export const useSemesterContext = () => {
-  const context = useContext(SubjectContext);
+  const context = useContext(SemesterContext);
 
   if (!context) {
-    throw new Error("useSemesterContext must be used within a SubjectProvider");
+    throw new Error(
+      "useSemesterContext must be used within a SemesterProvider"
+    );
   }
 
   return context;

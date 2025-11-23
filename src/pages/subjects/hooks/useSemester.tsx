@@ -9,6 +9,7 @@ export const useSemester = () => {
   const [selectedSemester, setSelectedSemester] = useState<Semester>({
     id: "",
     name: "",
+    subjects: [],
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
