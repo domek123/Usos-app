@@ -1,3 +1,5 @@
+import type { SubjectType } from "@/types";
+
 export type AddEditSubjectModalProps = {
   semesterId: string;
   subject?: {
@@ -5,5 +7,6 @@ export type AddEditSubjectModalProps = {
     teacherId?: string;
     name: string;
     ects: number;
+    gradeTypes: SubjectType[];
   };
 };

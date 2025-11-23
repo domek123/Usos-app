@@ -40,18 +40,19 @@
       "grade": "Ocena",
       "finalGrade": "Ocena Końcowa",
       "details": "szczegóły"
-    },
-    "gradeType": {
-      "LAB": "Laboratorium",
-      "EXAM": "Egzamin",
-      "PROJECT": "Ćwiczenia"
     }
+  },
+  "gradeType": {
+    "LAB": "Laboratorium",
+    "EXAM": "Egzamin",
+    "PROJECT": "Ćwiczenia"
   },
   "subjects": {
     "semesters": " Semestry",
     "noSemester": "Nie wybrałeś żadnego semestru",
     "noSubjects": "Brak przedmiotów do wyświetlenia",
     "title": "Przedmioty",
+    "subSubjects": "pod przedmioty",
     "table": {
       "name": "Nazwa Przedmiotu",
       "ects": "ECTS",

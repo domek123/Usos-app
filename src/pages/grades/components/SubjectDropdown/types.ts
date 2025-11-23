@@ -12,5 +12,3 @@ export type DropdownTableProps = {
 export type DropdownRowProps = {
   subject: Subject;
 };
-
-export type GradeFormatterProps = Pick<Subject, "finalGrade" | "grades">;

@@ -4,12 +4,12 @@ import type { SubjectTableRowProps } from "./types";
 import { AddEditSubjectModal } from "../../modals";
 import { useSemesterContext } from "../../context";
 import { useDeleteSubject } from "@/hooks";
+import type { SubjectType } from "@/types";
 
 export const SubjectMenu = ({ subject }: SubjectTableRowProps) => {
   const { setChildren, openModal } = useModalContext();
   const { selectedSemester } = useSemesterContext();
   const { deleteSubject } = useDeleteSubject(subject.id);
-  const { id, name, ects, teacher } = subject;
 
   return (
     <EditDeleteMenu
@@ -18,10 +18,9 @@ export const SubjectMenu = ({ subject }: SubjectTableRowProps) => {
           <AddEditSubjectModal
             semesterId={selectedSemester.id}
             subject={{
-              id,
-              name,
-              ects,
-              teacherId: teacher?.teacherId,
+              ...subject,
+              gradeTypes: subject.grades.map((g) => g.type as SubjectType),
+              teacherId: subject.teacher?.teacherId,
             }}
           />
         );
