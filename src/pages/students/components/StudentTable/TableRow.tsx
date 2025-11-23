@@ -7,14 +7,19 @@ import { DeleteStudentModal } from "../../modals";
 import { AddEditStudentModal } from "../../modals/AddEditStudentModal/AddEditStudentModal";
 import { useFacultyStore } from "@/stores";
 import { useDeleteStudentFromFaculty } from "@/hooks";
+import { useNavigate } from "react-router-dom";
 
 export const StudentTableRow = ({ student }: { student: Student }) => {
   const { setChildren, openModal } = useModalContext();
   const { deleteStudentFromFaculty } = useDeleteStudentFromFaculty();
   const globalFaculty = useFacultyStore((s) => s.faculty);
 
+  const navigate = useNavigate();
+
   return (
-    <TableRow onClick={() => console.log("open")}>
+    <TableRow
+      onClick={() => navigate("/student", { state: { id: student.studentId } })}
+    >
       <StyledTableCell width="10%" align="center">
         <Typography>{student.studentId}</Typography>
       </StyledTableCell>
@@ -33,7 +38,7 @@ export const StudentTableRow = ({ student }: { student: Student }) => {
           </Tooltip>
         </StyledTableCell>
       )}
-      <StyledTableCell padding="none">
+      <StyledTableCell padding="none" onClick={(e) => e.stopPropagation()}>
         <EditDeleteMenu
           openDeleteModal={() => {
             if (!globalFaculty) {

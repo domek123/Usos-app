@@ -12,7 +12,7 @@ export const useFetchStudents = () => {
     queryKey,
     queryFn: async (): Promise<Student[]> => {
       if (faculty?.id) {
-        return await api.get(`/student/${faculty.id}`);
+        return await api.get(`/student/faculty/${faculty.id}`);
       }
       return await api.get("/student/");
     },

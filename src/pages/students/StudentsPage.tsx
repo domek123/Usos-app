@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Info, StudentTable } from "./components";
 import { StudentsProvider } from "./context";
 
-export const StudentPage = () => {
+export const StudentsPage = () => {
   const { t } = useTranslation();
 
   return (

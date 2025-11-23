@@ -12,7 +12,7 @@ export const useFetchFaculties = () => {
       if (permission === PermissionType.ADMIN) {
         return await api.get<Faculty[]>("/faculty");
       }
-      return api.get<Faculty[]>("person/faculty/" + id);
+      return api.get<Faculty[]>("/faculty/person" + id);
     },
   });
 

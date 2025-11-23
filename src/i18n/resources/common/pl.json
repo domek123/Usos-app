@@ -107,5 +107,18 @@
       "title": "Usuń Studenta",
       "message": "Czy na pewno chcesz usunąć studenta {{student}}? Ta akcja jest nieodwracalna."
     }
+  },
+  "student": {
+    "infoTitle": "Informacje o studencie",
+    "infoMessage": "Ponizej znajdują się szczegóły dotyczące studenta oraz jego zapisów na przedmioty i oceny.",
+    "semesters": "Semestry",
+    "addSemester": "Dodaj Semestr",
+    "table": {
+      "subject": "Nazwa Przedmiotu",
+      "teacher": "Nauczyciel",
+      "grade": "Ocena"
+    },
+    "AddSubjectsTitle": "Dodaj zapis na przedmioty",
+    "AddSemestersTitle": "Dodaj zapis na semestry"
   }
 }
