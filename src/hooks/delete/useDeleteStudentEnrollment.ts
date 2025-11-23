@@ -1,10 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/api/api";
+import { useFacultyStore } from "@/stores";
 
 type EnrollmentPayload = { studentId: number; subjectIds: string[] };
 
 export const useDeleteStudentEnrollment = () => {
   const queryClient = useQueryClient();
+  const { faculty } = useFacultyStore();
 
   const { mutate } = useMutation({
     mutationFn: async (data: EnrollmentPayload) => {
@@ -22,7 +24,7 @@ export const useDeleteStudentEnrollment = () => {
     },
     onSuccess: (_data, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["enrollment", variables.studentId],
+        queryKey: ["enrollment", variables.studentId, faculty!.id],
       });
     },
     onError: (error) => {

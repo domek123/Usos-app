@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
 import { useSemester } from "../../hooks";
-import { SubjectContext } from "./useSemesterContext";
+import { SemesterContext } from "./useSemesterContext";
 
 type SemesterContextProviderProps = {
   children: ReactNode;
@@ -12,8 +12,8 @@ export const SemesterContextProvider = ({
   const values = useSemester();
 
   return (
-    <SubjectContext.Provider value={{ ...values }}>
+    <SemesterContext.Provider value={{ ...values }}>
       {children}
-    </SubjectContext.Provider>
+    </SemesterContext.Provider>
   );
 };
