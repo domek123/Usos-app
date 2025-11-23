@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { styled, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { FacultySelect, ModalFooter, ModalHeader } from "@/components";
+import { ModalFooter, ModalHeader } from "@/components";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAddEditStudent } from "@/hooks";
 import type { Student } from "@/types";
@@ -12,6 +12,7 @@ import {
 import { useFacultyStore } from "@/stores";
 import { useState } from "react";
 import type z from "zod";
+import { FacultySelect } from "../../components";
 
 type FormValues = z.infer<typeof studentBaseSchema> & {
   email?: string;

@@ -1,8 +1,9 @@
-import { CustomButton, FacultySelect, SearchInput } from "@/components";
+import { CustomButton, SearchInput } from "@/components";
 import { Stack } from "@mui/material";
 import { useStudentsContext } from "../context";
 import { useFacultyStore } from "@/stores";
 import { useTranslation } from "react-i18next";
+import { FacultySelect } from ".";
 
 export const StudentFilters = () => {
   const { t } = useTranslation();

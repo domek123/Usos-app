@@ -1,4 +1,4 @@
-import { ModalHeader, ModalFooter, TeacherSelect } from "@/components";
+import { ModalHeader, ModalFooter } from "@/components";
 import { Stack, styled, TextField } from "@mui/material";
 import type { AddEditSubjectModalProps } from "./types";
 import { useTranslation } from "react-i18next";
@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { subjectSchema } from "./AddEditSubjectModalValidation";
 import { useAddEditSubject } from "@/hooks";
+import { TeacherSelect } from "../../components";
 
 export const AddEditSubjectModal = ({
   subject,

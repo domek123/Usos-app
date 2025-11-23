@@ -6,6 +6,7 @@ import { DefaultTableContainer } from "@/components";
 
 export const TeacherTable = () => {
   const { teachers } = useFetchTeachers();
+
   return (
     <DefaultTableContainer>
       <TeacherTableHeader />
