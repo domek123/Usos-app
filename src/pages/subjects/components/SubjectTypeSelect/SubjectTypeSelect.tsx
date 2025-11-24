@@ -26,7 +26,7 @@ export const SubjectTypeSelect = ({
           setValue(e.target.value as SubjectType[]);
         }}
         renderValue={(selectedTypes) => {
-          return selectedTypes.join(", ");
+          return selectedTypes.map((type) => t(`gradeType.${type}`)).join(", ");
         }}
         multiple
       >

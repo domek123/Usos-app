@@ -1,10 +1,10 @@
 import { Stack, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import type { Subject } from "@/types";
+import type { Grade, Subject } from "@/types";
 
 export type GradeFormatterProps = Subject;
 
-export const GradeFormatter = ({ grades }: Subject) => {
+export const GradeFormatter = ({ grades }: { grades: Grade[] }) => {
   const { t } = useTranslation();
 
   return (

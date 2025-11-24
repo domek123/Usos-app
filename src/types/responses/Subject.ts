@@ -1,6 +1,14 @@
-import type { Grade, Teacher } from "@/types";
+import type { Grade, SubjectType, Teacher } from "@/types";
 
 export interface Subject {
+  id: string;
+  ects: number;
+  name: string;
+  gradeTypes: SubjectType[];
+  teacher?: Teacher;
+}
+
+export interface EnrolledSubject {
   id: string;
   ects: number;
   name: string;
