@@ -2,7 +2,7 @@ import { Button, Stack, styled, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { Info, SemesterSection, SubjectTable } from "./components";
 import {
-  useDeleteStudentEnrollment,
+  useDeleteSemesterAssignment,
   useFetchPersonData,
   useFetchStudentsSemesters,
 } from "@/hooks";
@@ -17,7 +17,7 @@ export const StudentPage = () => {
 
   const { studentSemesters } = useFetchStudentsSemesters(id);
   const { person } = useFetchPersonData(id, PermissionType.STUDENT);
-  const { deleteEnrollment } = useDeleteStudentEnrollment();
+  const { deleteSemesterAssignment } = useDeleteSemesterAssignment();
 
   return (
     <MainContainer>
@@ -32,9 +32,9 @@ export const StudentPage = () => {
             <Button
               onClick={(e) => {
                 e.stopPropagation();
-                deleteEnrollment({
+                deleteSemesterAssignment({
                   studentId: id,
-                  subjectIds: semester.subjects.map((s) => s.id),
+                  semesterId: semester.id,
                 });
               }}
             >

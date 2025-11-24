@@ -9,21 +9,46 @@ export const useAddSemesterEnrollment = (enrolledSemesters: Semester[]) => {
     []
   );
 
+  const [selectedSemestersWithSubject, setSelectedSemestersWithSubject] =
+    useState<string[]>([]);
+
   const notAvailableSemesters = useMemo(
     () => enrolledSemesters.map((s) => s.id),
     [enrolledSemesters]
   );
 
-  const emptySemesters = useMemo(
-    () =>
-      allSemesters
-        .filter((semester) => semester.subjects.length === 0)
-        .map((s) => s.id),
-    [allSemesters]
-  );
-
   const handleClick = (semesterId: string) => {
-    setSelectedSemestersIds((prev) =>
+    const isSelected = selectedSemestersIds.includes(semesterId);
+    const isSelectedWithSubject =
+      selectedSemestersWithSubject.includes(semesterId);
+
+    if (isSelected && isSelectedWithSubject) {
+      setSelectedSemestersWithSubject((prev) =>
+        prev.filter((id) => id !== semesterId)
+      );
+      setSelectedSemestersIds((prev) => prev.filter((id) => id !== semesterId));
+      return;
+    }
+
+    return setSelectedSemestersIds((prev) =>
+      prev.includes(semesterId)
+        ? prev.filter((id) => id !== semesterId)
+        : [...prev, semesterId]
+    );
+  };
+
+  const handleClickWithSemesterClick = (semesterId: string) => {
+    const isSelectedWithSubject =
+      selectedSemestersWithSubject.includes(semesterId);
+    const isSelected = selectedSemestersIds.includes(semesterId);
+
+    if (!isSelectedWithSubject && !isSelected) {
+      setSelectedSemestersWithSubject((prev) => [...prev, semesterId]);
+      setSelectedSemestersIds((prev) => [...prev, semesterId]);
+      return;
+    }
+
+    return setSelectedSemestersWithSubject((prev) =>
       prev.includes(semesterId)
         ? prev.filter((id) => id !== semesterId)
         : [...prev, semesterId]
@@ -34,7 +59,8 @@ export const useAddSemesterEnrollment = (enrolledSemesters: Semester[]) => {
     allSemesters,
     selectedSemestersIds,
     notAvailableSemesters,
-    emptySemesters,
     handleClick,
+    selectedSemestersWithSubject,
+    handleClickWithSemesterClick,
   };
 };
