@@ -31,7 +31,6 @@ export const Header = () => {
 };
 
 const MainContainer = styled(Stack)(({ theme }) => ({
-  height: "40px",
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "space-between",
@@ -39,4 +38,5 @@ const MainContainer = styled(Stack)(({ theme }) => ({
   color: "white",
   padding: "10px",
   paddingRight: 0,
+  flexWrap: "wrap",
 }));

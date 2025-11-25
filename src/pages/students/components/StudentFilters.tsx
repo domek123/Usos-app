@@ -12,7 +12,7 @@ export const StudentFilters = () => {
     useStudentsContext();
 
   return (
-    <Stack flexDirection={"row"} gap="10px">
+    <Stack flexDirection={"row"} gap="10px" flexWrap={"wrap"}>
       <SearchInput
         value={search}
         onTextChange={(val) => setSearch(val)}

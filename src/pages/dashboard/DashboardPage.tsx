@@ -26,4 +26,5 @@ const MainContainer = styled(Stack)({
   flexDirection: "row",
   justifyContent: "center",
   padding: "40px",
+  flexWrap: "wrap",
 });

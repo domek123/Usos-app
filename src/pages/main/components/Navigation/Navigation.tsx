@@ -22,9 +22,9 @@ export const Navigation = () => {
 };
 
 const MainContainer = styled(Stack)(({ theme }) => ({
-  height: "40px",
   backgroundColor: theme.palette.primary.main,
   flexDirection: "row",
+  flexWrap: "wrap",
   alignItems: "center",
   gap: "10px",
   padding: "10px",
