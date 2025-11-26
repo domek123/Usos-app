@@ -1,4 +1,4 @@
-import type { PermissionType } from "./enums";
+import type { PermissionType } from "../enums";
 
 export interface Person {
   id: string;

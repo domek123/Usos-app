@@ -44,7 +44,7 @@
   },
   "gradeType": {
     "LAB": "Laboratorium",
-    "EXAM": "Egzamin",
+    "EXAM": "Wykład",
     "PROJECT": "Ćwiczenia"
   },
   "subjects": {
@@ -52,7 +52,7 @@
     "noSemester": "Nie wybrałeś żadnego semestru",
     "noSubjects": "Brak przedmiotów do wyświetlenia",
     "title": "Przedmioty",
-    "subSubjects": "pod przedmioty",
+    "subSubjects": "typ Przedmiotu",
     "table": {
       "name": "Nazwa Przedmiotu",
       "ects": "ECTS",
@@ -61,7 +61,25 @@
     "addEditModal": {
       "addTitle": "Dodaj Przedmiot",
       "editTitle": "Edytuj Przedmiot"
+    },
+    "addEditScheduleEventModal": {
+      "addTitle": "Dodaj Wydarzenie",
+      "editTitle": "Edytuj Wydarzenie",
+      "subject": "Przedmiot",
+      "description": "Opis",
+      "day": "Dzień",
+      "startTime": "Czas rozpoczęcia",
+      "duration": "Czas trwania (h)",
+      "type": "Typ",
+      "teacher": "Nauczyciel"
     }
+  },
+  "days": {
+    "MONDAY": "Poniedziałek",
+    "TUESDAY": "Wtorek",
+    "WEDNESDAY": "Środa",
+    "THURSDAY": "Czwartek",
+    "FRIDAY": "Piątek"
   },
   "teachers": {
     "title": "Nauczyciele",

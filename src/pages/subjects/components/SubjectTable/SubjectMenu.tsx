@@ -9,7 +9,7 @@ export const SubjectMenu = ({ subject }: { subject: Subject }) => {
   const { setChildren, openModal } = useModalContext();
   const { selectedSemester } = useSemesterContext();
   const { deleteSubject } = useDeleteSubject(subject.id);
-  console.log(subject);
+
   return (
     <EditDeleteMenu
       openEditModal={() => {

@@ -1,0 +1,169 @@
+import { ModalFooter, ModalHeader, SelectField } from "@/components";
+import { useAddEditScheduleEvent, useFetchSubjects } from "@/hooks";
+import { CustomForm, RowBetweenStack } from "@/styles";
+import { Days, SubjectType, type ScheduleEvent } from "@/types";
+import { TextField, Typography } from "@mui/material";
+import { useForm, Controller } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useSemester } from "../../hooks";
+import { useEffect, useMemo } from "react";
+import { TeacherSelect } from "../../components";
+import { parseToHHMM } from "@/utils";
+import { scheduleEventSchema } from "./AddEditScheduleEventModalValidation";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+interface FormValues {
+  subjectId: string;
+  gradeType?: SubjectType;
+  duration: number;
+  description?: string;
+  teacherId: string;
+}
+
+interface Props {
+  event?: ScheduleEvent;
+  day?: number;
+  startTime?: number;
+}
+
+export const AddEditScheduleEventModal = ({ event, day, startTime }: Props) => {
+  const { t } = useTranslation();
+  const { selectedSemester } = useSemester();
+  const { subjects } = useFetchSubjects(selectedSemester.id);
+  const { addEditScheduleEventModal } = useAddEditScheduleEvent(event?.id);
+  const { control, register, watch, setValue, handleSubmit } =
+    useForm<FormValues>({
+      defaultValues: {
+        subjectId: event?.subject.id ?? "",
+        gradeType: event?.gradeType,
+        duration: event?.duration ?? 6,
+        description: event?.description ?? "",
+        teacherId: event?.teacher.teacherId ?? "",
+      },
+      resolver: zodResolver(scheduleEventSchema),
+    });
+
+  const subjectId = watch("subjectId");
+  const gradeType = watch("gradeType");
+
+  const selectedSubject = useMemo(
+    () => subjects.find((s) => s.id === subjectId),
+    [subjectId, subjects]
+  );
+
+  useEffect(() => {
+    if (gradeType === SubjectType.EXAM) {
+      setValue("teacherId", selectedSubject?.teacher?.teacherId ?? "");
+    }
+  }, [gradeType, selectedSubject, setValue]);
+
+  return (
+    <>
+      <ModalHeader
+        title={t(
+          `subjects.addEditScheduleEventModal.${event ? "edit" : "add"}Title`
+        )}
+      />
+
+      <CustomForm
+        sx={{ width: "100%" }}
+        onSubmit={handleSubmit((data) => {
+          if (data.gradeType !== undefined) {
+            addEditScheduleEventModal({
+              ...data,
+              gradeType: data.gradeType,
+              semesterId: selectedSemester.id ?? "",
+              startTime: startTime ?? event?.startTime ?? 0,
+              day: day ?? event?.day ?? 1,
+            });
+          }
+        })}
+      >
+        {day && (
+          <Typography variant="h5">
+            {t(`days.${Object.values(Days)[day - 1]}`)}
+          </Typography>
+        )}
+
+        <RowBetweenStack gap="10px">
+          <Controller
+            name="subjectId"
+            control={control}
+            render={({ field }) => (
+              <SelectField
+                {...field}
+                label={t("subjects.addEditScheduleEventModal.subject")}
+                options={subjects.map((s) => ({
+                  label: s.name,
+                  value: s.id,
+                }))}
+                value={watch("subjectId")}
+                onChange={(val) => {
+                  field.onChange(val);
+                }}
+              />
+            )}
+          />
+
+          <Controller
+            name="gradeType"
+            control={control}
+            render={({ field }) => (
+              <SelectField
+                {...field}
+                label={t("subjects.addEditScheduleEventModal.type")}
+                options={(selectedSubject?.gradeTypes ?? []).map((type) => ({
+                  label: t(`gradeType.${type}`),
+                  value: type,
+                }))}
+                value={watch("gradeType")}
+                disabled={!subjectId}
+              />
+            )}
+          />
+        </RowBetweenStack>
+
+        <TextField
+          size="small"
+          fullWidth
+          label={t("subjects.addEditScheduleEventModal.description")}
+          {...register("description")}
+        />
+
+        {startTime !== undefined && (
+          <Typography>
+            {t("subjects.addEditScheduleEventModal.startTime")}:{" "}
+            {parseToHHMM(420 + 15 * startTime)}
+          </Typography>
+        )}
+
+        <Controller
+          name="duration"
+          control={control}
+          render={({ field }) => (
+            <SelectField
+              {...field}
+              label={t("subjects.addEditScheduleEventModal.duration")}
+              options={[3, 6, 9].map((d) => ({
+                label: parseToHHMM(15 * d),
+                value: d,
+              }))}
+              value={watch("duration")}
+            />
+          )}
+        />
+
+        <Controller
+          name="teacherId"
+          control={control}
+          render={({ field }) => {
+            return (
+              <TeacherSelect value={field.value} setValue={field.onChange} />
+            );
+          }}
+        />
+        <ModalFooter text={t(`common.${event ? "edit" : "add"}`)} />
+      </CustomForm>
+    </>
+  );
+};

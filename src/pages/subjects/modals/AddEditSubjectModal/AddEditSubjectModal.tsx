@@ -1,5 +1,5 @@
 import { ModalHeader, ModalFooter } from "@/components";
-import { Stack, styled, TextField } from "@mui/material";
+import { Stack, TextField } from "@mui/material";
 import type { AddEditSubjectModalProps } from "./types";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
@@ -7,14 +7,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { subjectSchema } from "./AddEditSubjectModalValidation";
 import { useAddEditSubject } from "@/hooks";
 import { SubjectTypeSelect, TeacherSelect } from "../../components";
-import type { SubjectType } from "@/types";
+import { SubjectType } from "@/types";
+import { CustomForm } from "@/styles";
 
 export const AddEditSubjectModal = ({
   subject,
   semesterId,
 }: AddEditSubjectModalProps) => {
-  console.log("subejct", subject);
-
   const { t } = useTranslation();
   const { register, handleSubmit, setValue, watch } = useForm({
     defaultValues: subject ?? {
@@ -56,10 +55,11 @@ export const AddEditSubjectModal = ({
         </Stack>
         <TeacherSelect
           setValue={(val) => setValue("teacherId", val)}
-          defaultValue={subject?.teacherId}
+          value={subject?.teacherId}
         />
         <SubjectTypeSelect
           value={gradeTypes as SubjectType[]}
+          values={Object.values(SubjectType)}
           setValue={(val) => setValue("gradeTypes", val)}
         />
         <ModalFooter text={t(`common.${subject ? "edit" : "add"}`)} />
@@ -67,9 +67,3 @@ export const AddEditSubjectModal = ({
     </>
   );
 };
-
-const CustomForm = styled("form")({
-  display: "flex",
-  flexDirection: "column",
-  gap: "15px",
-});

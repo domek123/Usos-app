@@ -8,6 +8,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import { theme } from "@/theme";
 import { useEditSemester } from "@/hooks";
+import { ScheduleTable } from "../Schedule/ScheduleTable";
 
 export const MainContent = () => {
   const { t } = useTranslation();
@@ -74,6 +75,7 @@ export const MainContent = () => {
           </SubjectInfoContainer>
         </>
       )}
+      <ScheduleTable />
     </MainContainer>
   );
 };
@@ -84,6 +86,7 @@ const MainContainer = styled(Stack)({
   height: "100%",
   transition: "all 0.3s ease",
   padding: "10px",
+  gap: "20px",
 });
 
 const SubjectInfoContainer = styled(Stack)({

@@ -1,14 +1,13 @@
 import { theme } from "@/theme";
 import { Table, TableContainer } from "@mui/material";
-import type { ReactNode } from "react";
+import type { DefaultTableContainerType } from "./DefaultTableContainer.types";
 
 export const DefaultTableContainer = ({
   children,
-}: {
-  children: ReactNode;
-}) => {
+  sxStyles,
+}: DefaultTableContainerType) => {
   return (
-    <TableContainer>
+    <TableContainer sx={sxStyles}>
       <Table
         size="small"
         sx={{ border: `1px solid ${theme.palette.grey[400]}` }}

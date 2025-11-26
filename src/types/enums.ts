@@ -9,3 +9,11 @@ export enum SubjectType {
   EXAM = "EXAM",
   PROJECT = "PROJECT",
 }
+
+export enum Days {
+  MONDAY = "MONDAY",
+  TUESDAY = "TUESDAY",
+  WEDNESDAY = "WEDNESDAY",
+  THURSDAY = "THURSDAY",
+  FRIDAY = "FRIDAY",
+}

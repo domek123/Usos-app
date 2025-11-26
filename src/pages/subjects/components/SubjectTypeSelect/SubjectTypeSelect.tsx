@@ -11,10 +11,11 @@ import type { SubjectTypeSelectProps } from "./SubejctTypeSelect.types";
 
 export const SubjectTypeSelect = ({
   value,
+  values,
   setValue,
 }: SubjectTypeSelectProps) => {
   const { t } = useTranslation();
-  console.log(value);
+
   return (
     <FormControl size="small">
       <InputLabel id="teacher-label">{t("subjects.subSubjects")}</InputLabel>
@@ -30,7 +31,7 @@ export const SubjectTypeSelect = ({
         }}
         multiple
       >
-        {Object.values(SubjectType).map((value) => (
+        {values.map((value) => (
           <MenuItem key={value} value={value}>
             <Typography>{t(`gradeType.${value}`)}</Typography>
           </MenuItem>

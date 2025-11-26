@@ -6,3 +6,4 @@ export * from "./EditDeleteMenu/EditDeleteMenu.tsx";
 export * from "./DefaultTableContainer/DefaultTableContainer.tsx";
 export * from "./SearchInput/SearchInput.tsx";
 export * from "./CustomDropdown/CustomDropdown.tsx";
+export * from "./CustomSelect/CustomSelect.tsx";

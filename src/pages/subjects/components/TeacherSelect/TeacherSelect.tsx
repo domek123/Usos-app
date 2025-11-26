@@ -9,10 +9,7 @@ import { useTranslation } from "react-i18next";
 import { useFetchTeachers } from "@/hooks";
 import type { TeacherSelectProps } from "./TeacherSelect.types";
 
-export const TeacherSelect = ({
-  defaultValue,
-  setValue,
-}: TeacherSelectProps) => {
+export const TeacherSelect = ({ value, setValue }: TeacherSelectProps) => {
   const { t } = useTranslation();
   const { teachers } = useFetchTeachers();
 
@@ -20,7 +17,7 @@ export const TeacherSelect = ({
     <FormControl size="small">
       <InputLabel id="teacher-label">{t("subjects.table.teacher")}</InputLabel>
       <Select
-        defaultValue={defaultValue}
+        value={value}
         labelId="teacher-label"
         label={t("subjects.table.teacher")}
         onChange={(e) => {

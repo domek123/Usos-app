@@ -1,4 +1,4 @@
 export type TeacherSelectProps = {
-  defaultValue?: string;
+  value?: string;
   setValue: (val: string) => void;
 };
