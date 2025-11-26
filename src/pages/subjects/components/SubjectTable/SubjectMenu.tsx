@@ -8,7 +8,7 @@ import type { Subject } from "@/types";
 export const SubjectMenu = ({ subject }: { subject: Subject }) => {
   const { setModalContent } = useModalContext();
   const { selectedSemester } = useSemesterContext();
-  const { deleteSubject } = useDeleteSubject(subject.id);
+  const { deleteSubject } = useDeleteSubject(subject.id, selectedSemester.id);
 
   return (
     <EditDeleteMenu

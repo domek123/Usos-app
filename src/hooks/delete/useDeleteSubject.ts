@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useModalContext } from "@/context";
 import { api } from "@/api/api";
 
-export const useDeleteSubject = (id: string) => {
+export const useDeleteSubject = (id: string, semesterId: string) => {
   const queryClient = useQueryClient();
   const { closeModal } = useModalContext();
 
@@ -12,6 +12,9 @@ export const useDeleteSubject = (id: string) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["subjects"] });
+      queryClient.invalidateQueries({
+        queryKey: ["scheduleEvents", semesterId],
+      });
       closeModal();
     },
     onError: (error) => {

@@ -73,9 +73,9 @@ export const MainContent = () => {
             <Typography variant="h6">{t("subjects.title")}</Typography>
             <SubjectTable />
           </SubjectInfoContainer>
+          <ScheduleTable />
         </>
       )}
-      <ScheduleTable />
     </MainContainer>
   );
 };

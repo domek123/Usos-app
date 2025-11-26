@@ -6,10 +6,11 @@ export const useSemester = () => {
   const { semesters, isLoading } = useFetchSemesters();
   const { addSemester } = useAddSemester();
 
-  const [selectedSemester, setSelectedSemester] = useState<Semester>({
+  const [selectedSemester, setSelectedSemester] = useState<
+    Omit<Semester, "subjects">
+  >({
     id: "",
     name: "",
-    subjects: [],
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -22,7 +23,11 @@ export const useSemester = () => {
   const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
-    if (semesters.length === 0) return;
+    if (semesters.length === 0)
+      return setSelectedSemester({
+        id: "",
+        name: "",
+      });
 
     const currentSemester = semesters.find(
       (semester) => semester.id === selectedSemester.id
