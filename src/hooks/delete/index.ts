@@ -4,3 +4,4 @@ export * from "./useDeleteSemester";
 export * from "./useDeleteStudentFromFaculty";
 export * from "./useDeleteStudentEnrollment";
 export * from "./useDeleteStudentSemester";
+export * from "./useDeleteScheduleEvent";

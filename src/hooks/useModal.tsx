@@ -14,6 +14,11 @@ export const useModal = () => {
     setIsOpen(true);
   };
 
+  const setModalContent = (children: ReactNode) => {
+    setChildren(children);
+    openModal();
+  };
+
   return {
     isOpen,
     closeModal,
@@ -22,5 +27,6 @@ export const useModal = () => {
     setChildren,
     modalWidth,
     setModalWidth,
+    setModalContent,
   };
 };

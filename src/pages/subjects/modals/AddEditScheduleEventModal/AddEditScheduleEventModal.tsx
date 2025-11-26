@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { useSemester } from "../../hooks";
 import { useEffect, useMemo } from "react";
 import { TeacherSelect } from "../../components";
-import { parseToHHMM } from "@/utils";
+import { convertToDays, parseToHHMM } from "@/utils";
 import { scheduleEventSchema } from "./AddEditScheduleEventModalValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -18,6 +18,8 @@ interface FormValues {
   duration: number;
   description?: string;
   teacherId: string;
+  day: number;
+  startTime: number;
 }
 
 interface Props {
@@ -39,6 +41,8 @@ export const AddEditScheduleEventModal = ({ event, day, startTime }: Props) => {
         duration: event?.duration ?? 6,
         description: event?.description ?? "",
         teacherId: event?.teacher.teacherId ?? "",
+        day: event?.day ?? day!,
+        startTime: event?.startTime ?? startTime!,
       },
       resolver: zodResolver(scheduleEventSchema),
     });
@@ -73,8 +77,6 @@ export const AddEditScheduleEventModal = ({ event, day, startTime }: Props) => {
               ...data,
               gradeType: data.gradeType,
               semesterId: selectedSemester.id ?? "",
-              startTime: startTime ?? event?.startTime ?? 0,
-              day: day ?? event?.day ?? 1,
             });
           }
         })}
@@ -84,7 +86,28 @@ export const AddEditScheduleEventModal = ({ event, day, startTime }: Props) => {
             {t(`days.${Object.values(Days)[day - 1]}`)}
           </Typography>
         )}
-
+        {event && (
+          <>
+            <Controller
+              name="day"
+              control={control}
+              render={({ field }) => (
+                <SelectField
+                  {...field}
+                  label={t("subjects.addEditScheduleEventModal.day")}
+                  options={[1, 2, 3, 4, 5].map((day) => ({
+                    label: t(`days.${convertToDays(day)}`),
+                    value: day,
+                  }))}
+                  value={watch("day")}
+                  onChange={(val) => {
+                    field.onChange(val);
+                  }}
+                />
+              )}
+            />
+          </>
+        )}
         <RowBetweenStack gap="10px">
           <Controller
             name="subjectId"
@@ -136,22 +159,40 @@ export const AddEditScheduleEventModal = ({ event, day, startTime }: Props) => {
             {parseToHHMM(420 + 15 * startTime)}
           </Typography>
         )}
-
-        <Controller
-          name="duration"
-          control={control}
-          render={({ field }) => (
-            <SelectField
-              {...field}
-              label={t("subjects.addEditScheduleEventModal.duration")}
-              options={[3, 6, 9].map((d) => ({
-                label: parseToHHMM(15 * d),
-                value: d,
-              }))}
-              value={watch("duration")}
+        <RowBetweenStack gap="10px">
+          {event && (
+            <Controller
+              name="startTime"
+              control={control}
+              render={({ field }) => (
+                <SelectField
+                  {...field}
+                  label={t("subjects.addEditScheduleEventModal.startTime")}
+                  options={Array.from({ length: 51 }, (_, i) => i).map((d) => ({
+                    label: parseToHHMM(d, true),
+                    value: d,
+                  }))}
+                  value={watch("startTime")}
+                />
+              )}
             />
           )}
-        />
+          <Controller
+            name="duration"
+            control={control}
+            render={({ field }) => (
+              <SelectField
+                {...field}
+                label={t("subjects.addEditScheduleEventModal.duration")}
+                options={[3, 6, 9].map((d) => ({
+                  label: parseToHHMM(15 * d),
+                  value: d,
+                }))}
+                value={watch("duration")}
+              />
+            )}
+          />
+        </RowBetweenStack>
 
         <Controller
           name="teacherId"

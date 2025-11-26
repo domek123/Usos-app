@@ -52,7 +52,7 @@
     "noSemester": "Nie wybrałeś żadnego semestru",
     "noSubjects": "Brak przedmiotów do wyświetlenia",
     "title": "Przedmioty",
-    "subSubjects": "typ Przedmiotu",
+    "subSubjects": "Typ przedmiotu",
     "table": {
       "name": "Nazwa Przedmiotu",
       "ects": "ECTS",
@@ -61,6 +61,13 @@
     "addEditModal": {
       "addTitle": "Dodaj Przedmiot",
       "editTitle": "Edytuj Przedmiot"
+    },
+    "detailsModal": {
+      "subjectType": "Typ zajęć",
+      "term": "Termin",
+      "hour": "Godzina",
+      "details": "Szczegóły",
+      "teacher": "Prowadzący"
     },
     "addEditScheduleEventModal": {
       "addTitle": "Dodaj Wydarzenie",
