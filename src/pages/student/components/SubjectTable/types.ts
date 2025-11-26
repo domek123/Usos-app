@@ -1,6 +1,6 @@
-import type { Subject } from "@/types";
+import type { EnrolledSubject } from "@/types";
 
 export type SubjectTableProps = {
   semesterId: string;
-  subjects: Subject[];
+  subjects: EnrolledSubject[];
 };

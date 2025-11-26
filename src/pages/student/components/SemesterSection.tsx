@@ -8,7 +8,7 @@ import type { Semester } from "@/types";
 
 export const SemesterSection = ({ semesters }: { semesters: Semester[] }) => {
   const { t } = useTranslation();
-  const { setChildren, openModal } = useModalContext();
+  const { setModalContent } = useModalContext();
 
   return (
     <RowBetweenStack>
@@ -17,10 +17,9 @@ export const SemesterSection = ({ semesters }: { semesters: Semester[] }) => {
         variant="contained"
         text={t("student.addSemester")}
         onClick={() => {
-          setChildren(
+          setModalContent(
             <AddSemesterEnrollmentModal enrollmentSemesters={semesters} />
           );
-          openModal();
         }}
       />
     </RowBetweenStack>

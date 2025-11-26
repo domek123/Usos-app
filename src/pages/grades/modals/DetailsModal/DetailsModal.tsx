@@ -8,7 +8,7 @@ import { useModalContext } from "@/context";
 
 export const DetailsModal = ({ name, teacher }: DetailsModalProps) => {
   const { t } = useTranslation();
-  const { openModal, setChildren } = useModalContext();
+  const { setModalContent } = useModalContext();
 
   const content = (
     <Stack width={"100%"}>
@@ -24,8 +24,7 @@ export const DetailsModal = ({ name, teacher }: DetailsModalProps) => {
         text={t("grades.table.details")}
         textSx={{ color: "black", textDecoration: "underline" }}
         onClick={() => {
-          openModal();
-          setChildren(content);
+          setModalContent(content);
         }}
       />
     </>

@@ -7,9 +7,7 @@ import { useModalContext } from "@/context";
 import { AddEditTeacherModal } from "../../modals";
 export const TeacherTableHeader = () => {
   const { t } = useTranslation();
-  const { openModal } = useModalContext();
-
-  const { setChildren } = useModalContext();
+  const { setModalContent } = useModalContext();
 
   return (
     <TableHead sx={{ backgroundColor: "lightgray" }}>
@@ -29,8 +27,7 @@ export const TeacherTableHeader = () => {
         <StyledTableCell padding="none">
           <Button
             onClick={() => {
-              openModal();
-              setChildren(<AddEditTeacherModal />);
+              setModalContent(<AddEditTeacherModal />);
             }}
           >
             <AddIcon />

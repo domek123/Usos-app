@@ -1,10 +1,10 @@
 import { useFetchSubjects } from "@/hooks";
-import type { Subject } from "@/types";
+import type { EnrolledSubject } from "@/types";
 import { useMemo, useState } from "react";
 
 export const useAddSubjectEnrollment = (
   semesterId: string,
-  enrolledSubjects: Subject[]
+  enrolledSubjects: EnrolledSubject[]
 ) => {
   const { subjects: allSubjects } = useFetchSubjects(semesterId);
 

@@ -8,7 +8,7 @@ import { useFacultyStore } from "@/stores";
 
 export const StudentTableHeader = () => {
   const { t } = useTranslation();
-  const { setChildren, openModal } = useModalContext();
+  const { setModalContent } = useModalContext();
   const globalFaculty = useFacultyStore((s) => s.faculty);
 
   return (
@@ -31,8 +31,7 @@ export const StudentTableHeader = () => {
         <StyledTableCell width={"5%"} padding="none">
           <Button
             onClick={() => {
-              setChildren(<AddEditStudentModal />);
-              openModal();
+              setModalContent(<AddEditStudentModal />);
             }}
           >
             <AddIcon />

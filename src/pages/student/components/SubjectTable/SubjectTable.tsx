@@ -17,7 +17,7 @@ import type { SubjectTableProps } from "./types";
 
 export const SubjectTable = ({ subjects, semesterId }: SubjectTableProps) => {
   const { t } = useTranslation();
-  const { setChildren, openModal } = useModalContext();
+  const { setModalContent } = useModalContext();
 
   return (
     <DefaultTableContainer>
@@ -35,13 +35,12 @@ export const SubjectTable = ({ subjects, semesterId }: SubjectTableProps) => {
           <StyledTableCell sx={{ padding: "0px" }}>
             <Button
               onClick={() => {
-                setChildren(
+                setModalContent(
                   <AddSubjectEnrollmentModal
                     semesterId={semesterId}
                     enrollmentSubjects={subjects}
                   />
                 );
-                openModal();
               }}
             >
               <AddIcon />

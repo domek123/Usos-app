@@ -8,6 +8,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useFetchTeachers } from "@/hooks";
 import type { TeacherSelectProps } from "./TeacherSelect.types";
+import { formatTeacherData } from "@/utils";
 
 export const TeacherSelect = ({ value, setValue }: TeacherSelectProps) => {
   const { t } = useTranslation();
@@ -26,9 +27,7 @@ export const TeacherSelect = ({ value, setValue }: TeacherSelectProps) => {
       >
         {teachers.map((teacher) => (
           <MenuItem key={teacher.teacherId} value={teacher.teacherId}>
-            <Typography>
-              {teacher.title} {teacher.firstName} {teacher.lastName}
-            </Typography>
+            <Typography>{formatTeacherData(teacher)}</Typography>
           </MenuItem>
         ))}
       </Select>

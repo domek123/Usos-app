@@ -5,14 +5,17 @@ import { useTranslation } from "react-i18next";
 import { useFetchScheduleEvents } from "@/hooks";
 import { useSemesterContext } from "../../context";
 import { useModalContext } from "@/context";
-import { AddEditScheduleEventModal } from "../../modals";
+import {
+  AddEditScheduleEventModal,
+  ScheduleEventInfoModal,
+} from "../../modals";
 import { findEventAt, isCoveredByEvent } from "./utils";
 
 export const ScheduleTableBody = () => {
   const { t } = useTranslation();
   const { selectedSemester } = useSemesterContext();
   const { scheduleEvents } = useFetchScheduleEvents(selectedSemester.id);
-  const { setChildren, openModal } = useModalContext();
+  const { setModalContent } = useModalContext();
 
   let hour = 7;
 
@@ -44,14 +47,7 @@ export const ScheduleTableBody = () => {
                   key={colIdx}
                   rowSpan={event.duration}
                   onClick={() => {
-                    setChildren(
-                      <AddEditScheduleEventModal
-                        event={event}
-                        day={colIdx}
-                        startTime={rowIdx}
-                      />
-                    );
-                    openModal();
+                    setModalContent(<ScheduleEventInfoModal event={event} />);
                   }}
                   align="center"
                   sx={{
@@ -81,13 +77,12 @@ export const ScheduleTableBody = () => {
             return (
               <StyledTableCell
                 onClick={() => {
-                  setChildren(
+                  setModalContent(
                     <AddEditScheduleEventModal
                       day={colIdx}
                       startTime={rowIdx}
                     />
                   );
-                  openModal();
                 }}
                 width={"18%"}
                 key={colIdx}

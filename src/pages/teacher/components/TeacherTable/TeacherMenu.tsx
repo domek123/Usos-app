@@ -3,23 +3,21 @@ import type { TeacherTableRowProps } from "./types";
 import { AddEditTeacherModal, DeleteTeacherModal } from "../../modals";
 import { EditDeleteMenu } from "@/components";
 export const TeacherMenu = ({ teacher }: TeacherTableRowProps) => {
-  const { setChildren, openModal } = useModalContext();
+  const { setModalContent } = useModalContext();
 
   return (
     <EditDeleteMenu
       openEditModal={() => {
-        setChildren(<AddEditTeacherModal teacher={teacher} />);
-        openModal();
+        setModalContent(<AddEditTeacherModal teacher={teacher} />);
       }}
       openDeleteModal={() => {
-        setChildren(
+        setModalContent(
           <DeleteTeacherModal
             firstName={teacher.firstName}
             lastName={teacher.lastName}
             personId={teacher.personId}
           />
         );
-        openModal();
       }}
     />
   );

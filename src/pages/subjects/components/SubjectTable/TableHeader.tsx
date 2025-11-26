@@ -8,7 +8,7 @@ import { AddEditSubjectModal } from "../../modals";
 
 export const SubjectTableHeader = () => {
   const { t } = useTranslation();
-  const { openModal, setChildren } = useModalContext();
+  const { setModalContent } = useModalContext();
   const { selectedSemester } = useSemesterContext();
 
   return (
@@ -26,10 +26,9 @@ export const SubjectTableHeader = () => {
         <StyledTableCell padding="none">
           <Button
             onClick={() => {
-              setChildren(
+              setModalContent(
                 <AddEditSubjectModal semesterId={selectedSemester.id} />
               );
-              openModal();
             }}
           >
             <AddIcon />

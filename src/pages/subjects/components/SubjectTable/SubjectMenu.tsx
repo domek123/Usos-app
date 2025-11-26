@@ -6,14 +6,14 @@ import { useDeleteSubject } from "@/hooks";
 import type { Subject } from "@/types";
 
 export const SubjectMenu = ({ subject }: { subject: Subject }) => {
-  const { setChildren, openModal } = useModalContext();
+  const { setModalContent } = useModalContext();
   const { selectedSemester } = useSemesterContext();
   const { deleteSubject } = useDeleteSubject(subject.id);
 
   return (
     <EditDeleteMenu
       openEditModal={() => {
-        setChildren(
+        setModalContent(
           <AddEditSubjectModal
             semesterId={selectedSemester.id}
             subject={{
@@ -22,7 +22,6 @@ export const SubjectMenu = ({ subject }: { subject: Subject }) => {
             }}
           />
         );
-        openModal();
       }}
       openDeleteModal={deleteSubject}
     />

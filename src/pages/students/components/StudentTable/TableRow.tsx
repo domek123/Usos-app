@@ -10,7 +10,7 @@ import { useDeleteStudentFromFaculty } from "@/hooks";
 import { useNavigate } from "react-router-dom";
 
 export const StudentTableRow = ({ student }: { student: Student }) => {
-  const { setChildren, openModal } = useModalContext();
+  const { setModalContent } = useModalContext();
   const { deleteStudentFromFaculty } = useDeleteStudentFromFaculty();
   const globalFaculty = useFacultyStore((s) => s.faculty);
 
@@ -42,21 +42,19 @@ export const StudentTableRow = ({ student }: { student: Student }) => {
         <EditDeleteMenu
           openDeleteModal={() => {
             if (!globalFaculty) {
-              setChildren(
+              setModalContent(
                 <DeleteStudentModal
                   personId={student.personId}
                   firstName={student.firstName}
                   lastName={student.lastName}
                 />
               );
-              openModal();
             } else {
               deleteStudentFromFaculty(student.studentId);
             }
           }}
           openEditModal={() => {
-            setChildren(<AddEditStudentModal student={student} />);
-            openModal();
+            setModalContent(<AddEditStudentModal student={student} />);
           }}
         />
       </StyledTableCell>

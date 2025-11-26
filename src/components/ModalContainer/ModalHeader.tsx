@@ -1,21 +1,16 @@
-import { Button, Stack, styled, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useModalContext } from "@/context";
+import { RowBetweenStack } from "@/styles";
 
 export const ModalHeader = ({ title }: { title: string }) => {
   const { closeModal } = useModalContext();
   return (
-    <HeaderContainer>
+    <RowBetweenStack width="100%">
       <Typography variant="h5">{title}</Typography>
       <Button onClick={closeModal}>
         <CloseIcon />
       </Button>
-    </HeaderContainer>
+    </RowBetweenStack>
   );
 };
-const HeaderContainer = styled(Stack)({
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "center",
-  width: "100%",
-});

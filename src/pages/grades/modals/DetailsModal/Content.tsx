@@ -1,12 +1,11 @@
 import { Stack, styled, Typography } from "@mui/material";
 import type { ModalContentProps } from "./types";
+import { formatTeacherData } from "@/utils";
 
 export const ModalContent = ({ teacher }: ModalContentProps) => {
   return (
     <ContentContainer>
-      <Typography fontWeight={600}>
-        {teacher.title} {teacher.firstName} {teacher.lastName}
-      </Typography>
+      <Typography fontWeight={600}>{formatTeacherData(teacher)}</Typography>
       <Typography>Dane kontaktowe:</Typography>
       <Typography>tel: {teacher.phone}</Typography>
       <Typography>mail: {teacher.email}</Typography>

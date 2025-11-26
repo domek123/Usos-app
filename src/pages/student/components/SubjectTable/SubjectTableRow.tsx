@@ -2,7 +2,7 @@ import { EditDeleteMenu } from "@/components";
 import { useDeleteStudentEnrollment } from "@/hooks";
 import { StyledTableCell } from "@/styles";
 import type { EnrolledSubject } from "@/types";
-import { GradeFormatter } from "@/utils";
+import { formatTeacherData, GradeFormatter } from "@/utils";
 import { TableRow, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
 
@@ -13,9 +13,7 @@ export const SubjectTableRow = ({ subject }: { subject: EnrolledSubject }) => {
   const { deleteEnrollment } = useDeleteStudentEnrollment();
 
   const { name, teacher } = subject;
-  const teacherName = teacher
-    ? `${teacher.title} ${teacher.firstName} ${teacher.lastName}`
-    : "";
+  const teacherName = teacher && formatTeacherData(teacher);
 
   return (
     <TableRow>
