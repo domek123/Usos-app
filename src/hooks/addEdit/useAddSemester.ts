@@ -4,7 +4,7 @@ import { useFacultyStore } from "@/stores";
 
 export const useAddSemester = () => {
   const queryClient = useQueryClient();
-  const faculty = useFacultyStore((s) => s.faculty);
+  const { faculty } = useFacultyStore();
 
   const { mutate } = useMutation({
     mutationFn: async (name: string) => {

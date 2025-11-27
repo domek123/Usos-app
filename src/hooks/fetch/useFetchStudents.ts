@@ -4,7 +4,7 @@ import type { Student } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 
 export const useFetchStudents = () => {
-  const faculty = useFacultyStore((s) => s.faculty);
+  const { faculty } = useFacultyStore();
 
   const queryKey = ["students", faculty?.id ?? "all"];
 

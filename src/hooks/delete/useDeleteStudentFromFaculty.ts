@@ -6,7 +6,7 @@ import { useFacultyStore } from "@/stores";
 export const useDeleteStudentFromFaculty = () => {
   const queryClient = useQueryClient();
   const { closeModal } = useModalContext();
-  const faculty = useFacultyStore((s) => s.faculty);
+  const { faculty } = useFacultyStore();
 
   const { mutate } = useMutation({
     mutationFn: async (studentId: string) => {

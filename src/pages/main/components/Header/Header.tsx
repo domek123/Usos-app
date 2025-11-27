@@ -7,7 +7,7 @@ import { useFacultyStore } from "@/stores";
 export const Header = () => {
   const { user } = useHeader();
   const navigate = useNavigate();
-  const faculty = useFacultyStore((s) => s.faculty);
+  const { faculty } = useFacultyStore();
 
   return (
     <MainContainer>

@@ -4,7 +4,7 @@ import type { Semester } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 
 export const useFetchSemesters = () => {
-  const faculty = useFacultyStore((s) => s.faculty);
+  const { faculty } = useFacultyStore();
 
   const { data, isLoading } = useQuery({
     queryKey: ["semester", faculty!.id],

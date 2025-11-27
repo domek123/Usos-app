@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 export const useGetLinks = () => {
   const { t } = useTranslation();
-  const faculty = useFacultyStore((s) => s.faculty);
+  const { faculty } = useFacultyStore();
 
   const userLinks = [
     { to: "grades", text: t("navigation.grades") },

@@ -12,13 +12,16 @@ import { useNavigate } from "react-router-dom";
 export const StudentTableRow = ({ student }: { student: Student }) => {
   const { setModalContent } = useModalContext();
   const { deleteStudentFromFaculty } = useDeleteStudentFromFaculty();
-  const globalFaculty = useFacultyStore((s) => s.faculty);
+  const { faculty: globalFaculty } = useFacultyStore();
 
   const navigate = useNavigate();
 
   return (
     <TableRow
-      onClick={() => navigate("/student", { state: { id: student.studentId } })}
+      onClick={() => {
+        if (globalFaculty)
+          navigate("/student", { state: { id: student.studentId } });
+      }}
     >
       <StyledTableCell width="10%" align="center">
         <Typography>{student.studentId}</Typography>

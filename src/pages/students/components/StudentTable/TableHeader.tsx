@@ -9,7 +9,7 @@ import { useFacultyStore } from "@/stores";
 export const StudentTableHeader = () => {
   const { t } = useTranslation();
   const { setModalContent } = useModalContext();
-  const globalFaculty = useFacultyStore((s) => s.faculty);
+  const { faculty: globalFaculty } = useFacultyStore();
 
   return (
     <TableHead sx={{ backgroundColor: "lightgray" }}>

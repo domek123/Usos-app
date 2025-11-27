@@ -21,7 +21,7 @@ type FormValues = z.infer<typeof studentBaseSchema> & {
 
 export const AddEditStudentModal = ({ student }: { student?: Student }) => {
   const { t } = useTranslation();
-  const faculty = useFacultyStore((s) => s.faculty);
+  const { faculty } = useFacultyStore();
 
   const validation = student ? studentWithEmailSchema : studentBaseSchema;
 
