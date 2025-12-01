@@ -1,38 +1,50 @@
-import { Stack, styled, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import type { Grade, Subject } from "@/types";
+import type { Grade } from "@/types";
+import { RowBetweenStack } from "@/styles";
+import { useModalContext } from "@/context";
+import { EditGrade } from "@/pages/student/modals";
 
-export type GradeFormatterProps = Subject;
+type GradeFormatterProps = {
+  grades: Grade[];
+  subjectName?: string;
+};
 
-export const GradeFormatter = ({ grades }: { grades: Grade[] }) => {
+export const GradeFormatter = ({
+  grades,
+  subjectName,
+}: GradeFormatterProps) => {
   const { t } = useTranslation();
+  const { setModalContent } = useModalContext();
 
   return (
     <>
-      <GradeStack>
+      <RowBetweenStack>
         <Typography>{t("grades.table.finalGrade")}</Typography>
         <Typography fontSize={"13px"}>{`(brak ocen)`}</Typography>
-      </GradeStack>
+      </RowBetweenStack>
       {grades.map((item) => (
-        <GradeStack>
+        <RowBetweenStack
+          sx={{ cursor: "pointer" }}
+          onClick={() => {
+            if (subjectName)
+              setModalContent(
+                <EditGrade grade={item} subjectName={subjectName} />
+              );
+          }}
+        >
           <Typography>{t(`gradeType.${item.type}`)}</Typography>
-          <Stack flexDirection={"row"} gap="5px">
-            {item.gradeHistory.map((grade) => (
-              <Typography color="red">{`(${grade})`}</Typography>
-            ))}
-            {item.currentGrade ? (
-              <Typography>{item.currentGrade}</Typography>
-            ) : (
-              <Typography fontSize={"13px"}>{`(brak ocen)`}</Typography>
-            )}
-          </Stack>
-        </GradeStack>
+          {item.currentGrade ? (
+            <Typography
+              sx={{ color: item.currentGrade === 2 ? "red" : "none" }}
+            >
+              {item.currentGrade}
+            </Typography>
+          ) : (
+            <Typography fontSize={"13px"}>{`(brak ocen)`}</Typography>
+          )}
+        </RowBetweenStack>
       ))}
     </>
   );
 };
-const GradeStack = styled(Stack)({
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "center",
-});

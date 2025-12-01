@@ -80,6 +80,10 @@
       "duration": "Czas trwania (h)",
       "type": "Typ",
       "teacher": "Nauczyciel"
+    },
+    "editGradeModal": {
+      "title": "Ustaw Ocenę",
+      "grade": "Ocena"
     }
   },
   "days": {

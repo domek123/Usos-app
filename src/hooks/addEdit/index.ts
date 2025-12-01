@@ -6,3 +6,4 @@ export * from "./useAddEditStudent";
 export * from "./useAddEnrollment";
 export * from "./useAssignSemestersToStudent";
 export * from "./useAddEditScheduleEvent";
+export * from "./useEditGrade";

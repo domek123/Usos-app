@@ -1,10 +1,10 @@
-import { EditDeleteMenu } from "@/components";
 import { useDeleteStudentEnrollment } from "@/hooks";
 import { StyledTableCell } from "@/styles";
 import type { EnrolledSubject } from "@/types";
 import { formatTeacherData, GradeFormatter } from "@/utils";
-import { TableRow, Typography } from "@mui/material";
+import { Button, TableRow, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export const SubjectTableRow = ({ subject }: { subject: EnrolledSubject }) => {
   const location = useLocation();
@@ -26,18 +26,17 @@ export const SubjectTableRow = ({ subject }: { subject: EnrolledSubject }) => {
       </StyledTableCell>
 
       <StyledTableCell align="center">
-        <GradeFormatter {...subject} />
+        <GradeFormatter grades={subject.grades} subjectName={subject.name} />
       </StyledTableCell>
 
       <StyledTableCell align="center" padding="none">
-        <EditDeleteMenu
-          openEditModal={function (): void {
-            throw new Error("Function not implemented.");
-          }}
-          openDeleteModal={() =>
+        <Button
+          onClick={() =>
             deleteEnrollment({ studentId: id, subjectIds: [subject.id] })
           }
-        />
+        >
+          <DeleteIcon />
+        </Button>
       </StyledTableCell>
     </TableRow>
   );
