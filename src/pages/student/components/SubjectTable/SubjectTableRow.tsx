@@ -35,7 +35,7 @@ export const SubjectTableRow = ({ subject }: { subject: EnrolledSubject }) => {
             deleteEnrollment({ studentId: id, subjectIds: [subject.id] })
           }
         >
-          <DeleteIcon />
+          <DeleteIcon fontSize="small" />
         </Button>
       </StyledTableCell>
     </TableRow>

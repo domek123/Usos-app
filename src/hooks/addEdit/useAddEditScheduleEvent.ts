@@ -10,7 +10,7 @@ export const useAddEditScheduleEvent = (eventId?: string) => {
   const { mutate } = useMutation({
     mutationFn: async (event: ScheduleEventDto) => {
       if (eventId) {
-        return await api.put(`/semester-schedule/${eventId}`, { ...event });
+        return await api.patch(`/semester-schedule/${eventId}`, { ...event });
       } else {
         return await api.post("/semester-schedule", { ...event });
       }

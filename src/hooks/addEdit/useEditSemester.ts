@@ -6,7 +6,7 @@ export const useEditSemester = (id: string) => {
 
   const { mutate } = useMutation({
     mutationFn: async (name: string) => {
-      return api.put(`/semester/${id}`, { name });
+      return api.patch(`/semester/${id}`, { name });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["semester"] });

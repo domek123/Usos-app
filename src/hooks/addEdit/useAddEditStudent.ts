@@ -10,7 +10,7 @@ export const useAddEditStudent = (personId?: string) => {
   const { mutate } = useMutation({
     mutationFn: async (student: StudentDto) => {
       if (personId) {
-        return await api.put(`/student/${personId}`, student);
+        return await api.patch(`/student/${personId}`, student);
       } else {
         return await api.post("/student", student);
       }

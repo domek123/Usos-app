@@ -11,7 +11,7 @@ export const useAddEditSubject = (semesterId?: string, subjectId?: string) => {
     mutationFn: async (subject: SubjectDto) => {
       if (!semesterId) return null;
       if (subjectId) {
-        return await api.put(`/subject/${subjectId}`, subject);
+        return await api.patch(`/subject/${subjectId}`, subject);
       } else {
         return await api.post("/subject", { ...subject, semesterId });
       }
