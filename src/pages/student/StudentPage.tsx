@@ -7,7 +7,7 @@ import {
   useFetchStudentsSemesters,
 } from "@/hooks";
 import { CustomDropdown } from "@/components";
-import { PermissionType } from "@/types";
+import { PermissionType, type EnrolledSubject } from "@/types";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { theme } from "@/theme";
 
@@ -26,34 +26,36 @@ export const StudentPage = () => {
       </Typography>
       <Info />
       <SemesterSection semesters={studentSemesters} />
-      {studentSemesters.map((semester) => (
-        <CustomDropdown
-          headerChildren={
-            <Button
-              onClick={(e) => {
-                e.stopPropagation();
-                deleteSemesterAssignment({
-                  studentId: id,
-                  semesterId: semester.id,
-                });
-              }}
-            >
-              <DeleteIcon
-                sx={{ color: theme.palette.common.white }}
-                fontSize="small"
+      <Stack>
+        {studentSemesters.map((semester) => (
+          <CustomDropdown
+            headerChildren={
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  deleteSemesterAssignment({
+                    studentId: id,
+                    semesterId: semester.id,
+                  });
+                }}
+              >
+                <DeleteIcon
+                  sx={{ color: theme.palette.common.white }}
+                  fontSize="small"
+                />
+              </Button>
+            }
+            children={
+              <SubjectTable
+                subjects={semester.subjects as EnrolledSubject[]}
+                semesterId={semester.id}
               />
-            </Button>
-          }
-          children={
-            <SubjectTable
-              subjects={semester.subjects}
-              semesterId={semester.id}
-            />
-          }
-          name={semester.name}
-          key={semester.id}
-        />
-      ))}
+            }
+            name={semester.name}
+            key={semester.id}
+          />
+        ))}
+      </Stack>
     </MainContainer>
   );
 };

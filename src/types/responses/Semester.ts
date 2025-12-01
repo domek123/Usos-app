@@ -1,7 +1,7 @@
-import type { Subject } from "@/types";
+import type { EnrolledSubject, Subject } from "@/types";
 
 export interface Semester {
   id: string;
   name: string;
-  subjects: Subject[];
+  subjects: Subject[] | EnrolledSubject[];
 }

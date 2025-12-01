@@ -13,6 +13,6 @@ export const scheduleEventSchema = z.object({
   duration: z.number().int().min(1, "Czas trwania jest wymagany"),
   description: z.string().optional(),
   teacherId: z.string().min(1),
-  day: z.number().min(1),
+  day: z.number(),
   startTime: z.number(),
 });
