@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 export const Dashboard = () => {
   const { faculties } = useFetchFaculties();
-  const setFaculty = useFacultyStore((s) => s.setFaculty);
+  const { setFaculty } = useFacultyStore();
 
   useEffect(() => {
     setFaculty(null);

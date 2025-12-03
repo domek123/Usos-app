@@ -6,5 +6,5 @@ export interface Person {
   lastName: string;
   email: string;
   password: string;
-  type: PermissionType;
+  role: PermissionType;
 }

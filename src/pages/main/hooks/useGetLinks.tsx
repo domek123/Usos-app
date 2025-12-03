@@ -5,7 +5,7 @@ export const useGetLinks = () => {
   const { t } = useTranslation();
   const { faculty } = useFacultyStore();
 
-  const userLinks = [
+  const studentLinks = [
     { to: "grades", text: t("navigation.grades") },
     { to: "schedule", text: t("navigation.schedule") },
     { to: "contact", text: t("navigation.contact") },
@@ -23,5 +23,7 @@ export const useGetLinks = () => {
     { to: "students", text: t("navigation.students") },
     { to: "contact", text: t("navigation.contact") },
   ];
+
+  return { links: studentLinks };
   return { links: faculty !== null ? adminLinks : adminGlobalLinks };
 };

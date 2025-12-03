@@ -1,12 +1,14 @@
 import { Stack, styled, Typography } from "@mui/material";
-import { useHeader } from "@pages/main/hooks";
 import { HeaderMenu } from "./Menu";
 import { useNavigate } from "react-router-dom";
-import { useFacultyStore } from "@/stores";
+import { useFacultyStore, useUserStore } from "@/stores";
+import { useTranslation } from "react-i18next";
 
 export const Header = () => {
-  const { user } = useHeader();
+  const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const { firstName, lastName, role } = useUserStore();
   const { faculty } = useFacultyStore();
 
   return (
@@ -17,13 +19,13 @@ export const Header = () => {
         onClick={() => navigate("/")}
         sx={{ cursor: "pointer" }}
       >
-        AGH {faculty?.name}
+        {t("header.AGH")} {faculty?.name}
       </Typography>
       <Stack flexDirection="row" gap="5px" alignItems="center">
         <Typography>
-          {user.firstName} {user.lastName}
+          {firstName} {lastName}
         </Typography>
-        <Typography>{`(${user.status})`}</Typography>
+        <Typography>{t(`userRole.${role}`)}</Typography>
         <HeaderMenu />
       </Stack>
     </MainContainer>

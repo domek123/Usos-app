@@ -16,7 +16,13 @@
   "header": {
     "changePassword": "Zmień hasło",
     "logOut": "Wyloguj",
-    "settings": "Ustawienia"
+    "settings": "Ustawienia",
+    "AGH": "AGH"
+  },
+  "userRole": {
+    "STUDENT": "Student",
+    "TEACHER": "Prowadzący",
+    "ADMIN": "Administrator"
   },
   "navigation": {
     "grades": "Oceny",
