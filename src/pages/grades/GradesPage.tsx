@@ -1,25 +1,29 @@
 import { Stack, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { DropdownTable, Info } from "./components";
-import data from "@/data/mockedData";
 import { CustomDropdown } from "@/components";
+import { useUserStore } from "@/stores";
+import { useFetchStudentsSemesters } from "@/hooks";
+import type { EnrolledSubject } from "@/types";
 
 export const GradesPage = () => {
   const { t } = useTranslation();
+  const { studentId } = useUserStore();
+  const { studentSemesters } = useFetchStudentsSemesters(studentId as number);
+
   return (
     <MainContainer>
       <Typography variant="h3">{t("grades.title")}</Typography>
       <Info />
-      <Typography variant="h6">
-        Informatyka, pierwszego stopnia, stacjonarne
-      </Typography>
       <Stack>
-        {data.semesters.map((item) => {
+        {studentSemesters.map((item) => {
           return (
             <CustomDropdown
               key={item.id}
               name={item.name}
-              children={<DropdownTable subjects={item.subject} />}
+              children={
+                <DropdownTable subjects={item.subjects as EnrolledSubject[]} />
+              }
             />
           );
         })}

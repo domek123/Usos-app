@@ -1,14 +1,14 @@
-import type { Subject } from "@/types";
+import type { EnrolledSubject } from "@/types";
 
 export type DropdownProps = {
   name: string;
-  subjects: Subject[];
+  subjects: EnrolledSubject[];
 };
 
 export type DropdownTableProps = {
-  subjects: Subject[];
+  subjects: EnrolledSubject[];
 };
 
 export type DropdownRowProps = {
-  subject: Subject;
+  subject: EnrolledSubject;
 };

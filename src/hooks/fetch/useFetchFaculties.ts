@@ -12,12 +12,7 @@ export const useFetchFaculties = () => {
       if (role === PermissionType.ADMIN) {
         return await api.get<Faculty[]>("/faculty");
       }
-      if (role === PermissionType.STUDENT)
-        return api.get<Faculty[]>("/faculty/student/" + id);
-      if (role === PermissionType.TEACHER)
-        return api.get<Faculty[]>("/faculty/teacher/" + id);
-
-      return [];
+      return await api.get<Faculty[]>("/person/faculty/" + id);
     },
   });
 

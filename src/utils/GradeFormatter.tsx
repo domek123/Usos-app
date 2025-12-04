@@ -25,7 +25,7 @@ export const GradeFormatter = ({
       </RowBetweenStack>
       {grades.map((item) => (
         <RowBetweenStack
-          sx={{ cursor: "pointer" }}
+          sx={{ cursor: subjectName && "pointer" }}
           onClick={() => {
             if (subjectName)
               setModalContent(

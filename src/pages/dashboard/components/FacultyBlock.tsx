@@ -1,17 +1,18 @@
-import { useFacultyStore } from "@/stores";
-import type { Faculty } from "@/types";
+import { useFacultyStore, useUserStore } from "@/stores";
+import { PermissionType, type Faculty } from "@/types";
 import { Stack, styled, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export const FacultyBlock = ({ faculty }: { faculty: Faculty }) => {
-  const setFaculty = useFacultyStore((s) => s.setFaculty);
+  const { setFaculty } = useFacultyStore();
+  const { role } = useUserStore();
   const navigate = useNavigate();
 
   return (
     <Block
       onClick={() => {
         setFaculty(faculty);
-        navigate("subjects");
+        navigate(role === PermissionType.ADMIN ? "subjects" : "schedule");
       }}
     >
       <Typography>{faculty.name}</Typography>

@@ -6,8 +6,8 @@ export const useGetLinks = () => {
   const { faculty } = useFacultyStore();
 
   const studentLinks = [
-    { to: "grades", text: t("navigation.grades") },
     { to: "schedule", text: t("navigation.schedule") },
+    { to: "grades", text: t("navigation.grades") },
     { to: "contact", text: t("navigation.contact") },
   ];
 
