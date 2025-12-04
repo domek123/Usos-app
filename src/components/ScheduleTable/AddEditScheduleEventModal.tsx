@@ -1,13 +1,16 @@
-import { ModalFooter, ModalHeader, SelectField } from "@/components";
+import {
+  ModalFooter,
+  ModalHeader,
+  SelectField,
+  TeacherSelect,
+} from "@/components";
 import { useAddEditScheduleEvent, useFetchSubjects } from "@/hooks";
 import { CustomForm, RowBetweenStack } from "@/styles";
 import { Days, SubjectType, type ScheduleEvent } from "@/types";
 import { TextField, Typography } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useSemester } from "../../hooks";
 import { useEffect, useMemo } from "react";
-import { TeacherSelect } from "../../components";
 import { convertToDays, parseToHHMM } from "@/utils";
 import { scheduleEventSchema } from "./AddEditScheduleEventModalValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,16 +25,21 @@ interface FormValues {
   startTime: number;
 }
 
-interface Props {
+interface AddEditScheduleEventModalProps {
   event?: ScheduleEvent;
   day?: number;
   startTime?: number;
+  semesterId: string;
 }
 
-export const AddEditScheduleEventModal = ({ event, day, startTime }: Props) => {
+export const AddEditScheduleEventModal = ({
+  event,
+  day,
+  startTime,
+  semesterId,
+}: AddEditScheduleEventModalProps) => {
   const { t } = useTranslation();
-  const { selectedSemester } = useSemester();
-  const { subjects } = useFetchSubjects(selectedSemester.id);
+  const { subjects } = useFetchSubjects(semesterId);
   const { addEditScheduleEventModal } = useAddEditScheduleEvent(event?.id);
   const { control, register, watch, setValue, handleSubmit } =
     useForm<FormValues>({
@@ -76,7 +84,7 @@ export const AddEditScheduleEventModal = ({ event, day, startTime }: Props) => {
             addEditScheduleEventModal({
               ...data,
               gradeType: data.gradeType,
-              semesterId: selectedSemester.id ?? "",
+              semesterId: semesterId ?? "",
             });
           }
         })}

@@ -8,7 +8,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import { theme } from "@/theme";
 import { useEditSemester } from "@/hooks";
-import { ScheduleTable } from "../Schedule/ScheduleTable";
+import { ScheduleTable } from "@/components";
 
 export const MainContent = () => {
   const { t } = useTranslation();
@@ -83,7 +83,7 @@ export const MainContent = () => {
         <Typography variant="h6" textAlign={"left"} width={"100%"}>
           {t("subjects.schedule")}
         </Typography>
-        <ScheduleTable />
+        <ScheduleTable semesterId={selectedSemester.id} />
       </SubjectInfoContainer>
     </MainContainer>
   );

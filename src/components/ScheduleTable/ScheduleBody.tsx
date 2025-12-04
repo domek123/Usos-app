@@ -3,18 +3,14 @@ import { theme } from "@/theme";
 import { TableBody, TableRow, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useFetchScheduleEvents } from "@/hooks";
-import { useSemesterContext } from "../../context";
 import { useModalContext } from "@/context";
-import {
-  AddEditScheduleEventModal,
-  ScheduleEventInfoModal,
-} from "../../modals";
 import { findEventAt, isCoveredByEvent } from "./utils";
+import { ScheduleEventInfoModal } from "./ScheduleInfoModal";
+import { AddEditScheduleEventModal } from "./AddEditScheduleEventModal";
 
-export const ScheduleTableBody = () => {
+export const ScheduleTableBody = ({ semesterId }: { semesterId: string }) => {
   const { t } = useTranslation();
-  const { selectedSemester } = useSemesterContext();
-  const { scheduleEvents } = useFetchScheduleEvents(selectedSemester.id);
+  const { scheduleEvents } = useFetchScheduleEvents(semesterId);
   const { setModalContent } = useModalContext();
 
   let hour = 7;
@@ -47,7 +43,12 @@ export const ScheduleTableBody = () => {
                   key={colIdx}
                   rowSpan={event.duration}
                   onClick={() => {
-                    setModalContent(<ScheduleEventInfoModal event={event} />);
+                    setModalContent(
+                      <ScheduleEventInfoModal
+                        event={event}
+                        semesterId={semesterId}
+                      />
+                    );
                   }}
                   align="center"
                   sx={{
@@ -81,6 +82,7 @@ export const ScheduleTableBody = () => {
                     <AddEditScheduleEventModal
                       day={colIdx}
                       startTime={rowIdx}
+                      semesterId={semesterId}
                     />
                   );
                 }}

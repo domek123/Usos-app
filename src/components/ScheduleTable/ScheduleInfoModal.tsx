@@ -4,16 +4,20 @@ import { theme } from "@/theme";
 import type { ScheduleEvent } from "@/types";
 import { Stack, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { AddEditScheduleEventModal } from "../AddEditScheduleEventModal/AddEditScheduleEventModal";
 import { useDeleteScheduleEvent } from "@/hooks";
-import { useSemester } from "../../hooks";
 import { convertToDays, parseToHHMM } from "@/utils";
+import { AddEditScheduleEventModal } from "./AddEditScheduleEventModal";
 
-export const ScheduleEventInfoModal = ({ event }: { event: ScheduleEvent }) => {
+export const ScheduleEventInfoModal = ({
+  event,
+  semesterId,
+}: {
+  event: ScheduleEvent;
+  semesterId: string;
+}) => {
   const { t } = useTranslation();
   const { setModalContent } = useModalContext();
-  const { selectedSemester } = useSemester();
-  const { deleteScheduleEvent } = useDeleteScheduleEvent(selectedSemester.id);
+  const { deleteScheduleEvent } = useDeleteScheduleEvent(semesterId);
 
   return (
     <>
@@ -64,7 +68,12 @@ export const ScheduleEventInfoModal = ({ event }: { event: ScheduleEvent }) => {
             text={t("common.edit")}
             variant="contained"
             onClick={() =>
-              setModalContent(<AddEditScheduleEventModal event={event} />)
+              setModalContent(
+                <AddEditScheduleEventModal
+                  event={event}
+                  semesterId={semesterId}
+                />
+              )
             }
             sx={{ backgroundColor: theme.palette.primary.main }}
           />

@@ -7,3 +7,5 @@ export * from "./DefaultTableContainer/DefaultTableContainer.tsx";
 export * from "./SearchInput/SearchInput.tsx";
 export * from "./CustomDropdown/CustomDropdown.tsx";
 export * from "./CustomSelect/CustomSelect.tsx";
+export * from "./ScheduleTable/ScheduleTable.tsx";
+export * from "./TeacherSelect/TeacherSelect.tsx";

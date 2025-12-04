@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { ScheduleTableBody } from "./ScheduleBody";
 import { Days } from "@/types";
 
-export const ScheduleTable = () => {
+export const ScheduleTable = ({ semesterId }: { semesterId: string }) => {
   const { t } = useTranslation();
 
   return (
@@ -26,7 +26,7 @@ export const ScheduleTable = () => {
           ))}
         </TableRow>
       </TableHead>
-      <ScheduleTableBody />
+      <ScheduleTableBody semesterId={semesterId} />
     </DefaultTableContainer>
   );
 };
