@@ -2,7 +2,7 @@ import { api } from "@/api/api";
 import type { ScheduleEvent } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 
-export const useFetchScheduleEvents = (semesterId: string) => {
+export const useFetchScheduleEvents = (semesterId?: string) => {
   const { data, isLoading } = useQuery({
     queryKey: ["scheduleEvents", semesterId],
     queryFn: async (): Promise<ScheduleEvent[]> => {
@@ -11,6 +11,7 @@ export const useFetchScheduleEvents = (semesterId: string) => {
       );
       return data;
     },
+    enabled: !!semesterId,
   });
 
   return { scheduleEvents: data ?? [], isLoading };

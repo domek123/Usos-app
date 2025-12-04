@@ -7,11 +7,14 @@ import { useModalContext } from "@/context";
 import { findEventAt, isCoveredByEvent } from "./utils";
 import { ScheduleEventInfoModal } from "./ScheduleInfoModal";
 import { AddEditScheduleEventModal } from "./AddEditScheduleEventModal";
+import { useUserStore } from "@/stores";
+import { PermissionType } from "@/types";
 
 export const ScheduleTableBody = ({ semesterId }: { semesterId: string }) => {
   const { t } = useTranslation();
   const { scheduleEvents } = useFetchScheduleEvents(semesterId);
   const { setModalContent } = useModalContext();
+  const { role } = useUserStore();
 
   let hour = 7;
 
@@ -55,6 +58,7 @@ export const ScheduleTableBody = ({ semesterId }: { semesterId: string }) => {
                     backgroundColor: "#fff3b0",
                     border: "1px solid #e0d480",
                     padding: "4px",
+                    cursor: "pointer",
                   }}
                 >
                   <Typography fontWeight={600}>
@@ -78,20 +82,21 @@ export const ScheduleTableBody = ({ semesterId }: { semesterId: string }) => {
             return (
               <StyledTableCell
                 onClick={() => {
-                  setModalContent(
-                    <AddEditScheduleEventModal
-                      day={colIdx}
-                      startTime={rowIdx}
-                      semesterId={semesterId}
-                    />
-                  );
+                  if (role == PermissionType.ADMIN)
+                    setModalContent(
+                      <AddEditScheduleEventModal
+                        day={colIdx}
+                        startTime={rowIdx}
+                        semesterId={semesterId}
+                      />
+                    );
                 }}
                 width={"18%"}
                 key={colIdx}
                 sx={{
                   height: "20px",
                   backgroundColor: "lightgray",
-                  cursor: "pointer",
+                  cursor: role == PermissionType.ADMIN ? "pointer" : "auto",
                 }}
               />
             );

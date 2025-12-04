@@ -25,7 +25,7 @@ export const Header = () => {
         <Typography>
           {firstName} {lastName}
         </Typography>
-        <Typography>{t(`userRole.${role}`)}</Typography>
+        <Typography>({t(`userRole.${role}`)})</Typography>
         <HeaderMenu />
       </Stack>
     </MainContainer>

@@ -6,3 +6,4 @@ export * from "./useFetchFaculties";
 export * from "./useFetchStudentSemesters";
 export * from "./useFetchPersonData";
 export * from "./useFetchScheduleEvents";
+export * from "./useFetchCurrentSemester";

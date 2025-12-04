@@ -1,12 +1,13 @@
 import { CustomButton, ModalHeader } from "@/components";
 import { useModalContext } from "@/context";
 import { theme } from "@/theme";
-import type { ScheduleEvent } from "@/types";
+import { PermissionType, type ScheduleEvent } from "@/types";
 import { Stack, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useDeleteScheduleEvent } from "@/hooks";
 import { convertToDays, parseToHHMM } from "@/utils";
 import { AddEditScheduleEventModal } from "./AddEditScheduleEventModal";
+import { useUserStore } from "@/stores";
 
 export const ScheduleEventInfoModal = ({
   event,
@@ -18,45 +19,49 @@ export const ScheduleEventInfoModal = ({
   const { t } = useTranslation();
   const { setModalContent } = useModalContext();
   const { deleteScheduleEvent } = useDeleteScheduleEvent(semesterId);
-
+  const { role } = useUserStore();
   return (
-    <>
-      <ModalHeader title={event.subject.name} />
-      <Stack width={"100%"}>
-        <TableStack>
-          <Typography>{t("subjects.detailsModal.subjectType")}:</Typography>
-          <Typography>
-            <b>{t(`gradeType.${event.gradeType}`)}</b>
-          </Typography>
-          <Typography>{t("subjects.detailsModal.term")}:</Typography>
-          <Typography>
-            <b>{t(`days.${convertToDays(event.day)}`)}</b>
-          </Typography>
-          <Typography>{t("subjects.detailsModal.hour")}:</Typography>
-          <Typography>
-            <b>
-              {parseToHHMM(event.startTime, true)} -{" "}
-              {parseToHHMM(event.startTime + event.duration, true)}
-            </b>
-          </Typography>
-          {event.description.length > 0 && (
-            <>
-              <Typography>{t("subjects.detailsModal.details")}:</Typography>
-              <Typography>
-                <b>{event.description}</b>
-              </Typography>
-            </>
-          )}
+    <Stack width={"100%"} gap="10px">
+      <Stack>
+        <ModalHeader title={event.subject.name} />
+        <Divider />
+      </Stack>
+
+      <TableStack>
+        <Typography>{t("subjects.detailsModal.subjectType")}:</Typography>
+        <Typography>
+          <b>{t(`gradeType.${event.gradeType}`)}</b>
+        </Typography>
+        <Typography>{t("subjects.detailsModal.term")}:</Typography>
+        <Typography>
+          <b>{t(`days.${convertToDays(event.day)}`)}</b>
+        </Typography>
+        <Typography>{t("subjects.detailsModal.hour")}:</Typography>
+        <Typography>
+          <b>
+            {parseToHHMM(event.startTime, true)} -{" "}
+            {parseToHHMM(event.startTime + event.duration, true)}
+          </b>
+        </Typography>
+        {event.description.length > 0 && (
           <>
-            <Typography>{t("subjects.detailsModal.teacher")}:</Typography>
+            <Typography>{t("subjects.detailsModal.details")}:</Typography>
             <Typography>
-              <b>
-                {event.teacher.title} {event.teacher.firstName}{" "}
-                {event.teacher.lastName}
-              </b>
+              <b>{event.description}</b>
             </Typography>
           </>
-        </TableStack>
+        )}
+        <>
+          <Typography>{t("subjects.detailsModal.teacher")}:</Typography>
+          <Typography>
+            <b>
+              {event.teacher.title} {event.teacher.firstName}{" "}
+              {event.teacher.lastName}
+            </b>
+          </Typography>
+        </>
+      </TableStack>
+      {role === PermissionType.ADMIN && (
         <ButtonStack>
           <CustomButton
             text={t("common.delete")}
@@ -78,8 +83,8 @@ export const ScheduleEventInfoModal = ({
             sx={{ backgroundColor: theme.palette.primary.main }}
           />
         </ButtonStack>
-      </Stack>
-    </>
+      )}
+    </Stack>
   );
 };
 
@@ -96,3 +101,9 @@ const ButtonStack = styled(Stack)({
   gap: "10px",
   marginTop: "10px",
 });
+
+const Divider = styled(Stack)(({ theme }) => ({
+  width: "100%",
+  height: "1px",
+  backgroundColor: theme.palette.grey["300"],
+}));
