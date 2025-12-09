@@ -10,3 +10,4 @@ export * from "./CustomSelect/CustomSelect.tsx";
 export * from "./ScheduleTable/ScheduleTable.tsx";
 export * from "./TeacherSelect/TeacherSelect.tsx";
 export * from "./YearSelect/YearSelect.tsx";
+export * from "./FormTextField/FormTextField.tsx";

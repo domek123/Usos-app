@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { Stack, styled, TextField } from "@mui/material";
+import { Stack, styled } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { ModalFooter, ModalHeader } from "@/components";
+import { FormTextField, ModalFooter, ModalHeader } from "@/components";
 import { teacherSchema } from "./AddEditTeacherModalValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAddEditTeacher } from "@/hooks";
@@ -10,7 +10,16 @@ import type { Teacher } from "@/types";
 export const AddEditTeacherModal = ({ teacher }: { teacher?: Teacher }) => {
   const { t } = useTranslation();
 
-  const { register, handleSubmit } = useForm({
+  const headerText = t(
+    `teachers.addEditModal.${teacher ? "edit" : "add"}Title`
+  );
+  const footerText = t(`common.${teacher ? "edit" : "add"}`);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: teacher ?? {
       firstName: "",
       lastName: "",
@@ -24,46 +33,42 @@ export const AddEditTeacherModal = ({ teacher }: { teacher?: Teacher }) => {
 
   return (
     <>
-      <ModalHeader
-        title={t(`teachers.addEditModal.${teacher ? "edit" : "add"}Title`)}
-      />
+      <ModalHeader title={headerText} />
 
       <CustomForm onSubmit={handleSubmit(addEditTeacher)}>
         <Stack flexDirection={"row"} gap="5px">
-          <TextField
-            size="small"
+          <FormTextField
             label={t("teachers.addEditModal.firstName")}
             {...register("firstName")}
-            fullWidth
+            errorHandler={errors.firstName}
           />
-          <TextField
-            size="small"
+          <FormTextField
             label={t("teachers.addEditModal.lastName")}
             {...register("lastName")}
-            fullWidth
+            errorHandler={errors.lastName}
           />
         </Stack>
+
         {teacher && (
-          <TextField
-            size="small"
+          <FormTextField
             label={t("common.email")}
             {...register("email")}
-            fullWidth
+            errorHandler={errors.email}
           />
         )}
-        <TextField
+
+        <FormTextField
           size="small"
           label={t("teachers.table.title")}
           {...register("title")}
-          fullWidth
+          errorHandler={errors.title}
         />
-        <TextField
-          size="small"
+        <FormTextField
           label={t("teachers.table.phone")}
           {...register("phone")}
-          fullWidth
+          errorHandler={errors.phone}
         />
-        <ModalFooter text={t(`common.${teacher ? "edit" : "add"}`)} />
+        <ModalFooter text={footerText} />
       </CustomForm>
     </>
   );

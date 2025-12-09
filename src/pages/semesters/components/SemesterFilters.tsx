@@ -22,6 +22,7 @@ export const SemesterFilters = () => {
       alignItems={"center"}
       justifyContent={"center"}
       gap="10px"
+      flexWrap={"wrap"}
     >
       <Typography>{t("semesters.filterSemesters")}</Typography>
       <TextField

@@ -17,7 +17,7 @@ export const YearSelect = ({
   value,
   setYears,
   multiple = true,
-  width = "180px",
+  width = "200px",
 }: YearSelectProps) => {
   const { t } = useTranslation();
   const { years } = useFetchYears() as { years: Year[] };

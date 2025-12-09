@@ -1,4 +1,5 @@
 import {
+  FormTextField,
   ModalFooter,
   ModalHeader,
   SelectField,
@@ -7,10 +8,10 @@ import {
 import { useAddEditScheduleEvent, useFetchSemesterSubjects } from "@/hooks";
 import { CustomForm, RowBetweenStack } from "@/styles";
 import { Days, SubjectType, type ScheduleEvent, type Subject } from "@/types";
-import { TextField, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { convertToDays, parseToHHMM } from "@/utils";
 import { scheduleEventSchema } from "./AddEditScheduleEventModalValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -41,25 +42,32 @@ export const AddEditScheduleEventModal = ({
   const { t } = useTranslation();
 
   const { semester } = useFetchSemesterSubjects(semesterId);
-  const [subjects, setSubjects] = useState<Subject[]>(
-    (semester?.subjects as Subject[]) || []
+  const subjects = useMemo(
+    () => (semester?.subjects as Subject[]) || [],
+    [semester]
   );
 
   const { addEditScheduleEventModal } = useAddEditScheduleEvent(event?.id);
 
-  const { control, register, watch, setValue, handleSubmit } =
-    useForm<FormValues>({
-      defaultValues: {
-        subjectId: event?.subject.id ?? "",
-        gradeType: event?.gradeType,
-        duration: event?.duration ?? 6,
-        description: event?.description ?? "",
-        teacherId: event?.teacher.teacherId ?? "",
-        day: event?.day ?? day!,
-        startTime: event?.startTime ?? startTime!,
-      },
-      resolver: zodResolver(scheduleEventSchema),
-    });
+  const {
+    control,
+    register,
+    watch,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({
+    defaultValues: {
+      subjectId: event?.subject.id ?? "",
+      gradeType: event?.gradeType,
+      duration: event?.duration ?? 6,
+      description: event?.description ?? "",
+      teacherId: event?.teacher.teacherId ?? "",
+      day: event?.day ?? day!,
+      startTime: event?.startTime ?? startTime!,
+    },
+    resolver: zodResolver(scheduleEventSchema),
+  });
 
   const subjectId = watch("subjectId");
   const gradeType = watch("gradeType");
@@ -129,6 +137,7 @@ export const AddEditScheduleEventModal = ({
             render={({ field }) => (
               <SelectField
                 {...field}
+                disabled={subjects.length === 0}
                 label={t("subjects.addEditScheduleEventModal.subject")}
                 options={subjects.map((s) => ({
                   label: s.name,
@@ -160,11 +169,10 @@ export const AddEditScheduleEventModal = ({
           />
         </RowBetweenStack>
 
-        <TextField
-          size="small"
-          fullWidth
+        <FormTextField
           label={t("subjects.addEditScheduleEventModal.description")}
           {...register("description")}
+          errorHandler={errors.description}
         />
 
         {startTime !== undefined && (

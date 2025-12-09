@@ -21,6 +21,7 @@ export const TeacherSelect = ({ value, setValue }: TeacherSelectProps) => {
         value={value}
         labelId="teacher-label"
         label={t("subjects.table.teacher")}
+        disabled={teachers.length === 0}
         onChange={(e) => {
           setValue(e.target.value as string);
         }}

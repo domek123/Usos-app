@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { styled, TextField } from "@mui/material";
+import { styled } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { ModalFooter, ModalHeader } from "@/components";
+import { FormTextField, ModalFooter, ModalHeader } from "@/components";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAddEditStudent } from "@/hooks";
 import type { Student } from "@/types";
@@ -25,7 +25,16 @@ export const AddEditStudentModal = ({ student }: { student?: Student }) => {
 
   const validation = student ? studentWithEmailSchema : studentBaseSchema;
 
-  const { register, handleSubmit } = useForm<FormValues>({
+  const headerText = t(
+    `students.addEditModal.${student ? "edit" : "add"}Title`
+  );
+  const footerText = t(`common.${student ? "edit" : "add"}`);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({
     defaultValues: student ?? {
       firstName: "",
       lastName: "",
@@ -41,9 +50,7 @@ export const AddEditStudentModal = ({ student }: { student?: Student }) => {
 
   return (
     <>
-      <ModalHeader
-        title={t(`students.addEditModal.${student ? "edit" : "add"}Title`)}
-      />
+      <ModalHeader title={headerText} />
       <CustomForm
         onSubmit={handleSubmit((data) => {
           addEditStudent(
@@ -51,24 +58,21 @@ export const AddEditStudentModal = ({ student }: { student?: Student }) => {
           );
         })}
       >
-        <TextField
-          size="small"
+        <FormTextField
           label={t("students.addEditModal.firstName")}
           {...register("firstName")}
-          fullWidth
+          errorHandler={errors.firstName}
         />
-        <TextField
-          size="small"
+        <FormTextField
           label={t("students.addEditModal.lastName")}
           {...register("lastName")}
-          fullWidth
+          errorHandler={errors.lastName}
         />
         {student && (
-          <TextField
-            size="small"
+          <FormTextField
             label={t("common.email")}
             {...register("email")}
-            fullWidth
+            errorHandler={errors.email}
           />
         )}
         {!faculty && (
@@ -77,7 +81,7 @@ export const AddEditStudentModal = ({ student }: { student?: Student }) => {
             setFaculties={(val) => setFaculties(val)}
           />
         )}
-        <ModalFooter text={t(`common.${student ? "edit" : "add"}`)} />
+        <ModalFooter text={footerText} />
       </CustomForm>
     </>
   );

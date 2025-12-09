@@ -1,5 +1,10 @@
-import { ModalHeader, ModalFooter, TeacherSelect } from "@/components";
-import { Stack, TextField } from "@mui/material";
+import {
+  ModalHeader,
+  ModalFooter,
+  TeacherSelect,
+  FormTextField,
+} from "@/components";
+import { Stack } from "@mui/material";
 import type { AddEditSubjectModalProps } from "./types";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
@@ -15,7 +20,19 @@ export const AddEditSubjectModal = ({
   semesterId,
 }: AddEditSubjectModalProps) => {
   const { t } = useTranslation();
-  const { register, handleSubmit, setValue, watch } = useForm({
+
+  const headerText = t(
+    `teachers.addEditModal.${subject ? "edit" : "add"}Title`
+  );
+  const footerText = t(`common.${subject ? "edit" : "add"}`);
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm({
     defaultValues: subject ?? {
       ects: 0,
       name: "",
@@ -31,26 +48,22 @@ export const AddEditSubjectModal = ({
 
   return (
     <>
-      <ModalHeader
-        title={t(`subjects.addEditModal.${subject ? "edit" : "add"}Title`)}
-      />
+      <ModalHeader title={headerText} />
 
       <CustomForm
         onSubmit={handleSubmit(addEditSubject)}
         sx={{ width: "100%" }}
       >
-        <TextField
-          size="small"
+        <FormTextField
           label={t("subjects.table.name")}
           {...register("name")}
-          fullWidth
+          errorHandler={errors.name}
         />
         <Stack flexDirection={"row"} gap="5px">
-          <TextField
-            size="small"
+          <FormTextField
             label={t("subjects.table.ects")}
             {...register("ects", { valueAsNumber: true })}
-            fullWidth
+            errorHandler={errors.ects}
           />
         </Stack>
         <TeacherSelect
@@ -62,7 +75,7 @@ export const AddEditSubjectModal = ({
           values={Object.values(SubjectType)}
           setValue={(val) => setValue("gradeTypes", val)}
         />
-        <ModalFooter text={t(`common.${subject ? "edit" : "add"}`)} />
+        <ModalFooter text={footerText} />
       </CustomForm>
     </>
   );

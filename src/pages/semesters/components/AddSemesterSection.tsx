@@ -19,6 +19,7 @@ export const AddSemesterSection = () => {
       alignItems={"center"}
       justifyContent={"center"}
       gap="10px"
+      flexWrap={"wrap"}
     >
       <Typography>{t("semesters.addSemester")}</Typography>
       <TextField
