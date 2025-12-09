@@ -20,6 +20,14 @@ export const SelectField = ({
       value={value}
       label={label}
       onChange={(e) => onChange(e.target.value)}
+      MenuProps={{
+        PaperProps: {
+          style: {
+            maxHeight: 100,
+            overflowY: "auto",
+          },
+        },
+      }}
     >
       {options.map(({ label, value }) => (
         <MenuItem key={value} value={value}>

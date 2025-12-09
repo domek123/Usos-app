@@ -11,7 +11,8 @@
     "search": "Szukaj",
     "confirm": "Potwierdź",
     "email": "Email",
-    "reset": "Resetuj"
+    "reset": "Resetuj",
+    "year": "Rok"
   },
   "header": {
     "changePassword": "Zmień hasło",
@@ -28,7 +29,7 @@
     "grades": "Oceny",
     "schedule": "Plan zajęć",
     "contact": "Kontakt",
-    "subjects": "Przedmioty",
+    "semesters": "Semestry",
     "teachers": "Nauczyciele",
     "students": "Studenci"
   },
@@ -53,9 +54,21 @@
     "EXAM": "Wykład",
     "PROJECT": "Ćwiczenia"
   },
+  "semesters": {
+    "noSemesters": "Brak semestrów do wyświetlenia",
+    "addSemester": "Dodaj Semestr",
+    "filterSemesters": "Filtruj Semestry",
+    "semesterName": "Nazwa semestru",
+    "active": " Aktywne",
+    "table": {
+      "name": "Nazwa Semestru",
+      "year": "Rok",
+      "subjectCount": "Liczba Przedmiotów"
+    }
+  },
   "subjects": {
     "semesters": " Semestry",
-    "noSemester": "Nie wybrałeś żadnego semestru",
+    "semesterName": "Nazwa semestru",
     "noSubjects": "Brak przedmiotów do wyświetlenia",
     "title": "Przedmioty",
     "schedule": "Plan zajęć",

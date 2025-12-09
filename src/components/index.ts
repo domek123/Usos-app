@@ -9,3 +9,4 @@ export * from "./CustomDropdown/CustomDropdown.tsx";
 export * from "./CustomSelect/CustomSelect.tsx";
 export * from "./ScheduleTable/ScheduleTable.tsx";
 export * from "./TeacherSelect/TeacherSelect.tsx";
+export * from "./YearSelect/YearSelect.tsx";

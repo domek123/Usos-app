@@ -36,7 +36,11 @@ export const StudentTableRow = ({ student }: { student: Student }) => {
       </StyledTableCell>
       {!globalFaculty && (
         <StyledTableCell width="5%" align="center">
-          <Tooltip title={student.faculties.map((f) => f.name).join(", ")}>
+          <Tooltip
+            title={student.faculties
+              .map((f) => `${f.facultyName} (${f.year})`)
+              .join(", ")}
+          >
             <Typography>{student.faculties.length}</Typography>
           </Tooltip>
         </StyledTableCell>

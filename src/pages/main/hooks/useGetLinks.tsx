@@ -13,7 +13,7 @@ export const useGetLinks = () => {
   ];
 
   const adminLinks = [
-    { to: "subjects", text: t("navigation.subjects") },
+    { to: "semesters", text: t("navigation.semesters") },
     { to: "students", text: t("navigation.students") },
   ];
 

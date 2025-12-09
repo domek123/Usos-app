@@ -1,9 +1,27 @@
-import { useFetchSemesters } from "@/hooks";
-import type { Semester } from "@/types";
+import {
+  useAssignSemestersToStudent,
+  useFetchPersonData,
+  useFetchSemesters,
+} from "@/hooks";
+import { useFacultyStore } from "@/stores";
+import { PermissionType, type Semester } from "@/types";
 import { useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export const useAddSemesterEnrollment = (enrolledSemesters: Semester[]) => {
-  const { semesters: allSemesters } = useFetchSemesters();
+  const location = useLocation();
+  const { id } = location.state || {};
+  const { faculty: globalFaculty } = useFacultyStore();
+
+  const { person } = useFetchPersonData(id, PermissionType.STUDENT);
+
+  const personYear = person?.faculties.find(
+    (faculty) => faculty.facultyId == globalFaculty!.id
+  )?.year;
+
+  const { assignSemestersToStudent } = useAssignSemestersToStudent();
+
+  const { semesters: allSemesters } = useFetchSemesters(personYear);
 
   const [selectedSemestersIds, setSelectedSemestersIds] = useState<string[]>(
     []
@@ -55,6 +73,14 @@ export const useAddSemesterEnrollment = (enrolledSemesters: Semester[]) => {
     );
   };
 
+  const handleAssignSemester = () => {
+    assignSemestersToStudent({
+      studentId: id,
+      semesterIds: selectedSemestersIds,
+      semestersWithSubjects: selectedSemestersWithSubject,
+    });
+  };
+
   return {
     allSemesters,
     selectedSemestersIds,
@@ -62,5 +88,6 @@ export const useAddSemesterEnrollment = (enrolledSemesters: Semester[]) => {
     handleClick,
     selectedSemestersWithSubject,
     handleClickWithSemesterClick,
+    handleAssignSemester,
   };
 };

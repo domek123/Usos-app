@@ -36,7 +36,7 @@ export const AddEditStudentModal = ({ student }: { student?: Student }) => {
   const { addEditStudent } = useAddEditStudent(student?.personId);
 
   const [faculties, setFaculties] = useState<string[]>(
-    student?.faculties.map((faculty) => faculty.id) || []
+    student?.faculties.map((faculty) => faculty.facultyId) || []
   );
 
   return (

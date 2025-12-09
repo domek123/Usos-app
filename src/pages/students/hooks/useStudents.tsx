@@ -8,6 +8,7 @@ export const useStudents = () => {
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 300);
   const [selectedFaculty, setSelectedFaculty] = useState<string[]>([]);
+  const [selectedYears, setSelectedYears] = useState<number[]>([]);
 
   const filteredStudents = useMemo(() => {
     const query = debouncedSearch.trim().toLowerCase();
@@ -20,15 +21,22 @@ export const useStudents = () => {
 
       const matchesFaculty =
         selectedFaculty.length === 0 ||
-        student.faculties.some((f) => selectedFaculty.includes(f.id));
+        student.faculties.some((f) => selectedFaculty.includes(f.facultyId));
 
-      return matchesSearch && matchesFaculty;
+      const matchYears =
+        selectedYears.length === 0 ||
+        student.faculties.some((faculty) =>
+          selectedYears.includes(faculty.year)
+        );
+
+      return matchesSearch && matchesFaculty && matchYears;
     });
-  }, [debouncedSearch, students, selectedFaculty]);
+  }, [debouncedSearch, students, selectedFaculty, selectedYears]);
 
   const reset = () => {
     setSelectedFaculty([]);
     setSearch("");
+    setSelectedYears([]);
   };
 
   return {
@@ -38,5 +46,7 @@ export const useStudents = () => {
     selectedFaculty,
     setSelectedFaculty,
     reset,
+    selectedYears,
+    setSelectedYears,
   };
 };

@@ -1,21 +1,22 @@
 import { EditDeleteMenu } from "@/components";
 import { useModalContext } from "@/context";
 import { AddEditSubjectModal } from "../../modals";
-import { useSemesterContext } from "../../context";
 import { useDeleteSubject } from "@/hooks";
 import type { Subject } from "@/types";
+import { useLocation } from "react-router-dom";
 
 export const SubjectMenu = ({ subject }: { subject: Subject }) => {
   const { setModalContent } = useModalContext();
-  const { selectedSemester } = useSemesterContext();
-  const { deleteSubject } = useDeleteSubject(subject.id, selectedSemester.id);
+  const location = useLocation();
+  const semesterId = location.state.id || "";
+  const { deleteSubject } = useDeleteSubject(subject.id, semesterId);
 
   return (
     <EditDeleteMenu
       openEditModal={() => {
         setModalContent(
           <AddEditSubjectModal
-            semesterId={selectedSemester.id}
+            semesterId={semesterId}
             subject={{
               ...subject,
               teacherId: subject.teacher?.teacherId,

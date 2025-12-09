@@ -11,7 +11,7 @@ export const useDeleteSubject = (id: string, semesterId: string) => {
       await api.delete(`/subject/${id}`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["subjects"] });
+      queryClient.invalidateQueries({ queryKey: ["semester", semesterId] });
       queryClient.invalidateQueries({
         queryKey: ["scheduleEvents", semesterId],
       });

@@ -1,4 +1,4 @@
-import { CustomButton, SearchInput } from "@/components";
+import { CustomButton, SearchInput, YearSelect } from "@/components";
 import { Stack } from "@mui/material";
 import { useStudentsContext } from "../context";
 import { useFacultyStore } from "@/stores";
@@ -8,8 +8,15 @@ import { FacultySelect } from ".";
 export const StudentFilters = () => {
   const { t } = useTranslation();
   const { faculty } = useFacultyStore();
-  const { setSearch, search, selectedFaculty, setSelectedFaculty, reset } =
-    useStudentsContext();
+  const {
+    setSearch,
+    search,
+    selectedFaculty,
+    setSelectedFaculty,
+    reset,
+    selectedYears,
+    setSelectedYears,
+  } = useStudentsContext();
 
   return (
     <Stack flexDirection={"row"} gap="10px" flexWrap={"wrap"}>
@@ -25,6 +32,10 @@ export const StudentFilters = () => {
           width="200px"
         />
       )}
+      <YearSelect
+        value={selectedYears}
+        setYears={(values) => setSelectedYears(values as number[])}
+      />
       <CustomButton
         onClick={reset}
         variant="contained"

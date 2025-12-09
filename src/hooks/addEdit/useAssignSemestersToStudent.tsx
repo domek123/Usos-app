@@ -16,7 +16,6 @@ export const useAssignSemestersToStudent = () => {
 
   const { mutate } = useMutation({
     mutationFn: async (data: StudentSemesterPayload) => {
-      console.log(data);
       return api.post(`/student-semester/`, data);
     },
     onSuccess: (_data, variables) => {

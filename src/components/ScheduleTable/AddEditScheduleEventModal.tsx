@@ -4,13 +4,13 @@ import {
   SelectField,
   TeacherSelect,
 } from "@/components";
-import { useAddEditScheduleEvent, useFetchSubjects } from "@/hooks";
+import { useAddEditScheduleEvent, useFetchSemesterSubjects } from "@/hooks";
 import { CustomForm, RowBetweenStack } from "@/styles";
-import { Days, SubjectType, type ScheduleEvent } from "@/types";
+import { Days, SubjectType, type ScheduleEvent, type Subject } from "@/types";
 import { TextField, Typography } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { convertToDays, parseToHHMM } from "@/utils";
 import { scheduleEventSchema } from "./AddEditScheduleEventModalValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -39,8 +39,14 @@ export const AddEditScheduleEventModal = ({
   semesterId,
 }: AddEditScheduleEventModalProps) => {
   const { t } = useTranslation();
-  const { subjects } = useFetchSubjects(semesterId);
+
+  const { semester } = useFetchSemesterSubjects(semesterId);
+  const [subjects, setSubjects] = useState<Subject[]>(
+    (semester?.subjects as Subject[]) || []
+  );
+
   const { addEditScheduleEventModal } = useAddEditScheduleEvent(event?.id);
+
   const { control, register, watch, setValue, handleSubmit } =
     useForm<FormValues>({
       defaultValues: {

@@ -1,59 +1,40 @@
 import { Stack, styled, TextField, Typography } from "@mui/material";
-import { useSemesterContext } from "../../context";
-import { SubjectTable } from "../SubjectTable/SubjectTable";
 import { useTranslation } from "react-i18next";
 import { RowBetweenStack } from "@/styles";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import { theme } from "@/theme";
-import { useEditSemester } from "@/hooks";
 import { ScheduleTable } from "@/components";
+import { useEditSem } from "./hooks";
+import { SubjectTable } from "./components";
+import { useLocation } from "react-router-dom";
+import { useFetchSemesterSubjects } from "@/hooks";
+import type { Subject } from "@/types";
 
-export const MainContent = () => {
+export const SemesterInfo = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+  const semesterId = location.state.id || "";
 
-  const {
-    selectedSemester,
-    isSidebarOpen,
-    editSemesterName,
-    setEditSemesterName,
-    isEdit,
-    setIsEdit,
-  } = useSemesterContext();
+  const { semester } = useFetchSemesterSubjects(semesterId);
 
-  const { editSemester } = useEditSemester(selectedSemester.id);
-
-  if (selectedSemester.id === "") {
-    return (
-      <MainContainer
-        sx={{ transform: isSidebarOpen ? "translate(0)" : "translate(-10%)" }}
-      >
-        <Typography variant="h4" textAlign={"left"} width={"100%"}>
-          {t("subjects.noSemester")}
-        </Typography>
-      </MainContainer>
-    );
-  }
+  const { semesterName, setSemesterName, isEdit, setIsEdit, handleEdit } =
+    useEditSem(semesterId);
 
   return (
-    <MainContainer
-      sx={{ transform: isSidebarOpen ? "translate(0)" : "translate(-10%)" }}
-    >
+    <MainContainer>
       <RowBetweenStack sx={{ justifyContent: "center", gap: "10px" }}>
         {isEdit ? (
           <>
             <TextField
               size="small"
-              value={editSemesterName}
-              onChange={(e) => setEditSemesterName(e.target.value)}
+              value={semesterName}
+              onChange={(e) => setSemesterName(e.target.value)}
             />
             <CheckIcon
               sx={{ cursor: "pointer", color: theme.palette.primary.main }}
-              onClick={() => {
-                editSemester(editSemesterName);
-                setIsEdit(false);
-              }}
+              onClick={handleEdit}
             />
             <CloseIcon
               sx={{
@@ -65,12 +46,12 @@ export const MainContent = () => {
           </>
         ) : (
           <>
-            <Typography variant="h3">{selectedSemester.name}</Typography>
+            <Typography variant="h3">{semester?.name}</Typography>
             <EditIcon
               fontSize="large"
               onClick={() => {
                 setIsEdit(true);
-                setEditSemesterName(selectedSemester.name);
+                setSemesterName(semester!.name);
               }}
               sx={{ cursor: "pointer" }}
             />
@@ -79,11 +60,11 @@ export const MainContent = () => {
       </RowBetweenStack>
       <SubjectInfoContainer>
         <Typography variant="h6">{t("subjects.title")}</Typography>
-        <SubjectTable />
+        <SubjectTable subjects={(semester?.subjects as Subject[]) || []} />
         <Typography variant="h6" textAlign={"left"} width={"100%"}>
           {t("subjects.schedule")}
         </Typography>
-        <ScheduleTable semesterId={selectedSemester.id} />
+        <ScheduleTable semesterId={semesterId} />
       </SubjectInfoContainer>
     </MainContainer>
   );
@@ -93,7 +74,6 @@ const MainContainer = styled(Stack)({
   width: "100%",
   alignItems: "center",
   height: "100%",
-  transition: "all 0.3s ease",
   padding: "10px",
   gap: "20px",
 });

@@ -3,13 +3,14 @@ import { useTranslation } from "react-i18next";
 import AddIcon from "@mui/icons-material/Add";
 import { useModalContext } from "@/context";
 import { StyledTableCell } from "@/styles";
-import { useSemesterContext } from "../../context";
 import { AddEditSubjectModal } from "../../modals";
+import { useLocation } from "react-router-dom";
 
 export const SubjectTableHeader = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+  const semesterId = location.state.id || "";
   const { setModalContent } = useModalContext();
-  const { selectedSemester } = useSemesterContext();
 
   return (
     <TableHead sx={{ backgroundColor: "lightgray" }}>
@@ -26,9 +27,7 @@ export const SubjectTableHeader = () => {
         <StyledTableCell padding="none">
           <Button
             onClick={() => {
-              setModalContent(
-                <AddEditSubjectModal semesterId={selectedSemester.id} />
-              );
+              setModalContent(<AddEditSubjectModal semesterId={semesterId} />);
             }}
           >
             <AddIcon />

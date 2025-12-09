@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 export const EditGrade = ({ grade, subjectName }: EditGradeProps) => {
   const { t } = useTranslation();
   const location = useLocation();
-  console.log(location.state);
+
   const { editGrade } = useEditGrade(grade.id, location.state.id);
 
   const [value, setValue] = useState<number>(grade.currentGrade || 2);

@@ -3,16 +3,19 @@ import { useFacultyStore } from "@/stores";
 import type { Semester } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 
-export const useFetchSemesters = () => {
+export const useFetchSemesters = (year?: number) => {
   const { faculty } = useFacultyStore();
 
   const { data, isLoading } = useQuery({
-    queryKey: ["semester", faculty!.id],
+    queryKey: ["semesters", faculty!.id],
     queryFn: async (): Promise<Semester[]> => {
       if (!faculty) return [];
-
-      const data = await api.get<Semester[]>("/semester/" + faculty.id);
-      return data;
+      if (year !== undefined) {
+        return await api.get<Semester[]>(
+          "/semester/faculty/" + faculty.id + "/year/" + year
+        );
+      }
+      return await api.get<Semester[]>("/semester/faculty/" + faculty.id);
     },
   });
 

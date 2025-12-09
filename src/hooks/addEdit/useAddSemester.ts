@@ -2,21 +2,29 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/api/api";
 import { useFacultyStore } from "@/stores";
 
+type AddSemesterPayload = {
+  name: string;
+  yearId: number;
+};
+
 export const useAddSemester = () => {
   const queryClient = useQueryClient();
   const { faculty } = useFacultyStore();
 
   const { mutate } = useMutation({
-    mutationFn: async (name: string) => {
-      return api.post(`/semester/`, { name, facultyId: faculty!.id });
+    mutationFn: async (payload: AddSemesterPayload) => {
+      return api.post(`/semester/`, {
+        facultyId: faculty!.id,
+        ...payload,
+      });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["semester"] });
+      queryClient.invalidateQueries({ queryKey: ["semesters"] });
     },
     onError: (error) => {
       console.error("Błąd podczas dodawania semetru:", error);
     },
   });
 
-  return { addSemester: (name: string) => mutate(name) };
+  return { addSemester: (payload: AddSemesterPayload) => mutate(payload) };
 };

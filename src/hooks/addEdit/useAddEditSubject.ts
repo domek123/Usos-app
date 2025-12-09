@@ -17,7 +17,7 @@ export const useAddEditSubject = (semesterId?: string, subjectId?: string) => {
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["subjects", semesterId] });
+      queryClient.invalidateQueries({ queryKey: ["semester", semesterId] });
       queryClient.invalidateQueries({
         queryKey: ["scheduleEvents", semesterId],
       });

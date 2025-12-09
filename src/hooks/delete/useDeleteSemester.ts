@@ -11,7 +11,7 @@ export const useDeleteSemester = () => {
       await api.delete(`/semester/${id}`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["semester"] });
+      queryClient.invalidateQueries({ queryKey: ["semesters"] });
       closeModal();
     },
     onError: (error) => {

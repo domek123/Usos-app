@@ -3,8 +3,6 @@ import { useAddSemesterEnrollment } from "../hooks";
 import { DefaultTableContainer, ModalFooter, ModalHeader } from "@/components";
 import { StyledTableCell } from "@/styles";
 import { useTranslation } from "react-i18next";
-import { useAssignSemestersToStudent } from "@/hooks";
-import { useLocation } from "react-router-dom";
 import type { Semester } from "@/types";
 
 export const AddSemesterEnrollmentModal = ({
@@ -12,11 +10,8 @@ export const AddSemesterEnrollmentModal = ({
 }: {
   enrollmentSemesters: Semester[];
 }) => {
-  const location = useLocation();
-  const { id } = location.state || {};
   const { t } = useTranslation();
 
-  const { assignSemestersToStudent } = useAssignSemestersToStudent();
   const {
     allSemesters,
     selectedSemestersIds,
@@ -24,6 +19,7 @@ export const AddSemesterEnrollmentModal = ({
     handleClick,
     selectedSemestersWithSubject,
     handleClickWithSemesterClick,
+    handleAssignSemester,
   } = useAddSemesterEnrollment(enrollmentSemesters);
 
   return (
@@ -43,6 +39,7 @@ export const AddSemesterEnrollmentModal = ({
 
             return (
               <TableRow
+                key={semester.id}
                 sx={{
                   backgroundColor: isSemesterNotAvailable
                     ? "lightgray"
@@ -83,13 +80,7 @@ export const AddSemesterEnrollmentModal = ({
       </DefaultTableContainer>
       <ModalFooter
         text={t("common.add")}
-        action={() =>
-          assignSemestersToStudent({
-            studentId: id,
-            semesterIds: selectedSemestersIds,
-            semestersWithSubjects: selectedSemestersWithSubject,
-          })
-        }
+        action={handleAssignSemester}
       ></ModalFooter>
     </>
   );

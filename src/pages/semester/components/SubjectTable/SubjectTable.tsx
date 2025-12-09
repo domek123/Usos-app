@@ -1,14 +1,10 @@
 import { TableBody } from "@mui/material";
 import { SubjectTableHeader } from "./TableHeader";
 import { SubjectTableRow } from "./TableRow";
-import { useSemesterContext } from "../../context";
-import { useFetchSubjects } from "@/hooks/fetch/useFetchSubjects";
 import { DefaultTableContainer } from "@/components";
+import type { Subject } from "@/types";
 
-export const SubjectTable = () => {
-  const { selectedSemester } = useSemesterContext();
-  const { subjects } = useFetchSubjects(selectedSemester.id);
-
+export const SubjectTable = ({ subjects }: { subjects: Subject[] }) => {
   return (
     <DefaultTableContainer>
       <SubjectTableHeader />
