@@ -12,7 +12,7 @@
     "confirm": "Potwierdź",
     "email": "Email",
     "reset": "Resetuj",
-    "year": "Rok"
+    "year": "Rok rozpoczęcia"
   },
   "header": {
     "changePassword": "Zmień hasło",
@@ -62,8 +62,9 @@
     "active": " Aktywne",
     "table": {
       "name": "Nazwa Semestru",
-      "year": "Rok",
-      "subjectCount": "Liczba Przedmiotów"
+      "year": "Rok rozpoczęcia",
+      "subjectCount": "Liczba Przedmiotów",
+      "active": "Aktywuj"
     }
   },
   "subjects": {

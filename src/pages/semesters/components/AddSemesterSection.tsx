@@ -1,6 +1,6 @@
 import { CustomButton, YearSelect } from "@/components";
 import { Stack, TextField, Typography } from "@mui/material";
-import { useAddSem } from "../../hooks";
+import { useAddSem } from "../hooks";
 import { useTranslation } from "react-i18next";
 
 export const AddSemesterSection = () => {

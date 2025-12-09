@@ -1,5 +1,5 @@
 import { CustomButton, YearSelect } from "@/components";
-import { useSemesterContext } from "../../context";
+import { useSemesterContext } from "../context";
 import { useTranslation } from "react-i18next";
 import { Checkbox, Stack, TextField, Typography } from "@mui/material";
 import { RowBetweenStack } from "@/styles";

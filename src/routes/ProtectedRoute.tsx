@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import type { ReactNode } from "react";
 import { PermissionType } from "@/types";
+import { useUserStore } from "@/stores";
 
 interface ProtectedRouteProps {
   allowedRoles: PermissionType[];
@@ -11,12 +12,12 @@ export const ProtectedRoute = ({
   allowedRoles,
   children,
 }: ProtectedRouteProps) => {
-  const role = PermissionType.STUDENT;
+  const { role } = useUserStore();
 
-  // if (!role || !allowedRoles.includes(role)) {
-  //   return <Navigate to="/" replace />;
-  // }
-  // if (children) return <>{children}</>;
+  if (!role || !allowedRoles.includes(role)) {
+    return <Navigate to="/" replace />;
+  }
+  if (children) return <>{children}</>;
   return <Outlet />;
 };
 
