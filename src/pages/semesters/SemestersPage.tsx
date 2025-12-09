@@ -23,6 +23,4 @@ const MainContainer = styled(Stack)({
   padding: "20px",
   gap: "10px",
   alignItems: "center",
-  width: "80%",
-  marginLeft: "10%",
 });
