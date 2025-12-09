@@ -2,6 +2,7 @@ import { StyledTableCell } from "@/styles";
 import type { Semester } from "@/types";
 import {
   Button,
+  IconButton,
   Stack,
   styled,
   TableRow,
@@ -26,6 +27,7 @@ export const SemestersTableRow = ({ semester }: { semester: Semester }) => {
       <StyledTableCell padding="none" align="center">
         {!semester.isCurrent && (
           <Button
+            sx={{ color: "green" }}
             onClick={(e) => {
               e.stopPropagation();
               setCurrent(semester.id);
@@ -53,15 +55,15 @@ export const SemestersTableRow = ({ semester }: { semester: Semester }) => {
           <Typography>{semester.subjects.length}</Typography>
         </Tooltip>
       </StyledTableCell>
-      <StyledTableCell padding="none">
-        <Button
+      <StyledTableCell padding="none" align="center">
+        <IconButton
           onClick={(e) => {
             e.stopPropagation();
             deleteSemester(semester.id);
           }}
         >
           <DeleteIcon fontSize="small" />
-        </Button>
+        </IconButton>
       </StyledTableCell>
     </TableRow>
   );

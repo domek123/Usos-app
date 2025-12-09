@@ -17,6 +17,7 @@ export const YearSelect = ({
   value,
   setYears,
   multiple = true,
+  width = "180px",
 }: YearSelectProps) => {
   const { t } = useTranslation();
   const { years } = useFetchYears() as { years: Year[] };
@@ -36,7 +37,7 @@ export const YearSelect = ({
 
   if (multiple) {
     return (
-      <FormControl size="small" sx={{ width: "150px" }}>
+      <FormControl size="small" sx={{ width }}>
         <InputLabel id="year-select-label">{t("common.year")}</InputLabel>
         <Select
           value={(value as number[]) || []}
@@ -60,7 +61,7 @@ export const YearSelect = ({
   }
 
   return (
-    <FormControl size="small" sx={{ width: "150px" }}>
+    <FormControl size="small" sx={{ width }}>
       <Autocomplete
         multiple={false}
         size="small"
