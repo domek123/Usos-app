@@ -68,7 +68,6 @@
     }
   },
   "subjects": {
-    "semesters": " Semestry",
     "semesterName": "Nazwa semestru",
     "noSubjects": "Brak przedmiotów do wyświetlenia",
     "title": "Przedmioty",
@@ -81,7 +80,11 @@
     },
     "addEditModal": {
       "addTitle": "Dodaj Przedmiot",
-      "editTitle": "Edytuj Przedmiot"
+      "editTitle": "Edytuj Przedmiot",
+      "errors": {
+        "name": "nazwa musi miec co najmniej 5 znaków",
+        "type": "Wybierz co najmniej jeden typ przedmiotu"
+      }
     },
     "detailsModal": {
       "subjectType": "Typ zajęć",
@@ -99,7 +102,12 @@
       "startTime": "Czas rozpoczęcia",
       "duration": "Czas trwania (h)",
       "type": "Typ",
-      "teacher": "Nauczyciel"
+      "teacher": "Nauczyciel",
+      "errors": {
+        "subject": "Wybierz przedmiot",
+        "duratuon": "Czas trwania jest wymagany",
+        "teacher": "Wybierz nauczyciela"
+      }
     },
     "editGradeModal": {
       "title": "Ustaw Ocenę",
@@ -128,7 +136,14 @@
       "addTitle": "Dodaj Nauczyciela",
       "editTitle": "Edytuj Nauczyciela",
       "firstName": "Imię",
-      "lastName": "Nazwisko"
+      "lastName": "Nazwisko",
+      "errors": {
+        "firstName": "Imię musi mieć co najmniej 2 znaki",
+        "lastName": "Nazwisko musi mieć co najmniej 2 znaki",
+        "title": "Tytuł musi mieć co najmniej 2 znaki",
+        "phoneTooShort": "Numer telefonu musi mieć co najmniej 9 cyfr",
+        "phoneTooLong": "Numer telefonu nie może mieć więcej niż 15 cyfr"
+      }
     },
     "deleteModal": {
       "title": "Usuń Nauczyciela",
@@ -152,7 +167,13 @@
       "editTitle": "Edytuj Studenta",
       "firstName": "Imię",
       "lastName": "Nazwisko",
-      "faculties": "Kierunki"
+      "faculties": "Kierunki",
+      "errors": {
+        "firstName": "Imię musi mieć co najmniej 2 znaki",
+        "lastName": "Nazwisko musi mieć co najmniej 2 znaki",
+        "emailRequired": "Email jest wymagany",
+        "emailInvalid": "Nieprawidłowy format email"
+      }
     },
     "deleteModal": {
       "title": "Usuń Studenta",

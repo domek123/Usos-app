@@ -8,11 +8,18 @@ export const gradeTypeValues = [
 ] as const;
 
 export const scheduleEventSchema = z.object({
-  subjectId: z.string().min(1, "Wybierz przedmiot"),
+  subjectId: z
+    .string()
+    .min(1, "subjects.addEditScheduleEventModal.errors.subject"),
   gradeType: z.enum(gradeTypeValues).optional(),
-  duration: z.number().int().min(1, "Czas trwania jest wymagany"),
+  duration: z
+    .number()
+    .int()
+    .min(1, "subjects.addEditScheduleEventModal.errors.duration"),
   description: z.string().optional(),
-  teacherId: z.string().min(1),
+  teacherId: z
+    .string()
+    .min(1, "subjects.addEditScheduleEventModal.errors.teacher"),
   day: z.number(),
   startTime: z.number(),
 });

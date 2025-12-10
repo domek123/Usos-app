@@ -1,12 +1,12 @@
 import { z } from "zod";
 
 export const teacherSchema = z.object({
-  firstName: z.string().min(2, "Imię musi mieć co najmniej 2 znaki"),
-  lastName: z.string().min(2, "Nazwisko musi mieć co najmniej 2 znaki"),
-  title: z.string().min(2, "Tytuł musi mieć co najmniej 2 znaki"),
+  firstName: z.string().min(2, "teacher.addEditModal.errors.firstName"),
+  lastName: z.string().min(2, "teacher.addEditModal.errors.lastName"),
+  title: z.string().min(2, "teacher.addEditModal.errors.title"),
   email: z.string().optional(),
   phone: z
     .string()
-    .min(9, "Numer telefonu musi mieć co najmniej 9 cyfr")
-    .max(15, "Numer telefonu jest zbyt długi"),
+    .min(9, "teacher.addEditModal.errors.phoneTooShort")
+    .max(15, "teacher.addEditModal.errors.phoneTooLong"),
 });
