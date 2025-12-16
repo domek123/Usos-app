@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useLoginData } from "./useLoginData";
 import { useLogin } from "@/hooks";
+import { FormTextField } from "@/components";
 
 export const Login = () => {
   const { t } = useTranslation();
@@ -53,7 +54,6 @@ export const Login = () => {
           {error && (
             <Alert severity="error">{t("login.invalidCredentials")}</Alert>
           )}
-
           <TextField
             label={t("login.email")}
             type="email"
@@ -64,15 +64,13 @@ export const Login = () => {
             disabled={isLoading}
             autoFocus
           />
-
-          <TextField
+          <FormTextField
             label={t("login.password")}
-            type="password"
-            variant="outlined"
-            fullWidth
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             disabled={isLoading}
+            size="medium"
+            isPasswordField={true}
           />
 
           <Box sx={{ position: "relative" }}>

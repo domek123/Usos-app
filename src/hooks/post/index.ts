@@ -9,3 +9,4 @@ export * from "./useAddEditScheduleEvent";
 export * from "./useEditGrade";
 export * from "./useSetActiveSemester";
 export * from "./useLogin";
+export * from "./useChangePassword";

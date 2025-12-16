@@ -5,7 +5,7 @@ import { useModalContext } from "@/context";
 import { useTranslation } from "react-i18next";
 import { Stack, styled } from "@mui/material";
 
-export const ModalFooter = ({ text, action }: ModalFooterProps) => {
+export const ModalFooter = ({ text, action, isLoading }: ModalFooterProps) => {
   const { t } = useTranslation();
   const { closeModal } = useModalContext();
 
@@ -24,6 +24,7 @@ export const ModalFooter = ({ text, action }: ModalFooterProps) => {
         sx={{ backgroundColor: theme.palette.primary.main }}
         onClick={action}
         type="submit"
+        disabled={isLoading}
       />
     </ButtonContainer>
   );

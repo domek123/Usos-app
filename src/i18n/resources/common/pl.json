@@ -50,6 +50,12 @@
     "teachers": "Nauczyciele",
     "students": "Studenci"
   },
+  "changePasswordModal": {
+    "title": "Zmień hasło",
+    "currentPassword": "Aktualne hasło",
+    "newPassword": "Nowe hasło",
+    "errorMessage": "Błąd podczas zmiany hasła"
+  },
   "grades": {
     "title": "Moje oceny",
     "noGrades": "Brak ocen do wyświetlenia",

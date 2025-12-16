@@ -1,19 +1,21 @@
 import { CustomButton } from "@/components";
 import { useTranslation } from "react-i18next";
-import { ListItemIcon, Menu, MenuItem } from "@mui/material";
+import { ListItemIcon, Menu, MenuItem, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useMenu } from "@/hooks";
 import { useUserStore } from "@/stores";
-import { PermissionType } from "@/types";
 import { useNavigate } from "react-router-dom";
+import { useModalContext } from "@/context";
+import { ChangePasswordModal } from "../../modals";
 
 export const HeaderMenu = () => {
   const { t } = useTranslation();
-  const { role, logout } = useUserStore();
+  const { logout } = useUserStore();
   const { anchorEl, handleMenuClose, handleMenuOpen, isMenuOpen } = useMenu();
   const navigate = useNavigate();
+  const { setModalContent } = useModalContext();
 
   return (
     <>
@@ -28,21 +30,17 @@ export const HeaderMenu = () => {
         onClose={handleMenuClose}
         sx={{ marginLeft: "-55px" }}
       >
-        {role === PermissionType.STUDENT ? (
-          <MenuItem onClick={handleMenuClose}>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>{" "}
-            {t("header.changePassword")}
-          </MenuItem>
-        ) : (
-          <MenuItem onClick={handleMenuClose}>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>{" "}
-            {t("header.settings")}
-          </MenuItem>
-        )}
+        <MenuItem
+          onClick={() => {
+            setModalContent(<ChangePasswordModal />);
+            handleMenuClose();
+          }}
+        >
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
+          <Typography>{t("header.changePassword")}</Typography>
+        </MenuItem>
         <MenuItem
           onClick={() => {
             logout();
@@ -52,7 +50,7 @@ export const HeaderMenu = () => {
           <ListItemIcon>
             <LogoutIcon />
           </ListItemIcon>
-          {t("header.logOut")}
+          <Typography>{t("header.logOut")}</Typography>
         </MenuItem>
       </Menu>
     </>
