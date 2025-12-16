@@ -7,11 +7,13 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useMenu } from "@/hooks";
 import { useUserStore } from "@/stores";
 import { PermissionType } from "@/types";
+import { useNavigate } from "react-router-dom";
 
 export const HeaderMenu = () => {
   const { t } = useTranslation();
-  const { role } = useUserStore();
+  const { role, logout } = useUserStore();
   const { anchorEl, handleMenuClose, handleMenuOpen, isMenuOpen } = useMenu();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -41,7 +43,12 @@ export const HeaderMenu = () => {
             {t("header.settings")}
           </MenuItem>
         )}
-        <MenuItem onClick={handleMenuClose}>
+        <MenuItem
+          onClick={() => {
+            logout();
+            navigate("/login");
+          }}
+        >
           <ListItemIcon>
             <LogoutIcon />
           </ListItemIcon>

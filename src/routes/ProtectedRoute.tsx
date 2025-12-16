@@ -2,6 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import type { ReactNode } from "react";
 import { PermissionType } from "@/types";
 import { useUserStore } from "@/stores";
+import { getAuthToken } from "@/api/api";
 
 interface ProtectedRouteProps {
   allowedRoles: PermissionType[];
@@ -22,8 +23,9 @@ export const ProtectedRoute = ({
 };
 
 export const ProtectedRouteToken = ({ children }: { children: ReactNode }) => {
-  const mockedToken = "123";
-  if (!mockedToken) {
+  const token = getAuthToken();
+
+  if (!token) {
     return <Navigate to="/login" replace />;
   }
   return <>{children}</>;

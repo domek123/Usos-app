@@ -1,82 +1,114 @@
-import { Stack, styled, Typography } from "@mui/material";
-import { LoginForm } from "@pages/login/components/";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
+import {
+  Stack,
+  TextField,
+  Button,
+  Typography,
+  Paper,
+  Box,
+  CircularProgress,
+  Alert,
+  Link as MuiLink,
+} from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { useLoginData } from "./useLoginData";
+import { useLogin } from "@/hooks";
+
 export const Login = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { email, setEmail, password, setPassword } = useLoginData();
+
+  const { login, error, isLoading } = useLogin();
+
   return (
-    <MainContainer>
-      <HeaderStack>
-        <Stack
-          maxWidth={"1280px"}
-          width={"100%"}
-          flexDirection={"row"}
-          justifyContent={"space-between"}
-        >
-          <Stack flexDirection={"row"} gap={"10px"} alignItems={"center"}>
-            <Typography variant={"h3"} color={"#50AAB2"}>
-              SSO
-            </Typography>
-            <Typography color={"white"}>Logowanie do systemów AGH</Typography>
-          </Stack>
-          <Stack flexDirection={"row"} gap={"10px"} alignItems={"center"}>
-            <Typography color={"white"}>PL</Typography>
-            <DarkModeIcon style={{ color: "white" }} />
+    <Stack
+      sx={{
+        width: "100vw",
+        height: "100vh",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#f5f5f5",
+      }}
+    >
+      <Paper
+        elevation={3}
+        sx={{
+          p: 4,
+          width: "100%",
+          maxWidth: 450,
+          borderRadius: 2,
+        }}
+      >
+        <Stack spacing={3}>
+          <Typography
+            variant="h4"
+            component="h1"
+            textAlign="center"
+            sx={{ mb: 2 }}
+          >
+            {t("login.title")}
+          </Typography>
+
+          {error && (
+            <Alert severity="error">{t("login.invalidCredentials")}</Alert>
+          )}
+
+          <TextField
+            label={t("login.email")}
+            type="email"
+            variant="outlined"
+            fullWidth
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={isLoading}
+            autoFocus
+          />
+
+          <TextField
+            label={t("login.password")}
+            type="password"
+            variant="outlined"
+            fullWidth
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            disabled={isLoading}
+          />
+
+          <Box sx={{ position: "relative" }}>
+            <Button
+              variant="contained"
+              fullWidth
+              size="large"
+              disabled={isLoading || !email || !password}
+              onClick={() => login({ email, password })}
+            >
+              {isLoading ? (
+                <CircularProgress size={24} sx={{ color: "white" }} />
+              ) : (
+                t("login.button")
+              )}
+            </Button>
+          </Box>
+
+          <Stack alignItems="center">
+            <MuiLink
+              component="button"
+              variant="body2"
+              onClick={() => navigate("/forgot-password")}
+              sx={{
+                color: "#5E50EF",
+                textDecoration: "none",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
+            >
+              <Typography>{t("login.forgotPassword")}</Typography>
+            </MuiLink>
           </Stack>
         </Stack>
-      </HeaderStack>
-      <Stack maxWidth={"1280px"} width={"100%"} gap={"15px"}>
-        <Typography color={"white"}>
-          SSO AGH (Single Sign-On) to mechanizm upraszczający procedury
-          logowania w systemach informatycznych. Pozwala użytkownikowi, po
-          jednokrotnym uwierzytelnieniu, na dostęp do wielu usług i aplikacji
-          obsługiwanych przez CRI oraz inne jednostki AGH. Usługi, do których
-          uwierzytelnienie następuje przez SSO AGH to m.in. Microsoft 365, USOS,
-          UPeL, Chmura AGH, Overleaf.
-        </Typography>
-        <InfoStack>
-          <Typography color={"#00464A"}>
-            Twoje połączenie wygasło, musisz się ponownie uwierzytelnić
-          </Typography>
-        </InfoStack>
-        <LoginForm />
-        <InfoStack sx={{ backgroundColor: "#D1ECF1" }}>
-          <Typography color={"#00464A"}>
-            Zwiększ bezpieczeństwo swojego konta aktywując{" "}
-            <span style={{ color: "black" }}>
-              <u>uwierzytelnianie dwuskładnikowe</u>
-            </span>
-          </Typography>
-        </InfoStack>
-      </Stack>
-    </MainContainer>
+      </Paper>
+    </Stack>
   );
 };
-
-const MainContainer = styled(Stack)({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  backgroundColor: "#0B1C1E",
-  height: "100vh",
-  gap: "15px",
-});
-
-const HeaderStack = styled(Stack)({
-  height: "70px",
-  backgroundColor: "#000000",
-  width: "100%",
-  borderBottom: "4px solid #50AAB2",
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
-});
-
-const InfoStack = styled(Stack)({
-  height: "50px",
-  width: "100%",
-  padding: "0 20px",
-  display: "flex",
-  justifyContent: "center",
-  backgroundColor: "#FDF1CB",
-  borderRadius: 5,
-});

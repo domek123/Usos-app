@@ -9,10 +9,13 @@ export const useUserStore = create<UserStore>()(
     (set) => ({
       ...userUserStoreDefaultValues,
       setUser: (user: Person) =>
-        set({
+        set(() => ({
           ...user,
-        }),
-      logout: () => set({ ...userUserStoreDefaultValues }),
+        })),
+      setTeacherId: (id: string) => set(() => ({ teacherId: id })),
+      setStudentId: (id: number) => set(() => ({ studentId: id })),
+      setToken: (token: string) => set(() => ({ token })),
+      logout: () => set(() => ({ ...userUserStoreDefaultValues })),
     }),
     {
       name: "user-store",

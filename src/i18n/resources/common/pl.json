@@ -14,6 +14,23 @@
     "reset": "Resetuj",
     "year": "Rok rozpoczęcia"
   },
+  "login": {
+    "title": "USOS AGH",
+    "email": "email",
+    "password": "hasło",
+    "button": "Zaloguj się",
+    "invalidCredentials": "Nieprawidłowy login lub hasło",
+    "forgotPassword": "Zapomniałeś hasła?",
+    "register": "Utwórz konto"
+  },
+  "forgotPassword": {
+    "title": "Resetowanie hasła",
+    "email": "Wprowadź swój email, aby zresetować hasło",
+    "button": "Resetuj",
+    "backToLogin": "Powrót do logowania",
+    "successMessage": "Nowe hasło zostało wysłane na Twój email.",
+    "successTitle": "Email wysłany"
+  },
   "header": {
     "changePassword": "Zmień hasło",
     "logOut": "Wyloguj",

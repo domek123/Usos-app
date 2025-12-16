@@ -1,4 +1,8 @@
-import axios, { type AxiosInstance, type AxiosResponse } from "axios";
+import axios, {
+  type AxiosInstance,
+  type AxiosResponse,
+  type InternalAxiosRequestConfig,
+} from "axios";
 
 type ApiInstance = {
   get<T = unknown>(url: string, config?: unknown): Promise<T>;
@@ -8,11 +12,38 @@ type ApiInstance = {
   delete<T = unknown>(url: string, config?: unknown): Promise<T>;
 };
 
+export const getAuthToken = (): string | null => {
+  try {
+    const serializedState = localStorage.getItem("user-store");
+    if (serializedState) {
+      const state = JSON.parse(serializedState);
+      return state.state.token || null;
+    }
+  } catch (e) {
+    console.error("Nie udało się odczytać tokenu z localStorage:", e);
+  }
+  return null;
+};
+
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: "/api",
-  withCredentials: false,
+  withCredentials: true,
   timeout: 5000,
 });
+
+axiosInstance.interceptors.request.use(
+  (config: InternalAxiosRequestConfig) => {
+    const token = getAuthToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 axiosInstance.interceptors.response.use(
   (res: AxiosResponse) => res.data,
