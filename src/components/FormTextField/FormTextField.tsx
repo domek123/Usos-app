@@ -13,7 +13,9 @@ export const FormTextField = ({
 }: FormTextFieldProps) => {
   const { t } = useTranslation();
 
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(
+    isPasswordField ? false : true
+  );
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
