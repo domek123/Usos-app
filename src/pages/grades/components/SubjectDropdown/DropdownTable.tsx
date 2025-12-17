@@ -20,7 +20,7 @@ export const DropdownTable = ({ subjects }: DropdownTableProps) => {
       <Table>
         <TableHead>
           <TableRow>
-            <CustomCell width={"50%"}>
+            <CustomCell width={"45%"}>
               <CellTypography>{t("grades.table.subject")}</CellTypography>
             </CustomCell>
             <CustomCell width={"5%"} align="center">
@@ -30,6 +30,7 @@ export const DropdownTable = ({ subjects }: DropdownTableProps) => {
               <CellTypography>{t("grades.table.grade")}</CellTypography>
             </CustomCell>
             <CustomCell
+              width={"15%"}
               sx={{ borderRight: "1px solid lightgray" }}
             ></CustomCell>
           </TableRow>

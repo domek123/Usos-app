@@ -1,17 +1,17 @@
 import type { Grade, SubjectType, Teacher } from "@/types";
 
-export interface Subject {
+interface DefaultSubject {
   id: string;
   ects: number;
   name: string;
-  gradeTypes: SubjectType[];
   teacher?: Teacher;
+  closed: boolean;
 }
 
-export interface EnrolledSubject {
-  id: string;
-  ects: number;
-  name: string;
+export interface Subject extends DefaultSubject {
+  gradeTypes: SubjectType[];
+}
+
+export interface EnrolledSubject extends DefaultSubject {
   grades: Grade[];
-  teacher?: Teacher;
 }

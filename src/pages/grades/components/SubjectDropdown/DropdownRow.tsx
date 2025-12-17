@@ -14,7 +14,7 @@ export const DropdownRow = ({ subject }: { subject: EnrolledSubject }) => {
         <Typography>{subject.ects}</Typography>
       </CustomCell>
       <CustomCell align="center">
-        <GradeFormatter grades={subject.grades} />
+        <GradeFormatter grades={subject.grades} isClosed={subject.closed} />
       </CustomCell>
       <CustomCell align="center" sx={{ borderRight: "1px solid lightgray" }}>
         <DetailsModal name={subject.name} teacher={subject.teacher} />

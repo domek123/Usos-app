@@ -76,7 +76,8 @@
       "contact": "Dane kontaktowe",
       "phone": "Telefon",
       "email": "Email"
-    }
+    },
+    "noGrade": "Brak oceny"
   },
   "gradeType": {
     "LAB": "Laboratorium",
@@ -105,7 +106,8 @@
     "table": {
       "name": "Nazwa Przedmiotu",
       "ects": "ECTS",
-      "teacher": "Nauczyciel"
+      "teacher": "Nauczyciel",
+      "close": "Zapis"
     },
     "addEditModal": {
       "addTitle": "Dodaj Przedmiot",

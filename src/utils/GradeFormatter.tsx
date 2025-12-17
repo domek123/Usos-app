@@ -4,24 +4,33 @@ import type { Grade } from "@/types";
 import { RowBetweenStack } from "@/styles";
 import { useModalContext } from "@/context";
 import { EditGrade } from "@/pages/student/modals";
+import { getFinalGrade } from "./calculateFinalGrade";
 
 type GradeFormatterProps = {
   grades: Grade[];
   subjectName?: string;
+  isClosed: boolean;
 };
 
 export const GradeFormatter = ({
   grades,
   subjectName,
+  isClosed,
 }: GradeFormatterProps) => {
   const { t } = useTranslation();
   const { setModalContent } = useModalContext();
-
+  console.log(isClosed);
   return (
     <>
       <RowBetweenStack>
         <Typography>{t("grades.table.finalGrade")}</Typography>
-        <Typography fontSize={"13px"}>{`(brak ocen)`}</Typography>
+        {!isClosed ? (
+          <Typography fontSize={"13px"}>{t("grades.noGrade")}</Typography>
+        ) : (
+          <Typography>
+            {getFinalGrade(grades.map((val) => val.currentGrade || 0))}
+          </Typography>
+        )}
       </RowBetweenStack>
       {grades.map((item) => (
         <RowBetweenStack
@@ -41,7 +50,7 @@ export const GradeFormatter = ({
               {item.currentGrade}
             </Typography>
           ) : (
-            <Typography fontSize={"13px"}>{`(brak ocen)`}</Typography>
+            <Typography fontSize={"13px"}>{t("grades.noGrade")}</Typography>
           )}
         </RowBetweenStack>
       ))}

@@ -15,15 +15,19 @@ export const SubjectTableHeader = () => {
   return (
     <TableHead sx={{ backgroundColor: "lightgray" }}>
       <TableRow>
+        <StyledTableCell width="10%" align="center">
+          <Typography>{t("subjects.table.close")}</Typography>
+        </StyledTableCell>
         <StyledTableCell width="40%">
           <Typography>{t("subjects.table.name")}</Typography>
         </StyledTableCell>
         <StyledTableCell width="10%">
           <Typography>{t("subjects.table.ects")}</Typography>
         </StyledTableCell>
-        <StyledTableCell width="45%">
+        <StyledTableCell width="35%">
           <Typography>{t("subjects.table.teacher")}</Typography>
         </StyledTableCell>
+
         <StyledTableCell padding="none">
           <Button
             onClick={() => {

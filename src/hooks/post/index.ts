@@ -12,3 +12,4 @@ export * from "./useLogin";
 export * from "./useChangePassword";
 export * from "./useCreateMessage";
 export * from "./useMarkAsRead";
+export * from "./useCloseOpenSubject";

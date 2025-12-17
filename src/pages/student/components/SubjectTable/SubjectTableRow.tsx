@@ -26,7 +26,11 @@ export const SubjectTableRow = ({ subject }: { subject: EnrolledSubject }) => {
       </StyledTableCell>
 
       <StyledTableCell align="center">
-        <GradeFormatter grades={subject.grades} subjectName={subject.name} />
+        <GradeFormatter
+          grades={subject.grades}
+          subjectName={subject.name}
+          isClosed={subject.closed}
+        />
       </StyledTableCell>
 
       <StyledTableCell align="center" padding="none">
