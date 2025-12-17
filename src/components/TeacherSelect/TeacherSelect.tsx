@@ -1,10 +1,4 @@
-import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Typography,
-} from "@mui/material";
+import { Autocomplete, TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useFetchTeachers } from "@/hooks";
 import type { TeacherSelectProps } from "./TeacherSelect.types";
@@ -14,24 +8,24 @@ export const TeacherSelect = ({ value, setValue }: TeacherSelectProps) => {
   const { t } = useTranslation();
   const { teachers } = useFetchTeachers();
 
+  const selectedTeacher = teachers.find((t) => t.teacherId === value) || null;
+
   return (
-    <FormControl size="small">
-      <InputLabel id="teacher-label">{t("subjects.table.teacher")}</InputLabel>
-      <Select
-        value={value}
-        labelId="teacher-label"
-        label={t("subjects.table.teacher")}
-        disabled={teachers.length === 0}
-        onChange={(e) => {
-          setValue(e.target.value as string);
-        }}
-      >
-        {teachers.map((teacher) => (
-          <MenuItem key={teacher.teacherId} value={teacher.teacherId}>
-            <Typography>{formatTeacherData(teacher)}</Typography>
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <Autocomplete
+      size="small"
+      options={teachers}
+      value={selectedTeacher}
+      disabled={teachers.length === 0}
+      getOptionLabel={(option) => formatTeacherData(option)}
+      isOptionEqualToValue={(option, value) =>
+        option.teacherId === value.teacherId
+      }
+      onChange={(_, newValue) => {
+        setValue(newValue?.teacherId ?? "");
+      }}
+      renderInput={(params) => (
+        <TextField {...params} label={t("subjects.table.teacher")} />
+      )}
+    />
   );
 };
