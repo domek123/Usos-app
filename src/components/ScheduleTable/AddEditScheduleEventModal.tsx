@@ -62,7 +62,7 @@ export const AddEditScheduleEventModal = ({
       gradeType: event?.gradeType,
       duration: event?.duration ?? 6,
       description: event?.description ?? "",
-      teacherId: event?.teacher.teacherId ?? "",
+      teacherId: (event?.teacher && event?.teacher.teacherId) ?? "",
       day: event?.day ?? day!,
       startTime: event?.startTime ?? startTime!,
     },

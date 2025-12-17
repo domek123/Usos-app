@@ -10,5 +10,5 @@ export interface ScheduleEvent {
   description: string;
   gradeType: SubjectType;
   subject: Pick<Subject, "id" | "name">;
-  teacher: Teacher;
+  teacher: Teacher | null;
 }

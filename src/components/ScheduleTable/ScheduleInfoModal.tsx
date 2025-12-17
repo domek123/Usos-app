@@ -5,7 +5,7 @@ import { PermissionType, type ScheduleEvent } from "@/types";
 import { Stack, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useDeleteScheduleEvent } from "@/hooks";
-import { convertToDays, parseToHHMM } from "@/utils";
+import { convertToDays, formatTeacherData, parseToHHMM } from "@/utils";
 import { AddEditScheduleEventModal } from "./AddEditScheduleEventModal";
 import { useUserStore } from "@/stores";
 
@@ -54,10 +54,7 @@ export const ScheduleEventInfoModal = ({
         <>
           <Typography>{t("subjects.detailsModal.teacher")}:</Typography>
           <Typography>
-            <b>
-              {event.teacher.title} {event.teacher.firstName}{" "}
-              {event.teacher.lastName}
-            </b>
+            <b>{event.teacher && formatTeacherData(event.teacher)}</b>
           </Typography>
         </>
       </TableStack>
