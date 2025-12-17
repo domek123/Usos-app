@@ -5,8 +5,8 @@ export const userUserStoreDefaultValues = {
   firstName: "",
   lastName: "",
   email: "",
-  role: PermissionType.ADMIN,
+  role: PermissionType.NONE,
   studentId: -1,
   teacherId: "",
-  token: undefined,
+  token: "",
 };

@@ -44,7 +44,7 @@ export const HeaderMenu = () => {
         <MenuItem
           onClick={() => {
             logout();
-            navigate("/login");
+            navigate("login");
           }}
         >
           <ListItemIcon>

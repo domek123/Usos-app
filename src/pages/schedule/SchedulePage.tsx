@@ -4,7 +4,7 @@ import { Stack, styled, Typography } from "@mui/material";
 
 export const SchedulePage = () => {
   const { currentSemester, isLoading } = useFetchCurrentSemester(2025);
-  console.log("data", currentSemester, "endData");
+
   if (isLoading || currentSemester === null || currentSemester === undefined) {
     return <Typography>Brak planu</Typography>;
   }

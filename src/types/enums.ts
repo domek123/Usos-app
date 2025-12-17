@@ -2,6 +2,7 @@ export enum PermissionType {
   STUDENT = "STUDENT",
   TEACHER = "TEACHER",
   ADMIN = "ADMIN",
+  NONE = "NONE",
 }
 
 export enum SubjectType {

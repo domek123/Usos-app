@@ -31,7 +31,6 @@ export const useLogin = () => {
       return response;
     },
     onSuccess: (data: LoginResponse) => {
-      console.log(data);
       setUser(data.person);
       setToken(data.accessToken);
       if (data.teacherId) setTeacherId(data.teacherId);

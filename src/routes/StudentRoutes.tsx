@@ -5,7 +5,7 @@ import { PermissionType } from "@/types";
 
 export const StudentRoutes = (
   <Route element={<ProtectedRoute allowedRoles={[PermissionType.STUDENT]} />}>
-    <Route key="subjects" path="grades" element={<GradesPage />} />
-    <Route key="subjects" path="schedule" element={<SchedulePage />} />
+    <Route path="grades" element={<GradesPage />} />
+    <Route path="schedule" element={<SchedulePage />} />
   </Route>
 );

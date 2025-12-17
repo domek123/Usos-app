@@ -6,30 +6,25 @@ import {
   Login,
   MainPage,
 } from "./pages";
-import { ProtectedRouteToken } from "./routes/ProtectedRoute";
+import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { AdminRoutes } from "./routes";
 import { StudentRoutes } from "./routes/StudentRoutes";
 
 function App() {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route
-        path="/"
-        element={
-          <ProtectedRouteToken>
-            <MainPage />
-          </ProtectedRouteToken>
-        }
-      >
-        <Route index element={<Dashboard />} />
-        {AdminRoutes}
-        {StudentRoutes}
-        <Route key="contact" path="contact" element={<ContactPage />} />,
-      </Route>
+      <Route path="login" element={<Login />} />
+      <Route path="forgot-password" element={<ForgotPassword />} />
 
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path="/" element={<MainPage />}>
+          <Route index element={<Dashboard />} />
+          {AdminRoutes}
+          {StudentRoutes}
+          <Route path="contact" element={<ContactPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Route>
     </Routes>
   );
 }

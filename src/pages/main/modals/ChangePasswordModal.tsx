@@ -27,10 +27,7 @@ export const ChangePasswordModal = () => {
     <>
       <ModalHeader title={t("changePasswordModal.title")} />
       <CustomForm
-        onSubmit={handleSubmit((data) => {
-          console.log(data);
-          changePassword(data);
-        })}
+        onSubmit={handleSubmit(changePassword)}
         sx={{ width: "100%" }}
       >
         {error && (
