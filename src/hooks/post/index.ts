@@ -10,3 +10,5 @@ export * from "./useEditGrade";
 export * from "./useSetActiveSemester";
 export * from "./useLogin";
 export * from "./useChangePassword";
+export * from "./useCreateMessage";
+export * from "./useMarkAsRead";

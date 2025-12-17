@@ -22,7 +22,7 @@ export const StudentFilters = () => {
     <Stack flexDirection={"row"} gap="10px" flexWrap={"wrap"}>
       <SearchInput
         value={search}
-        onTextChange={(val) => setSearch(val)}
+        onChange={(e) => setSearch(e.target.value)}
         sx={{ width: "200px" }}
       />
       {!faculty && (

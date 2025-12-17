@@ -12,7 +12,8 @@
     "confirm": "Potwierdź",
     "email": "Email",
     "reset": "Resetuj",
-    "year": "Rok rozpoczęcia"
+    "year": "Rok rozpoczęcia",
+    "back": "Wróć"
   },
   "login": {
     "title": "USOS AGH",
@@ -70,6 +71,11 @@
       "grade": "Ocena",
       "finalGrade": "Ocena Końcowa",
       "details": "szczegóły"
+    },
+    "detailsModal": {
+      "contact": "Dane kontaktowe",
+      "phone": "Telefon",
+      "email": "Email"
     }
   },
   "gradeType": {
@@ -215,5 +221,27 @@
     },
     "AddSubjectsTitle": "Dodaj zapis na przedmioty",
     "AddSemestersTitle": "Dodaj zapis na semestry"
+  },
+  "contact": {
+    "title": "Wiadomości",
+    "sidebar": {
+      "received": "Odebrane",
+      "sent": "Wysłane",
+      "create": "Utwórz"
+    },
+    "writeMessage": "Napisz nową wiadomość",
+    "messagesSent": "Wiadomości wysłane",
+    "messagesReceived": "Wiadomości odebrane",
+    "noMessages": "Brak wiadomości",
+    "recipientEmail": "Email odbiorcy",
+    "subject": "Temat",
+    "message": "Wiadomość",
+    "send": "Wyślij",
+    "reply": "Odpowiedz",
+    "from": "Od",
+    "to": "Do",
+    "date": "Data",
+    "new": "Nowa",
+    "messageError": "Nie udało się wczytać wiadomości"
   }
 }

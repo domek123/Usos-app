@@ -18,3 +18,8 @@ export enum Days {
   THURSDAY = "THURSDAY",
   FRIDAY = "FRIDAY",
 }
+
+export enum MessageType {
+  SENT = "SENT",
+  RECEIVED = "RECEIVED",
+}

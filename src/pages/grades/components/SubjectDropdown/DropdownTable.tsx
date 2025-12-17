@@ -36,7 +36,7 @@ export const DropdownTable = ({ subjects }: DropdownTableProps) => {
         </TableHead>
         <TableBody>
           {subjects.map((item) => (
-            <DropdownRow subject={item} />
+            <DropdownRow subject={item} key={item.id} />
           ))}
         </TableBody>
       </Table>

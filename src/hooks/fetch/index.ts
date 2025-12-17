@@ -8,3 +8,4 @@ export * from "./useFetchPersonData";
 export * from "./useFetchScheduleEvents";
 export * from "./useFetchCurrentSemester";
 export * from "./useFetchYears";
+export * from "./useFetchMessages";
