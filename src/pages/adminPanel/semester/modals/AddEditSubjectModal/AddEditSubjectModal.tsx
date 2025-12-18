@@ -43,7 +43,7 @@ export const AddEditSubjectModal = ({
   });
 
   const gradeTypes = watch("gradeTypes");
-
+  const teacherId = watch("teacherId");
   const { addEditSubject } = useAddEditSubject(semesterId, subject?.id);
 
   return (
@@ -68,7 +68,7 @@ export const AddEditSubjectModal = ({
         </Stack>
         <TeacherSelect
           setValue={(val) => setValue("teacherId", val)}
-          value={subject?.teacherId}
+          value={teacherId}
         />
         <SubjectTypeSelect
           value={gradeTypes as SubjectType[]}
