@@ -8,4 +8,5 @@ export type AddSubjectEnrollmentProps = {
 export type EditGradeProps = {
   grade: Grade;
   subjectName: string;
+  additionalAction?: () => void;
 };

@@ -12,7 +12,10 @@ export const FacultyBlock = ({ faculty }: { faculty: Faculty }) => {
     <Block
       onClick={() => {
         setFaculty(faculty);
-        navigate(role === PermissionType.ADMIN ? "semesters" : "schedule");
+        let url = "semesters";
+        if (role === PermissionType.TEACHER) url = "teacher-grade";
+        if (role === PermissionType.STUDENT) url = "schedule";
+        navigate(url);
       }}
     >
       <Typography>{faculty.name}</Typography>

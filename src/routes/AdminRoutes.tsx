@@ -7,7 +7,6 @@ import {
 } from "@/pages";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { PermissionType } from "@/types";
-import { StudentPage } from "@/pages/student";
 
 export const AdminRoutes = (
   <Route element={<ProtectedRoute allowedRoles={[PermissionType.ADMIN]} />}>
@@ -15,6 +14,5 @@ export const AdminRoutes = (
     <Route path="semester" element={<SemesterInfo />} />
     <Route path="teachers" element={<TeacherPage />} />
     <Route path="students" element={<StudentsPage />} />
-    <Route path="student" element={<StudentPage />} />
   </Route>
 );

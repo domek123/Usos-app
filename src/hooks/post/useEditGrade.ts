@@ -3,7 +3,7 @@ import { api } from "@/api/api";
 import { useModalContext } from "@/context";
 import { useFacultyStore } from "@/stores";
 
-export const useEditGrade = (id: string, studentId: number) => {
+export const useEditGrade = (id: string, studentId?: number) => {
   const queryClient = useQueryClient();
   const { faculty } = useFacultyStore();
   const { closeModal } = useModalContext();
@@ -13,9 +13,14 @@ export const useEditGrade = (id: string, studentId: number) => {
       return api.patch(`/grade/${id}`, { newGrade });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["enrollment", studentId, faculty!.id],
-      });
+      if (studentId)
+        queryClient.invalidateQueries({
+          queryKey: ["enrollment", studentId, faculty!.id],
+        });
+      else
+        queryClient.invalidateQueries({
+          queryKey: ["filtered-students", faculty!.id],
+        });
       closeModal();
     },
     onError: (error) => {

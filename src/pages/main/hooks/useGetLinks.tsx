@@ -22,6 +22,8 @@ export const useGetLinks = () => {
     { to: "students", text: t("navigation.students") },
   ];
 
+  const teacherLinks = [{ to: "teacher-grade", text: t("navigation.grades") }];
+
   let links = [];
 
   if (faculty === null) {
@@ -30,6 +32,8 @@ export const useGetLinks = () => {
 
   if (role === PermissionType.STUDENT && faculty !== null) {
     links = [...links, ...studentLinks];
+  } else if (role === PermissionType.TEACHER && faculty !== null) {
+    links = [...links, ...teacherLinks];
   } else if (role === PermissionType.ADMIN) {
     if (faculty !== null) {
       links = [...links, ...adminLinks];

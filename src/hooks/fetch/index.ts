@@ -9,3 +9,4 @@ export * from "./useFetchScheduleEvents";
 export * from "./useFetchCurrentSemester";
 export * from "./useFetchYears";
 export * from "./useFetchMessages";
+export * from "./useFetchFilteredStudents";

@@ -245,5 +245,11 @@
     "date": "Data",
     "new": "Nowa",
     "messageError": "Nie udało się wczytać wiadomości"
+  },
+  "teacherPanel": {
+    "filters": {
+      "subject": "Przedmiot",
+      "semester": "Semestr"
+    }
   }
 }

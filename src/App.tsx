@@ -9,10 +9,12 @@ import {
   MessageDetails,
   ReceivedContent,
   SentContent,
+  StudentPage,
 } from "./pages";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
-import { AdminRoutes } from "./routes";
+import { AdminRoutes, TeacherRoutes } from "./routes";
 import { StudentRoutes } from "./routes/StudentRoutes";
+import { PermissionType } from "./types";
 
 function App() {
   return (
@@ -23,8 +25,18 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route path="/" element={<MainPage />}>
           <Route index element={<Dashboard />} />
+          <Route
+            element={
+              <ProtectedRoute
+                allowedRoles={[PermissionType.TEACHER, PermissionType.ADMIN]}
+              />
+            }
+          >
+            <Route path="student" element={<StudentPage />} />
+          </Route>
           {AdminRoutes}
           {StudentRoutes}
+          {TeacherRoutes}
           <Route path="contact" element={<ContactPage />}>
             <Route index element={<Navigate to="received" replace />} />
             <Route path="create" element={<CreateMessageContent />} />

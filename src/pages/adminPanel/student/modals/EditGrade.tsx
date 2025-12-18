@@ -6,11 +6,15 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
-export const EditGrade = ({ grade, subjectName }: EditGradeProps) => {
+export const EditGrade = ({
+  grade,
+  subjectName,
+  additionalAction,
+}: EditGradeProps) => {
   const { t } = useTranslation();
   const location = useLocation();
 
-  const { editGrade } = useEditGrade(grade.id, location.state.id);
+  const { editGrade } = useEditGrade(grade.id, location.state?.id || undefined);
 
   const [value, setValue] = useState<number>(grade.currentGrade || 2);
 
@@ -37,7 +41,13 @@ export const EditGrade = ({ grade, subjectName }: EditGradeProps) => {
           </MenuItem>
         ))}
       </Select>
-      <ModalFooter text={t("common.save")} action={() => editGrade(value)} />
+      <ModalFooter
+        text={t("common.save")}
+        action={() => {
+          editGrade(value);
+          if (additionalAction) additionalAction();
+        }}
+      />
     </>
   );
 };

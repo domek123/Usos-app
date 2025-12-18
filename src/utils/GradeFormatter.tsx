@@ -3,42 +3,52 @@ import { useTranslation } from "react-i18next";
 import type { Grade } from "@/types";
 import { RowBetweenStack } from "@/styles";
 import { useModalContext } from "@/context";
-import { EditGrade } from "@/pages/student/modals";
+import { EditGrade } from "@/pages/adminPanel/student/modals";
 import { getFinalGrade } from "./calculateFinalGrade";
 
 type GradeFormatterProps = {
   grades: Grade[];
   subjectName?: string;
-  isClosed: boolean;
+  isClosed?: boolean;
+  onlySubjects?: boolean;
+  additionalAction?: () => void;
 };
 
 export const GradeFormatter = ({
   grades,
   subjectName,
-  isClosed,
+  isClosed = false,
+  onlySubjects,
+  additionalAction,
 }: GradeFormatterProps) => {
   const { t } = useTranslation();
   const { setModalContent } = useModalContext();
-  console.log(isClosed);
+  console.log(grades, subjectName);
   return (
     <>
-      <RowBetweenStack>
-        <Typography>{t("grades.table.finalGrade")}</Typography>
-        {!isClosed ? (
-          <Typography fontSize={"13px"}>{t("grades.noGrade")}</Typography>
-        ) : (
-          <Typography>
-            {getFinalGrade(grades.map((val) => val.currentGrade || 0))}
-          </Typography>
-        )}
-      </RowBetweenStack>
+      {!onlySubjects && (
+        <RowBetweenStack>
+          <Typography>{t("grades.table.finalGrade")}</Typography>
+          {!isClosed ? (
+            <Typography fontSize={"13px"}>{t("grades.noGrade")}</Typography>
+          ) : (
+            <Typography>
+              {getFinalGrade(grades.map((val) => val.currentGrade || 0))}
+            </Typography>
+          )}
+        </RowBetweenStack>
+      )}
       {grades.map((item) => (
         <RowBetweenStack
           sx={{ cursor: subjectName && "pointer" }}
           onClick={() => {
             if (subjectName)
               setModalContent(
-                <EditGrade grade={item} subjectName={subjectName} />
+                <EditGrade
+                  grade={item}
+                  subjectName={subjectName}
+                  additionalAction={additionalAction}
+                />
               );
           }}
         >

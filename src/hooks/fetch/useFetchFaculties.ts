@@ -9,7 +9,7 @@ export const useFetchFaculties = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["faculty"],
     queryFn: async (): Promise<Faculty[]> => {
-      if (role === PermissionType.ADMIN) {
+      if (role === PermissionType.ADMIN || role === PermissionType.TEACHER) {
         return await api.get<Faculty[]>("/faculty");
       }
       return await api.get<Faculty[]>("/person/faculty/" + id);
