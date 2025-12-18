@@ -40,7 +40,7 @@ export const useFilters = () => {
 
     return students.filter((val) => {
       const searchable =
-        `${val.student.firstName} ${val.student.lastName} ${val.student.email}`.toLowerCase();
+        `${val.student.firstName} ${val.student.lastName} ${val.student.email} ${val.student.studentId}`.toLowerCase();
       return searchable.includes(query);
     });
   }, [students, debounceSearch, isReset]);

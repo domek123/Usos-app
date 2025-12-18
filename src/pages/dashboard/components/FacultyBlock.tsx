@@ -18,7 +18,9 @@ export const FacultyBlock = ({ faculty }: { faculty: Faculty }) => {
         navigate(url);
       }}
     >
-      <Typography>{faculty.name}</Typography>
+      <Typography style={{ whiteSpace: "normal", wordBreak: "break-word" }}>
+        {faculty.name}
+      </Typography>
     </Block>
   );
 };
