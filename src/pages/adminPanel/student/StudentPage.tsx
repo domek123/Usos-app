@@ -1,5 +1,5 @@
 import { Button, Stack, styled, Typography } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Info, SemesterSection, SubjectTable } from "./components";
 import {
   useDeleteSemesterAssignment,
@@ -10,14 +10,21 @@ import { CustomDropdown } from "@/components";
 import { PermissionType, type EnrolledSubject } from "@/types";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { theme } from "@/theme";
+import { useUserStore } from "@/stores";
 
 export const StudentPage = () => {
   const location = useLocation();
-  const { id } = location.state || {};
+  const { id } = location.state;
+  const navigate = useNavigate();
 
+  const { role } = useUserStore();
   const { studentSemesters } = useFetchStudentsSemesters(id);
   const { person } = useFetchPersonData(id, PermissionType.STUDENT);
   const { deleteSemesterAssignment } = useDeleteSemesterAssignment();
+
+  if (!id) {
+    navigate(-1);
+  }
 
   return (
     <MainContainer>
@@ -25,25 +32,29 @@ export const StudentPage = () => {
         {person?.firstName} {person?.lastName}
       </Typography>
       <Info />
-      <SemesterSection semesters={studentSemesters} />
+      {role === PermissionType.ADMIN && (
+        <SemesterSection semesters={studentSemesters} />
+      )}
       <Stack>
         {studentSemesters.map((semester) => (
           <CustomDropdown
             headerChildren={
-              <Button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  deleteSemesterAssignment({
-                    studentId: id,
-                    semesterId: semester.id,
-                  });
-                }}
-              >
-                <DeleteIcon
-                  sx={{ color: theme.palette.common.white }}
-                  fontSize="small"
-                />
-              </Button>
+              role === PermissionType.ADMIN && (
+                <Button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    deleteSemesterAssignment({
+                      studentId: id,
+                      semesterId: semester.id,
+                    });
+                  }}
+                >
+                  <DeleteIcon
+                    sx={{ color: theme.palette.common.white }}
+                    fontSize="small"
+                  />
+                </Button>
+              )
             }
             children={
               <SubjectTable

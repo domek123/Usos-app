@@ -250,6 +250,12 @@
     "filters": {
       "subject": "Przedmiot",
       "semester": "Semestr"
+    },
+    "table": {
+      "indexNumber": "Indeks",
+      "name": "Imię i Nazwisko",
+      "email": "Email",
+      "grades": "Oceny"
     }
   }
 }

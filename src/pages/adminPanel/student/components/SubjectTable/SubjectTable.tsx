@@ -14,10 +14,13 @@ import { DefaultTableContainer } from "@/components";
 import { useModalContext } from "@/context";
 import { AddSubjectEnrollmentModal } from "../../modals";
 import type { SubjectTableProps } from "./types";
+import { useUserStore } from "@/stores";
+import { PermissionType } from "@/types";
 
 export const SubjectTable = ({ subjects, semesterId }: SubjectTableProps) => {
   const { t } = useTranslation();
   const { setModalContent } = useModalContext();
+  const { role } = useUserStore();
 
   return (
     <DefaultTableContainer>
@@ -32,20 +35,22 @@ export const SubjectTable = ({ subjects, semesterId }: SubjectTableProps) => {
           <StyledTableCell width={"35%"} align="center">
             <CellTypography>{t("student.table.grade")}</CellTypography>
           </StyledTableCell>
-          <StyledTableCell sx={{ padding: "0px" }}>
-            <Button
-              onClick={() => {
-                setModalContent(
-                  <AddSubjectEnrollmentModal
-                    semesterId={semesterId}
-                    enrollmentSubjects={subjects}
-                  />
-                );
-              }}
-            >
-              <AddIcon />
-            </Button>
-          </StyledTableCell>
+          {role === PermissionType.ADMIN && (
+            <StyledTableCell sx={{ padding: "0px" }}>
+              <Button
+                onClick={() => {
+                  setModalContent(
+                    <AddSubjectEnrollmentModal
+                      semesterId={semesterId}
+                      enrollmentSubjects={subjects}
+                    />
+                  );
+                }}
+              >
+                <AddIcon />
+              </Button>
+            </StyledTableCell>
+          )}
         </TableRow>
       </TableHead>
       <TableBody>
