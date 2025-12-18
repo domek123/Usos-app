@@ -90,7 +90,7 @@ export const Login = () => {
           </Box>
 
           <Stack alignItems="center">
-            <MuiLink
+            {/* <MuiLink
               component="button"
               variant="body2"
               onClick={() => navigate("/forgot-password")}
@@ -103,7 +103,7 @@ export const Login = () => {
               }}
             >
               <Typography>{t("login.forgotPassword")}</Typography>
-            </MuiLink>
+            </MuiLink> */}
           </Stack>
         </Stack>
       </Paper>
